@@ -19,6 +19,7 @@ Thumbs.db
 # Project-specific exclusions
 models/
 data/
+config/
 
 # Additional data file types
 *.pdf
