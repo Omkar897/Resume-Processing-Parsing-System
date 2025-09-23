@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific exclusions
+models/
+data/
+
+# Additional data file types
+*.pdf
+*.csv
+*.json
+*.pkl
+*.joblib
