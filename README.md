@@ -103,37 +103,6 @@ The server will start at: [**http://localhost:5000**](http://localhost:5000)
 
 
 
-## 📁 Project Structure
-
-Resume Scrapper Project/
-├── web/ # Web application
-│ ├── app.py # Flask backend
-│ ├── templates/ # HTML pages
-│ │ ├── index.html # Upload page
-│ │ └── results.html # Job results page
-│ └── static/ # CSS, JS, uploads
-│ ├── css/
-│ ├── js/
-│ └── uploads/
-├── src/
-│ ├── jobs/
-│ │ └── job_scraper.py # Job scraping logic
-│ ├── resume/
-│ │ ├── classifier.py # ML classifier
-│ │ └── processor.py # Resume processor
-│ └── utils/
-│ └── pdf_extractor.py # PDF text extraction
-├── models/ # Trained ML models
-│ ├── resume_classifier_model.pkl
-│ ├── tfidf_vectorizer.joblib
-│ └── label_encoder.joblib
-├── data/
-│ └── resumes/ # Sample resumes
-├── .env # API keys (not in git)
-├── .env.example # Template for API keys
-├── requirements.txt # Python dependencies
-└── README.md
-
 ## 📖 Usage
 
 1. **Open your browser** and navigate to `http://localhost:5000`
