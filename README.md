@@ -45,7 +45,7 @@ An intelligent web application that automatically analyzes resumes using machine
 git clone https://github.com/Omkar897/Resume-Processing-Parsing-System
 cd resume-job-matcher
 
-text
+
 
 ### 2. Create Virtual Environment
 
@@ -53,19 +53,19 @@ text
 python -m venv venv
 venv\Scripts\activate
 
-text
+
 
 **Mac/Linux:**
 python3 -m venv venv
 source venv/bin/activate
 
-text
+
 
 ### 3. Install Dependencies
 
 pip install -r requirements.txt
 
-text
+
 
 ### 4. Configure API Keys
 
@@ -76,7 +76,7 @@ copy .env.example .env
 Mac/Linux
 cp .env.example .env
 
-text
+
 
 **Step 4.2:** Get your API keys
 
@@ -98,9 +98,41 @@ text
 cd web
 python app.py
 
-text
 
 The server will start at: [**http://localhost:5000**](http://localhost:5000)
+
+
+
+## 📁 Project Structure
+
+Resume Scrapper Project/
+├── web/ # Web application
+│ ├── app.py # Flask backend
+│ ├── templates/ # HTML pages
+│ │ ├── index.html # Upload page
+│ │ └── results.html # Job results page
+│ └── static/ # CSS, JS, uploads
+│ ├── css/
+│ ├── js/
+│ └── uploads/
+├── src/
+│ ├── jobs/
+│ │ └── job_scraper.py # Job scraping logic
+│ ├── resume/
+│ │ ├── classifier.py # ML classifier
+│ │ └── processor.py # Resume processor
+│ └── utils/
+│ └── pdf_extractor.py # PDF text extraction
+├── models/ # Trained ML models
+│ ├── resume_classifier_model.pkl
+│ ├── tfidf_vectorizer.joblib
+│ └── label_encoder.joblib
+├── data/
+│ └── resumes/ # Sample resumes
+├── .env # API keys (not in git)
+├── .env.example # Template for API keys
+├── requirements.txt # Python dependencies
+└── README.md
 
 ## 📖 Usage
 
