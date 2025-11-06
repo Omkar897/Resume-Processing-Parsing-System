@@ -8,6 +8,9 @@ import requests
 import re
 import fitz  # PyMuPDF for PDF text extraction
 from collections import Counter
+import os
+
+os.environ["PYTHONIOENCODING"] = "utf-8"
 
 
 class ResumeClassifier:

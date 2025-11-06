@@ -28,4 +28,6 @@ pytest-cov==4.1.0
 pathlib2==2.3.7
 argparse==1.4.0
 spacy==3.4.4
+requests==2.31.0
+beautifulsoup4==4.12.2
 
