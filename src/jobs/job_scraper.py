@@ -12,10 +12,11 @@ env["PYTHONIOENCODING"] = "utf-8"
 
 
 class IntegratedJobScraper:
-    def __init__(self):
+    def __init__(self, headless=False):
         self.serpapi_key = (
             "206fd79ebb2efca9f63d527a53171d31ef42d9351da6af8219b4f3ed20c96a11"
         )
+        self.headless = headless
 
     def parse_duration_to_months(self, duration_str):
         """Parse duration string like 'June-Aug 2024' or 'Jan-Feb 2024' to months"""
@@ -64,7 +65,6 @@ class IntegratedJobScraper:
                     return max(months, 1)
 
             return 3
-
         except:
             return 3
 
@@ -76,17 +76,15 @@ class IntegratedJobScraper:
             )
             cmd = [sys.executable, main_script_path, "--file", resume_path]
 
-            # Run with error handling
             result = subprocess.run(
                 cmd,
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
                 env=env,
-                errors="ignore",  # Ignore encoding errors
+                errors="ignore",
             )
 
-            # Get both stdout and stderr
             output = result.stdout + result.stderr
             output_lines = output.split("\n")
 
@@ -94,25 +92,25 @@ class IntegratedJobScraper:
             total_months = 0
             in_experience_section = False
 
-            for i, line in enumerate(output_lines):
-                # Try multiple patterns to find category
-                # Pattern 1: With emoji
+            for line in output_lines:
+                # Find category
                 if "Predicted Category:" in line:
                     category_match = re.search(r"Predicted Category:\s*(.+)", line)
                     if category_match:
                         category = category_match.group(1).strip()
-                        print(f"✓ Found category: {category}")
+                        if not self.headless:
+                            print(f"✓ Found category: {category}")
 
-                # Pattern 2: Without emoji (if encoding failed)
                 if "predicted category" in line.lower() and not category:
                     category_match = re.search(
                         r"category[:\s]+([A-Za-z\s]+)", line, re.IGNORECASE
                     )
                     if category_match:
                         category = category_match.group(1).strip()
-                        print(f"✓ Found category (alt): {category}")
+                        if not self.headless:
+                            print(f"✓ Found category (alt): {category}")
 
-                # Detect experience section
+                # Find experience
                 if "WORK EXPERIENCE" in line:
                     in_experience_section = True
                     continue
@@ -122,30 +120,21 @@ class IntegratedJobScraper:
                 ):
                     in_experience_section = False
 
-                # Parse duration
                 if in_experience_section and "Duration:" in line:
                     duration_match = re.search(r"Duration:\s*(.+)", line)
                     if duration_match:
                         duration_str = duration_match.group(1).strip()
                         months = self.parse_duration_to_months(duration_str)
                         total_months += months
-                        print(f"✓ Found duration: {duration_str} = {months} months")
+                        if not self.headless:
+                            print(f"✓ Found duration: {duration_str} = {months} months")
 
             total_years = total_months / 12.0
-
-            if not category:
-                print("⚠️  Could not extract category from resume output")
-                print("First 20 lines of output:")
-                for line in output_lines[:20]:
-                    print(f"  {line}")
-
             return category, total_years
 
         except Exception as e:
-            print(f"❌ Error in get_resume_data: {e}")
-            import traceback
-
-            traceback.print_exc()
+            if not self.headless:
+                print(f"❌ Error in get_resume_data: {e}")
             return None, 0
 
     def build_search_query(self, category, years_experience):
@@ -188,7 +177,6 @@ class IntegratedJobScraper:
                 return now - timedelta(days=value * 30)
             else:
                 return now - timedelta(days=365)
-
         except:
             return datetime.now() - timedelta(days=365)
 
@@ -289,32 +277,40 @@ class IntegratedJobScraper:
                 jobs = jobs[:max_jobs]
 
         except Exception as e:
-            print(f"SerpAPI Error: {e}")
+            if not self.headless:
+                print(f"SerpAPI Error: {e}")
 
         return jobs
 
     def process_resume_and_scrape_jobs(self, resume_path, max_jobs=10):
         """Main method - calculate experience and search accordingly"""
-        print("🔄 Analyzing resume...")
+        if not self.headless:
+            print("🔄 Analyzing resume...")
+
         category, years_experience = self.get_resume_data(resume_path)
 
+        # CRITICAL: In headless mode, raise exception if no category
         if not category:
-            print("\n❌ Failed to extract category automatically")
-            category = input("Please enter job category manually: ").strip()
-            if not category:
-                print("No category provided. Exiting.")
-                return [], None, 0, 0
+            if self.headless:
+                raise Exception("Failed to extract category from resume")
+            else:
+                print("\n❌ Failed to extract category automatically")
+                category = input("Please enter job category manually: ").strip()
+                if not category:
+                    print("No category provided. Exiting.")
+                    return [], None, 0, 0
 
         search_query, rounded_years = self.build_search_query(
             category, years_experience
         )
 
-        print(f"\n📊 Category: {category}")
-        print(
-            f"💼 Experience: {years_experience:.1f} years → Rounded to {rounded_years} years"
-        )
-        print(f"🔍 Searching: '{search_query}'")
-        print()
+        if not self.headless:
+            print(f"\n📊 Category: {category}")
+            print(
+                f"💼 Experience: {years_experience:.1f} years → Rounded to {rounded_years} years"
+            )
+            print(f"🔍 Searching: '{search_query}'")
+            print()
 
         all_jobs = self.scrape_google_jobs_serpapi(
             search_query, location="India", max_jobs=max_jobs
@@ -349,6 +345,9 @@ class IntegratedJobScraper:
 
 
 def main():
+    # Detect headless mode
+    is_headless = not sys.stdin.isatty()
+
     if len(sys.argv) != 2:
         print("Usage: python job_scraper.py <resume_file_path>")
         return
@@ -359,16 +358,21 @@ def main():
         print(f"❌ File not found: {resume_path}")
         return
 
-    scraper = IntegratedJobScraper()
-    jobs, category, years_exp, rounded_years = scraper.process_resume_and_scrape_jobs(
-        resume_path
-    )
+    scraper = IntegratedJobScraper(headless=is_headless)
 
-    if jobs and category:
-        filename = scraper.save_results(jobs, category, years_exp, rounded_years)
-        print(f"✅ Scraped {len(jobs)} jobs → {filename}")
-    else:
-        print(f"❌ No matching jobs found")
+    try:
+        jobs, category, years_exp, rounded_years = (
+            scraper.process_resume_and_scrape_jobs(resume_path)
+        )
+
+        if jobs and category:
+            filename = scraper.save_results(jobs, category, years_exp, rounded_years)
+            print(f"✅ Scraped {len(jobs)} jobs → {filename}")
+        else:
+            print(f"❌ No matching jobs found")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

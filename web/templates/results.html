@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Results - AI Resume Matcher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="results-header">
+            <h1>🎉 Your Matched Jobs</h1>
+            <div id="resumeInfo" class="resume-info"></div>
+        </header>
+
+        <div id="jobsContainer" class="jobs-container">
+            <!-- Jobs will be inserted here by JavaScript -->
+        </div>
+
+        <div class="actions">
+            <button class="btn-secondary" onclick="window.location.href='/'">
+                Upload Another Resume
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/results.js') }}"></script>
+</body>
+</html>
