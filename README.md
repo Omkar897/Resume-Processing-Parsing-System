@@ -42,7 +42,7 @@ An intelligent web application that automatically analyzes resumes using machine
 
 ### 1. Clone the Repository
 
-git clone https://github.com/yourusername/resume-job-matcher.git
+git clone https://github.com/Omkar897/Resume-Processing-Parsing-System
 cd resume-job-matcher
 
 text
@@ -91,10 +91,7 @@ text
   3. Copy your API key
 
 **Step 4.3:** Update `.env` file with your actual keys
-SERPAPI_KEY=paste_your_actual_serpapi_key_here
-APILAYER_KEY=paste_your_actual_apilayer_key_here
 
-text
 
 ### 5. Run the Application
 
