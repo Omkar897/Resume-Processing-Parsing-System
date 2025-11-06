@@ -1,0 +1,778 @@
+[
+    {
+      "name": "Aarav Singh",
+      "email": "aarav.singh@example.com",
+      "phone": "+91-9759613189",
+      "summary": "Frontend developer with a strong foundation in React and Angular, focused on delivering performant web apps.",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Context API",
+        "CSS Modules",
+        "Jest"
+      ],
+      "experience": [
+        {
+          "company": "Personal Projects",
+          "role": "React Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Developed responsive web pages using HTML, CSS, and JavaScript.",
+            "Collaborated with UI/UX teams to implement design mockups.",
+            "Fixed bugs and optimized frontend performance."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Software Engineering",
+        "university": "BITS Pilani",
+        "year": "2023"
+      },
+      "certifications": ["Vue.js Developer Certification"]
+    },
+    {
+      "name": "Isha Sharma",
+      "email": "isha.sharma@example.com",
+      "phone": "+91-9573480572",
+      "summary": "Creative frontend engineer skilled in HTML5, CSS3, and JavaScript, eager to contribute to innovative projects.",
+      "skills": [
+        "HTML5",
+        "SASS",
+        "JavaScript",
+        "Angular",
+        "RxJS"
+      ],
+      "experience": [
+        {
+          "company": "Tech Startup",
+          "role": "UI Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Developed responsive web pages using HTML, CSS, and JavaScript.",
+            "Collaborated with UI/UX teams to implement design mockups.",
+            "Fixed bugs and optimized frontend performance."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Software Engineering",
+        "university": "BITS Pilani",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Rohan Gupta",
+      "email": "rohan.gupta@example.com",
+      "phone": "+91-9259091474",
+      "summary": "Entry-level frontend engineer with experience in building dynamic interfaces and collaborating on agile teams.",
+      "skills": [
+        "HTML5",
+        "SASS",
+        "JavaScript",
+        "Angular",
+        "RxJS"
+      ],
+      "experience": [
+        {
+          "company": "Freelance",
+          "role": "Frontend Intern",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Software Engineering",
+        "university": "BITS Pilani",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Sanya Verma",
+      "email": "sanya.verma@example.com",
+      "phone": "+91-9504696011",
+      "summary": "Entry-level frontend engineer with experience in building dynamic interfaces and collaborating on agile teams.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "University Projects",
+          "role": "Frontend Intern",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.E. in Information Technology",
+        "university": "Pune University",
+        "year": "2022"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Aditya Patel",
+      "email": "aditya.patel@example.com",
+      "phone": "+91-9597310534",
+      "summary": "Frontend developer with a strong foundation in React and Angular, focused on delivering performant web apps.",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Context API",
+        "CSS Modules",
+        "Jest"
+      ],
+      "experience": [
+        {
+          "company": "Freelance",
+          "role": "Frontend Intern",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Neha Reddy",
+      "email": "neha.reddy@example.com",
+      "phone": "+91-9846040251",
+      "summary": "Creative frontend engineer skilled in HTML5, CSS3, and JavaScript, eager to contribute to innovative projects.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "Personal Projects",
+          "role": "Frontend Intern",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Built reusable React components to improve code maintainability.",
+            "Integrated RESTful APIs for dynamic data rendering.",
+            "Wrote unit tests using Jest and React Testing Library."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": ["JavaScript Specialist"]
+    },
+    {
+      "name": "Karan Kapoor",
+      "email": "karan.kapoor@example.com",
+      "phone": "+91-9460578316",
+      "summary": "Creative frontend engineer skilled in HTML5, CSS3, and JavaScript, eager to contribute to innovative projects.",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS"
+      ],
+      "experience": [
+        {
+          "company": "University Projects",
+          "role": "Frontend Intern",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Employed Next.js for server-side rendering and routing.",
+            "Styled components using TailwindCSS and SASS.",
+            "Conducted user testing and provided accessibility improvements."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.E. in Information Technology",
+        "university": "Pune University",
+        "year": "2022"
+      },
+      "certifications": ["Vue.js Developer Certification"]
+    },
+    {
+      "name": "Tanya Mehta",
+      "email": "tanya.mehta@example.com",
+      "phone": "+91-9169038194",
+      "summary": "Creative frontend engineer skilled in HTML5, CSS3, and JavaScript, eager to contribute to innovative projects.",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS"
+      ],
+      "experience": [
+        {
+          "company": "Freelance",
+          "role": "UI Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "MCA",
+        "university": "Christ University",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Vivaan Joshi",
+      "email": "vivaan.joshi@example.com",
+      "phone": "+91-9169820422",
+      "summary": "Entry-level frontend engineer with experience in building dynamic interfaces and collaborating on agile teams.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "Internship",
+          "role": "Junior Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Employed Next.js for server-side rendering and routing.",
+            "Styled components using TailwindCSS and SASS.",
+            "Conducted user testing and provided accessibility improvements."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": ["Certified Frontend Developer"]
+    },
+    {
+      "name": "Simran Kaur",
+      "email": "simran.kaur@example.com",
+      "phone": "+91-9422191166",
+      "summary": "Creative frontend engineer skilled in HTML5, CSS3, and JavaScript, eager to contribute to innovative projects.",
+      "skills": [
+        "HTML5",
+        "SASS",
+        "JavaScript",
+        "Angular",
+        "RxJS"
+      ],
+      "experience": [
+        {
+          "company": "Internship",
+          "role": "UI Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Implemented state management using Redux and Context API.",
+            "Worked closely with backend developers for seamless integration.",
+            "Participated in code reviews and agile ceremonies."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Software Engineering",
+        "university": "BITS Pilani",
+        "year": "2023"
+      },
+      "certifications": ["Vue.js Developer Certification"]
+    },
+    {
+      "name": "Arjun Malhotra",
+      "email": "arjun.malhotra@example.com",
+      "phone": "+91-9996402720",
+      "summary": "Frontend developer with a strong foundation in React and Angular, focused on delivering performant web apps.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "University Projects",
+          "role": "Frontend Intern",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Built reusable React components to improve code maintainability.",
+            "Integrated RESTful APIs for dynamic data rendering.",
+            "Wrote unit tests using Jest and React Testing Library."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "MCA",
+        "university": "Christ University",
+        "year": "2023"
+      },
+      "certifications": ["React Professional Certification"]
+    },
+    {
+      "name": "Meera Nair",
+      "email": "meera.nair@example.com",
+      "phone": "+91-9568967045",
+      "summary": "Entry-level frontend engineer with experience in building dynamic interfaces and collaborating on agile teams.",
+      "skills": [
+        "HTML5",
+        "SASS",
+        "JavaScript",
+        "Angular",
+        "RxJS"
+      ],
+      "experience": [
+        {
+          "company": "Tech Startup",
+          "role": "Junior Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Built reusable React components to improve code maintainability.",
+            "Integrated RESTful APIs for dynamic data rendering.",
+            "Wrote unit tests using Jest and React Testing Library."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.E. in Information Technology",
+        "university": "Pune University",
+        "year": "2022"
+      },
+      "certifications": ["Certified Frontend Developer"]
+    },
+    {
+      "name": "Rahul Dixit",
+      "email": "rahul.dixit@example.com",
+      "phone": "+91-9858692967",
+      "summary": "Dedicated frontend developer proficient in modern JavaScript frameworks and UI/UX principles.",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS"
+      ],
+      "experience": [
+        {
+          "company": "Tech Startup",
+          "role": "React Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Software Engineering",
+        "university": "BITS Pilani",
+        "year": "2023"
+      },
+      "certifications": ["React Professional Certification"]
+    },
+    {
+      "name": "Pooja Desai",
+      "email": "pooja.desai@example.com",
+      "phone": "+91-9204550811",
+      "summary": "Dedicated frontend developer proficient in modern JavaScript frameworks and UI/UX principles.",
+      "skills": [
+        "HTML5",
+        "SASS",
+        "JavaScript",
+        "Angular",
+        "RxJS"
+      ],
+      "experience": [
+        {
+          "company": "Personal Projects",
+          "role": "Junior Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Employed Next.js for server-side rendering and routing.",
+            "Styled components using TailwindCSS and SASS.",
+            "Conducted user testing and provided accessibility improvements."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.E. in Information Technology",
+        "university": "Pune University",
+        "year": "2022"
+      },
+      "certifications": ["Certified Frontend Developer"]
+    },
+    {
+      "name": "Nikhil Shah",
+      "email": "nikhil.shah@example.com",
+      "phone": "+91-9132152410",
+      "summary": "Creative frontend engineer skilled in HTML5, CSS3, and JavaScript, eager to contribute to innovative projects.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "Tech Startup",
+          "role": "Junior Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": ["Certified Frontend Developer"]
+    },
+    {
+      "name": "Divya Agarwal",
+      "email": "divya.agarwal@example.com",
+      "phone": "+91-9805259099",
+      "summary": "Entry-level frontend engineer with experience in building dynamic interfaces and collaborating on agile teams.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "Internship",
+          "role": "Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Implemented state management using Redux and Context API.",
+            "Worked closely with backend developers for seamless integration.",
+            "Participated in code reviews and agile ceremonies."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Software Engineering",
+        "university": "BITS Pilani",
+        "year": "2023"
+      },
+      "certifications": ["React Professional Certification"]
+    },
+    {
+      "name": "Ankit Kumar",
+      "email": "ankit.kumar@example.com",
+      "phone": "+91-9684338255",
+      "summary": "Dedicated frontend developer proficient in modern JavaScript frameworks and UI/UX principles.",
+      "skills": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "React",
+        "Redux"
+      ],
+      "experience": [
+        {
+          "company": "Personal Projects",
+          "role": "UI Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Developed responsive web pages using HTML, CSS, and JavaScript.",
+            "Collaborated with UI/UX teams to implement design mockups.",
+            "Fixed bugs and optimized frontend performance."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "VIT",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Sonal Chauhan",
+      "email": "sonal.chauhan@example.com",
+      "phone": "+91-9682296495",
+      "summary": "Frontend developer with a strong foundation in React and Angular, focused on delivering performant web apps.",
+      "skills": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "React",
+        "Redux"
+      ],
+      "experience": [
+        {
+          "company": "Tech Startup",
+          "role": "Junior Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Employed Next.js for server-side rendering and routing.",
+            "Styled components using TailwindCSS and SASS.",
+            "Conducted user testing and provided accessibility improvements."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": ["Vue.js Developer Certification"]
+    },
+    {
+      "name": "Veer Singh",
+      "email": "veer.singh@example.com",
+      "phone": "+91-9447430119",
+      "summary": "Frontend developer with a strong foundation in React and Angular, focused on delivering performant web apps.",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS"
+      ],
+      "experience": [
+        {
+          "company": "Internship",
+          "role": "Junior Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Employed Next.js for server-side rendering and routing.",
+            "Styled components using TailwindCSS and SASS.",
+            "Conducted user testing and provided accessibility improvements."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "VIT",
+        "year": "2023"
+      },
+      "certifications": ["JavaScript Specialist"]
+    },
+    {
+      "name": "Ananya Bose",
+      "email": "ananya.bose@example.com",
+      "phone": "+91-9273408450",
+      "summary": "Frontend developer with a strong foundation in React and Angular, focused on delivering performant web apps.",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Context API",
+        "CSS Modules",
+        "Jest"
+      ],
+      "experience": [
+        {
+          "company": "Personal Projects",
+          "role": "React Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Built reusable React components to improve code maintainability.",
+            "Integrated RESTful APIs for dynamic data rendering.",
+            "Wrote unit tests using Jest and React Testing Library."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "MCA",
+        "university": "Christ University",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Kabir Khan",
+      "email": "kabir.khan@example.com",
+      "phone": "+91-9170076360",
+      "summary": "Dedicated frontend developer proficient in modern JavaScript frameworks and UI/UX principles.",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS"
+      ],
+      "experience": [
+        {
+          "company": "Freelance",
+          "role": "UI Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Implemented state management using Redux and Context API.",
+            "Worked closely with backend developers for seamless integration.",
+            "Participated in code reviews and agile ceremonies."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": ["Certified Frontend Developer"]
+    },
+    {
+      "name": "Sneha Raj",
+      "email": "sneha.raj@example.com",
+      "phone": "+91-9213047631",
+      "summary": "Entry-level frontend engineer with experience in building dynamic interfaces and collaborating on agile teams.",
+      "skills": [
+        "HTML5",
+        "SASS",
+        "JavaScript",
+        "Angular",
+        "RxJS"
+      ],
+      "experience": [
+        {
+          "company": "Personal Projects",
+          "role": "Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "VIT",
+        "year": "2023"
+      },
+      "certifications": ["React Professional Certification"]
+    },
+    {
+      "name": "Raj Malhotra",
+      "email": "raj.malhotra@example.com",
+      "phone": "+91-9461856339",
+      "summary": "Creative frontend engineer skilled in HTML5, CSS3, and JavaScript, eager to contribute to innovative projects.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "University Projects",
+          "role": "Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Employed Next.js for server-side rendering and routing.",
+            "Styled components using TailwindCSS and SASS.",
+            "Conducted user testing and provided accessibility improvements."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "VIT",
+        "year": "2023"
+      },
+      "certifications": ["Certified Frontend Developer"]
+    },
+    {
+      "name": "Sakshi Goyal",
+      "email": "sakshi.goyal@example.com",
+      "phone": "+91-9160727560",
+      "summary": "Dedicated frontend developer proficient in modern JavaScript frameworks and UI/UX principles.",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS"
+      ],
+      "experience": [
+        {
+          "company": "University Projects",
+          "role": "Frontend Developer",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Employed Next.js for server-side rendering and routing.",
+            "Styled components using TailwindCSS and SASS.",
+            "Conducted user testing and provided accessibility improvements."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": ["Vue.js Developer Certification"]
+    },
+    {
+      "name": "Tarun Reddy",
+      "email": "tarun.reddy@example.com",
+      "phone": "+91-9420659029",
+      "summary": "Entry-level frontend engineer with experience in building dynamic interfaces and collaborating on agile teams.",
+      "skills": [
+        "Vue.js",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "TypeScript"
+      ],
+      "experience": [
+        {
+          "company": "Personal Projects",
+          "role": "Frontend Intern",
+          "duration": "2022 - 2023",
+          "responsibilities": [
+            "Enhanced application SEO using SSR techniques.",
+            "Optimized web application for mobile and cross-browser compatibility.",
+            "Maintained documentation for frontend components."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2023"
+      },
+      "certifications": ["Vue.js Developer Certification"]
+    }
+  ]
+  

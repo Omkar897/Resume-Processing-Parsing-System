@@ -1,0 +1,777 @@
+[
+  {
+    "name": "Ankit Sharma",
+    "email": "ankit.sharma@example.com",
+    "phone": "+91-9759613189",
+    "summary": "Entry-level Cloud Engineer with hands-on experience in infrastructure automation and containerization.",
+    "skills": [
+      "AWS",
+      "CloudFormation",
+      "Docker",
+      "Kubernetes",
+      "Terraform"
+    ],
+    "experience": [
+      {
+        "company": "Tech Startup",
+        "role": "Cloud Engineer Intern",
+        "duration": "2023 - Present",
+        "responsibilities": [
+          "Deployed applications using Docker containers and Kubernetes.",
+          "Automated infrastructure provisioning with Terraform and CloudFormation.",
+          "Monitored cloud resources and implemented basic cost optimization."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "NIT Trichy",
+      "year": "2023"
+    },
+    "certifications": ["AWS Certified Cloud Practitioner"]
+  },
+  {
+    "name": "Priya Singh",
+    "email": "priya.singh@example.com",
+    "phone": "+91-9573480572",
+    "summary": "Cloud Engineer with experience in Google Cloud Platform and Kubernetes orchestration.",
+    "skills": [
+      "GCP",
+      "Kubernetes",
+      "Terraform",
+      "Docker",
+      "CI/CD"
+    ],
+    "experience": [
+      {
+        "company": "Digital Agency",
+        "role": "Cloud Engineer",
+        "duration": "2021 - 2023",
+        "responsibilities": [
+          "Migrated on-premise applications to Google Cloud Platform.",
+          "Implemented automated deployment pipelines using Cloud Build.",
+          "Managed GKE clusters for microservices applications."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Information Technology",
+      "university": "VIT",
+      "year": "2021"
+    },
+    "certifications": ["Google Cloud Associate Cloud Engineer"]
+  },
+  {
+    "name": "Rahul Verma",
+    "email": "rahul.verma@example.com",
+    "phone": "+91-9259091474",
+    "summary": "Junior Cloud Engineer specializing in containerization and infrastructure automation.",
+    "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Ansible",
+      "Monitoring"
+    ],
+    "experience": [
+      {
+        "company": "Software Company",
+        "role": "Junior Cloud Engineer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Containerized legacy applications using Docker and deployed to EKS.",
+          "Automated server configuration management using Ansible playbooks.",
+          "Set up monitoring and alerting using CloudWatch and Prometheus."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.E. in Computer Engineering",
+      "university": "Pune University",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Sneha Gupta",
+    "email": "sneha.gupta@example.com",
+    "phone": "+91-9504696011",
+    "summary": "Cloud Engineer with expertise in Azure cloud services and DevOps practices.",
+    "skills": [
+      "Azure",
+      "ARM Templates",
+      "Azure DevOps",
+      "PowerShell",
+      "Terraform"
+    ],
+    "experience": [
+      {
+        "company": "Enterprise Solutions",
+        "role": "Cloud Engineer",
+        "duration": "2020 - 2023",
+        "responsibilities": [
+          "Designed and deployed Azure infrastructure using ARM templates.",
+          "Implemented CI/CD pipelines using Azure DevOps for multiple projects.",
+          "Optimized cloud costs resulting in 30% reduction in monthly expenses."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "BITS Pilani",
+      "year": "2020"
+    },
+    "certifications": ["Microsoft Certified: Azure Fundamentals"]
+  },
+  {
+    "name": "Karan Patel",
+    "email": "karan.patel@example.com",
+    "phone": "+91-9597310534",
+    "summary": "Entry-level Cloud Engineer with focus on AWS services and infrastructure automation.",
+    "skills": [
+      "AWS",
+      "EC2",
+      "S3",
+      "Lambda",
+      "CloudFormation"
+    ],
+    "experience": [
+      {
+        "company": "University Projects",
+        "role": "Cloud Engineer Intern",
+        "duration": "2023",
+        "responsibilities": [
+          "Built serverless applications using AWS Lambda and API Gateway.",
+          "Configured auto-scaling groups and load balancers for web applications.",
+          "Implemented backup strategies using S3 and automated snapshots."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Delhi",
+      "year": "2023"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Nisha Reddy",
+    "email": "nisha.reddy@example.com",
+    "phone": "+91-9846040251",
+    "summary": "Cloud Engineer specializing in multi-cloud deployments and cost optimization.",
+    "skills": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Terraform",
+      "Cost Management"
+    ],
+    "experience": [
+      {
+        "company": "Cloud Consultancy",
+        "role": "Cloud Engineer",
+        "duration": "2019 - 2023",
+        "responsibilities": [
+          "Architected multi-cloud solutions across AWS, Azure, and GCP.",
+          "Implemented cloud governance policies and cost optimization strategies.",
+          "Led cloud migration projects for 5+ enterprise clients."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Cloud Computing",
+      "university": "BITS Pilani",
+      "year": "2019"
+    },
+    "certifications": ["AWS Certified Solutions Architect Associate"]
+  },
+  {
+    "name": "Aditya Kumar",
+    "email": "aditya.kumar@example.com",
+    "phone": "+91-9460578316",
+    "summary": "Cloud Engineer with experience in designing scalable and resilient cloud architectures.",
+    "skills": [
+      "AWS",
+      "Azure",
+      "Kubernetes",
+      "Terraform",
+      "Site Reliability"
+    ],
+    "experience": [
+      {
+        "company": "FinTech Startup",
+        "role": "Senior Cloud Engineer",
+        "duration": "2018 - Present",
+        "responsibilities": [
+          "Designed highly available architectures supporting 99.9% uptime SLA.",
+          "Implemented disaster recovery solutions across multiple regions.",
+          "Established SRE practices including incident response and post-mortems."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Bombay",
+      "year": "2018"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional"]
+  },
+  {
+    "name": "Anjali Das",
+    "email": "anjali.das@example.com",
+    "phone": "+91-9169038194",
+    "summary": "Senior Cloud Engineer with expertise in enterprise-scale infrastructure and security.",
+    "skills": [
+      "AWS",
+      "Security",
+      "Compliance",
+      "Terraform",
+      "Enterprise Architecture"
+    ],
+    "experience": [
+      {
+        "company": "Fortune 500 Company",
+        "role": "Senior Cloud Engineer",
+        "duration": "2017 - Present",
+        "responsibilities": [
+          "Architected secure cloud infrastructure for enterprise applications.",
+          "Implemented compliance frameworks including SOC 2 and PCI DSS.",
+          "Led cloud security initiatives and conducted security assessments."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Cybersecurity",
+      "university": "IIT Delhi",
+      "year": "2017"
+    },
+    "certifications": ["AWS Certified Security Specialty"]
+  },
+  {
+    "name": "Arjun Joshi",
+    "email": "arjun.joshi@example.com",
+    "phone": "+91-9169820422",
+    "summary": "Cloud Engineer with focus on DevOps practices and infrastructure automation.",
+    "skills": [
+      "Azure",
+      "DevOps",
+      "Kubernetes",
+      "Jenkins",
+      "Infrastructure as Code"
+    ],
+    "experience": [
+      {
+        "company": "Software Development Company",
+        "role": "Cloud DevOps Engineer",
+        "duration": "2020 - 2023",
+        "responsibilities": [
+          "Implemented GitOps workflows for application deployment automation.",
+          "Built and maintained CI/CD pipelines using Jenkins and Azure DevOps.",
+          "Managed AKS clusters and implemented service mesh architecture."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.E. in Information Technology",
+      "university": "Pune University",
+      "year": "2020"
+    },
+    "certifications": ["Certified Kubernetes Administrator"]
+  },
+  {
+    "name": "Divya Shah",
+    "email": "divya.shah@example.com",
+    "phone": "+91-9422191166",
+    "summary": "Cloud Architect with expertise in designing enterprise cloud solutions.",
+    "skills": [
+      "Cloud Architecture",
+      "AWS",
+      "Azure",
+      "Solution Design",
+      "Enterprise Integration"
+    ],
+    "experience": [
+      {
+        "company": "Tech Corporation",
+        "role": "Cloud Solutions Architect",
+        "duration": "2016 - Present",
+        "responsibilities": [
+          "Designed cloud architectures for Fortune 500 clients.",
+          "Led digital transformation initiatives worth $50M+ in cloud investments.",
+          "Established cloud governance frameworks and best practices."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "university": "IIT Madras",
+      "year": "2016"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional"]
+  },
+  {
+    "name": "Ritika Malhotra",
+    "email": "ritika.malhotra@example.com",
+    "phone": "+91-9996402720",
+    "summary": "Senior Cloud Engineer specializing in high availability and disaster recovery solutions.",
+    "skills": [
+      "AWS",
+      "Disaster Recovery",
+      "High Availability",
+      "Backup Solutions",
+      "RTO/RPO Planning"
+    ],
+    "experience": [
+      {
+        "company": "Healthcare Technology",
+        "role": "Senior Cloud Engineer",
+        "duration": "2018 - Present",
+        "responsibilities": [
+          "Designed and implemented DR solutions with RTO < 4 hours.",
+          "Architected multi-region deployments for business continuity.",
+          "Established backup and recovery procedures for critical systems."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Delhi",
+      "year": "2018"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional"]
+  },
+  {
+    "name": "Siddharth Nair",
+    "email": "siddharth.nair@example.com",
+    "phone": "+91-9568967045",
+    "summary": "Cloud Engineer with expertise in Azure cloud services and enterprise migrations.",
+    "skills": [
+      "Azure",
+      "Cloud Migration",
+      "Hybrid Cloud",
+      "PowerShell",
+      "Active Directory"
+    ],
+    "experience": [
+      {
+        "company": "Enterprise IT Services",
+        "role": "Cloud Migration Specialist",
+        "duration": "2019 - 2023",
+        "responsibilities": [
+          "Led enterprise migrations from on-premise to Azure cloud.",
+          "Designed hybrid cloud architectures for seamless integration.",
+          "Migrated 200+ virtual machines with minimal downtime."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.E. in Information Technology",
+      "university": "Pune University",
+      "year": "2019"
+    },
+    "certifications": ["Microsoft Certified: Azure Solutions Architect Expert"]
+  },
+  {
+    "name": "Neha Agarwal",
+    "email": "neha.agarwal@example.com",
+    "phone": "+91-9858692967",
+    "summary": "Cloud Infrastructure Engineer with focus on automation and scalability.",
+    "skills": [
+      "Infrastructure as Code",
+      "Terraform",
+      "Ansible",
+      "Kubernetes",
+      "Monitoring"
+    ],
+    "experience": [
+      {
+        "company": "E-commerce Platform",
+        "role": "Cloud Infrastructure Engineer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Automated infrastructure provisioning reducing deployment time by 70%.",
+          "Implemented auto-scaling solutions handling traffic spikes during sales.",
+          "Built comprehensive monitoring and alerting systems."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "NIT Trichy",
+      "year": "2020"
+    },
+    "certifications": ["Terraform Associate Certification"]
+  },
+  {
+    "name": "Rohan Mehta",
+    "email": "rohan.mehta@example.com",
+    "phone": "+91-9204550811",
+    "summary": "Cloud Security Engineer specializing in secure cloud architectures and compliance.",
+    "skills": [
+      "Cloud Security",
+      "AWS",
+      "Compliance",
+      "IAM",
+      "Security Assessment"
+    ],
+    "experience": [
+      {
+        "company": "Cybersecurity Firm",
+        "role": "Cloud Security Engineer",
+        "duration": "2019 - 2023",
+        "responsibilities": [
+          "Implemented zero-trust security models for cloud environments.",
+          "Conducted security assessments and penetration testing.",
+          "Designed IAM policies and access control frameworks."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Cybersecurity",
+      "university": "IIT Bombay",
+      "year": "2019"
+    },
+    "certifications": ["AWS Certified Security Specialty"]
+  },
+  {
+    "name": "Amit Sharma",
+    "email": "amit.sharma@example.com",
+    "phone": "+91-9132152410",
+    "summary": "Principal Cloud Engineer with extensive experience in multi-cloud strategies.",
+    "skills": [
+      "Multi-Cloud",
+      "Cloud Strategy",
+      "Architecture Design",
+      "Cost Optimization",
+      "Team Leadership"
+    ],
+    "experience": [
+      {
+        "company": "Global Technology Services",
+        "role": "Principal Cloud Engineer",
+        "duration": "2015 - Present",
+        "responsibilities": [
+          "Defined enterprise cloud strategy across AWS, Azure, and GCP.",
+          "Led cloud transformation initiatives for global clients.",
+          "Managed team of 15+ cloud engineers and architects."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "university": "IIT Kanpur",
+      "year": "2015"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional", "Azure Solutions Architect Expert"]
+  },
+  {
+    "name": "Megha Joshi",
+    "email": "megha.joshi@example.com",
+    "phone": "+91-9805259099",
+    "summary": "Cloud Platform Engineer with expertise in containerization and orchestration.",
+    "skills": [
+      "Kubernetes",
+      "Docker",
+      "Container Security",
+      "Service Mesh",
+      "Platform Engineering"
+    ],
+    "experience": [
+      {
+        "company": "Container Technology Company",
+        "role": "Platform Engineer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Built and maintained Kubernetes platform serving 100+ development teams.",
+          "Implemented service mesh architecture using Istio for microservices.",
+          "Established container security policies and compliance frameworks."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "VIT",
+      "year": "2020"
+    },
+    "certifications": ["Certified Kubernetes Administrator", "Certified Kubernetes Security Specialist"]
+  },
+  {
+    "name": "Vikram Sehgal",
+    "email": "vikram.sehgal@example.com",
+    "phone": "+91-9684338255",
+    "summary": "Senior Cloud Architect with focus on large-scale distributed systems.",
+    "skills": [
+      "System Architecture",
+      "Distributed Systems",
+      "Performance Optimization",
+      "Cloud Native",
+      "Scalability"
+    ],
+    "experience": [
+      {
+        "company": "Streaming Platform",
+        "role": "Senior Cloud Architect",
+        "duration": "2017 - Present",
+        "responsibilities": [
+          "Architected globally distributed systems serving 50M+ users.",
+          "Optimized system performance achieving sub-100ms latency globally.",
+          "Led architecture reviews and established engineering best practices."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "university": "IIT Delhi",
+      "year": "2017"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional"]
+  },
+  {
+    "name": "Swati Kapoor",
+    "email": "swati.kapoor@example.com",
+    "phone": "+91-9682296495",
+    "summary": "Cloud Cost Optimization Specialist with expertise in FinOps practices.",
+    "skills": [
+      "FinOps",
+      "Cost Optimization",
+      "Resource Management",
+      "Billing Analytics",
+      "Reserved Instances"
+    ],
+    "experience": [
+      {
+        "company": "Cloud Consulting Firm",
+        "role": "Cloud Cost Optimization Specialist",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Implemented FinOps practices reducing client cloud costs by 40%.",
+          "Developed automated cost monitoring and alerting systems.",
+          "Conducted cost optimization workshops for enterprise clients."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.E. in Information Technology",
+      "university": "Pune University",
+      "year": "2020"
+    },
+    "certifications": ["FinOps Certified Practitioner"]
+  },
+  {
+    "name": "Rajeev Khanna",
+    "email": "rajeev.khanna@example.com",
+    "phone": "+91-9447430119",
+    "summary": "Cloud Engineering Manager with expertise in team leadership and technical strategy.",
+    "skills": [
+      "Team Management",
+      "Technical Leadership",
+      "Cloud Strategy",
+      "Agile Methodology",
+      "Stakeholder Management"
+    ],
+    "experience": [
+      {
+        "company": "Technology Corporation",
+        "role": "Cloud Engineering Manager",
+        "duration": "2016 - Present",
+        "responsibilities": [
+          "Managed cloud engineering team of 20+ engineers across multiple projects.",
+          "Defined technical roadmap and cloud adoption strategy.",
+          "Collaborated with C-level executives on digital transformation initiatives."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "university": "IIT Bombay",
+      "year": "2016"
+    },
+    "certifications": ["PMP Certification", "AWS Certified Solutions Architect Professional"]
+  },
+  {
+    "name": "Maya Banerjee",
+    "email": "maya.banerjee@example.com",
+    "phone": "+91-9273408450",
+    "summary": "Cloud Network Engineer specializing in network architecture and connectivity solutions.",
+    "skills": [
+      "Network Architecture",
+      "VPN",
+      "Load Balancing",
+      "CDN",
+      "Network Security"
+    ],
+    "experience": [
+      {
+        "company": "Telecommunications Company",
+        "role": "Cloud Network Engineer",
+        "duration": "2019 - Present",
+        "responsibilities": [
+          "Designed network architectures for hybrid and multi-cloud environments.",
+          "Implemented global load balancing and CDN solutions.",
+          "Optimized network performance reducing latency by 30%."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Electronics and Communication",
+      "university": "NIT Trichy",
+      "year": "2019"
+    },
+    "certifications": ["AWS Certified Advanced Networking Specialty"]
+  },
+  {
+    "name": "Kabir Khan",
+    "email": "kabir.khan@example.com",
+    "phone": "+91-9170076360",
+    "summary": "Principal Cloud Consultant with 9+ years experience in enterprise cloud transformations.",
+    "skills": [
+      "Cloud Transformation",
+      "Enterprise Architecture",
+      "Change Management",
+      "Business Strategy",
+      "Vendor Management"
+    ],
+    "experience": [
+      {
+        "company": "Management Consulting",
+        "role": "Principal Cloud Consultant",
+        "duration": "2014 - Present",
+        "responsibilities": [
+          "Led cloud transformation programs for Fortune 100 companies.",
+          "Developed cloud adoption frameworks and governance models.",
+          "Generated $100M+ in cloud business through strategic partnerships."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "MBA in Technology Management",
+      "university": "IIM Bangalore",
+      "year": "2014"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional", "TOGAF Certified"]
+  },
+  {
+    "name": "Simran Sharma",
+    "email": "simran.sharma@example.com",
+    "phone": "+91-9213047631",
+    "summary": "Senior Cloud Solutions Architect with expertise in designing resilient cloud architectures.",
+    "skills": [
+      "Solution Architecture",
+      "Resilience Engineering",
+      "Microservices",
+      "Event-Driven Architecture",
+      "Technical Leadership"
+    ],
+    "experience": [
+      {
+        "company": "Financial Services",
+        "role": "Senior Cloud Solutions Architect",
+        "duration": "2015 - Present",
+        "responsibilities": [
+          "Architected mission-critical financial systems with 99.99% availability.",
+          "Designed event-driven microservices architecture handling 1M+ transactions daily.",
+          "Led technical due diligence for cloud technology acquisitions."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Distributed Systems",
+      "university": "IIT Madras",
+      "year": "2015"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional", "CISSP"]
+  },
+  {
+    "name": "Tina Thomas",
+    "email": "tina.thomas@example.com",
+    "phone": "+91-9461856339",
+    "summary": "Cloud Automation Specialist with expertise in large-scale infrastructure automation.",
+    "skills": [
+      "Infrastructure Automation",
+      "Configuration Management",
+      "Continuous Integration",
+      "Policy as Code",
+      "GitOps"
+    ],
+    "experience": [
+      {
+        "company": "DevOps Platform Company",
+        "role": "Senior Automation Engineer",
+        "duration": "2016 - Present",
+        "responsibilities": [
+          "Built automation platforms managing 10,000+ cloud resources.",
+          "Implemented policy-as-code frameworks for compliance automation.",
+          "Reduced manual operations by 90% through comprehensive automation."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Roorkee",
+      "year": "2016"
+    },
+    "certifications": ["Terraform Associate", "Ansible Certified Specialist"]
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul.singh@example.com",
+    "phone": "+91-9160727560",
+    "summary": "Cloud Migration Expert with extensive experience in enterprise legacy system modernization.",
+    "skills": [
+      "Cloud Migration",
+      "Legacy Modernization",
+      "Application Refactoring",
+      "Change Management",
+      "Risk Assessment"
+    ],
+    "experience": [
+      {
+        "company": "System Integration Company",
+        "role": "Cloud Migration Lead",
+        "duration": "2015 - Present",
+        "responsibilities": [
+          "Led migration of 500+ legacy applications to cloud platforms.",
+          "Developed migration strategies and risk mitigation plans.",
+          "Achieved 99% successful migration rate with minimal business disruption."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Software Engineering",
+      "university": "BITS Pilani",
+      "year": "2015"
+    },
+    "certifications": ["AWS Certified Migration Specialty"]
+  },
+  {
+    "name": "Nitika Rao",
+    "email": "nitika.rao@example.com",
+    "phone": "+91-9420659029",
+    "summary": "Director of Cloud Engineering with 9+ years leading cloud transformation initiatives.",
+    "skills": [
+      "Executive Leadership",
+      "Strategic Planning",
+      "Cloud Governance",
+      "Budget Management",
+      "Innovation Strategy"
+    ],
+    "experience": [
+      {
+        "company": "Global Technology Corporation",
+        "role": "Director of Cloud Engineering",
+        "duration": "2014 - Present",
+        "responsibilities": [
+          "Led global cloud engineering organization of 100+ engineers.",
+          "Defined enterprise cloud strategy and governance frameworks.",
+          "Delivered $200M+ cloud transformation program across 50+ countries."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.S. in Engineering Management",
+      "university": "Stanford University",
+      "year": "2014"
+    },
+    "certifications": ["AWS Certified Solutions Architect Professional", "PMP"]
+  }
+]

@@ -1,0 +1,683 @@
+[
+  {
+    "name": "Siddharth Mehta",
+    "email": "siddharth.mehta@example.com",
+    "phone": "+91-9111122001",
+    "summary": "AI Engineer with strong experience in machine learning engineering, model deployment, and MLOps across NLP and vision domains.",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "MLflow",
+      "spaCy",
+      "Docker",
+      "REST APIs",
+      "pandas"
+    ],
+    "experience": [
+      {
+        "company": "Tech Startup",
+        "role": "AI Engineer",
+        "duration": "2023 - Present",
+        "responsibilities": [
+          "Deployed NLP models with spaCy and MLflow in production.",
+          "Managed model lifecycle and CI/CD pipelines using Docker.",
+          "Collaborated with data scientists to optimize feature engineering."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Data Science",
+      "university": "BITS Pilani",
+      "year": "2023"
+    },
+    "certifications": ["IBM AI Engineer Professional Certificate"]
+  },
+  {
+    "name": "Neha Kapoor",
+    "email": "neha.kapoor@example.com",
+    "phone": "+91-9122233002",
+    "summary": "AI Engineer specializing in deep learning, computer vision, and model serving architectures.",
+    "skills": [
+      "Python",
+      "Keras",
+      "OpenCV",
+      "PyTorch",
+      "TensorFlow",
+      "Docker",
+      "NumPy"
+    ],
+    "experience": [
+      {
+        "company": "Healthcare Analytics",
+        "role": "AI Engineer",
+        "duration": "2022 - 2023",
+        "responsibilities": [
+          "Built CNN models for medical imaging using Keras and PyTorch.",
+          "Operationalized models with Docker and Flask REST APIs.",
+          "Conducted model validation and explainability with SHAP."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Delhi",
+      "year": "2022"
+    },
+    "certifications": ["AWS Certified Machine Learning Specialty"]
+  },
+  {
+    "name": "Rahul Joshi",
+    "email": "rahul.joshi@example.com",
+    "phone": "+91-9133344003",
+    "summary": "AI Engineer skilled in reinforcement learning, simulation, and software engineering for autonomous systems.",
+    "skills": [
+      "Python",
+      "RLlib",
+      "TensorFlow",
+      "OpenAI Gym",
+      "NumPy",
+      "Jupyter"
+    ],
+    "experience": [
+      {
+        "company": "Lab Projects",
+        "role": "AI Research Engineer",
+        "duration": "2021 - 2023",
+        "responsibilities": [
+          "Developed RL agents in RLlib and TensorFlow for process optimization.",
+          "Simulated environments in Gym for policy benchmarking.",
+          "Published open-source RL utilities in Python."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "PhD in AI",
+      "university": "IISc Bangalore",
+      "year": "2023"
+    },
+    "certifications": ["Google TensorFlow Developer Certificate"]
+  },
+  {
+    "name": "Ritika Menon",
+    "email": "ritika.menon@example.com",
+    "phone": "+91-9144455004",
+    "summary": "MLOps engineer building machine learning pipelines and automating model deployment.",
+    "skills": [
+      "Python",
+      "MLflow",
+      "Kubeflow",
+      "Docker",
+      "scikit-learn",
+      "Git",
+      "AWS"
+    ],
+    "experience": [
+      {
+        "company": "Amazon",
+        "role": "AI/MLOps Engineer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Built automated ML pipelines with MLflow and Kubeflow.",
+          "Managed model deployment to AWS SageMaker and Kubernetes.",
+          "Designed monitoring and re-training triggers for production models."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "university": "IIT Kanpur",
+      "year": "2018"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Kunal Shah",
+    "email": "kunal.shah@example.com",
+    "phone": "+91-9155566005",
+    "summary": "AI engineer specializing in building scalable NLP and text analytics applications.",
+    "skills": [
+      "Python",
+      "Transformers",
+      "Hugging Face",
+      "spaCy",
+      "TensorFlow",
+      "Docker",
+      "Flask",
+      "Jupyter"
+    ],
+    "experience": [
+      {
+        "company": "Media Lab",
+        "role": "AI Engineer Intern",
+        "duration": "2023",
+        "responsibilities": [
+          "Fine-tuned transformer models for sentiment and topic classification.",
+          "Deployed inference APIs with Flask and Docker.",
+          "Documented reproducible experiments using Jupyter."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Bombay",
+      "year": "2023"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Sneha Reddy",
+    "email": "sneha.reddy@example.com",
+    "phone": "+91-9166677006",
+    "summary": "AI Engineer experienced in generative AI, prompt engineering, and LLM deployment.",
+    "skills": [
+      "Python",
+      "Transformers",
+      "LLMs",
+      "Hugging Face",
+      "MLflow",
+      "Docker",
+      "REST APIs"
+    ],
+    "experience": [
+      {
+        "company": "Enterprise IT",
+        "role": "AI Engineer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Deployed LLMs with prompt tuning using Hugging Face Transformers.",
+          "Created REST endpoints for generative tasks (summarization, Q&A).",
+          "Maintained MLflow workflows for model versioning."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Sc. in Data Science",
+      "university": "BITS Pilani",
+      "year": "2022"
+    },
+    "certifications": ["Google TensorFlow Developer Certificate"]
+  },
+  {
+    "name": "Arjun Singh",
+    "email": "arjun.singh@example.com",
+    "phone": "+91-9177788007",
+    "summary": "AI engineer with focus on time series analysis and predictive analytics.",
+    "skills": [
+      "Python",
+      "scikit-learn",
+      "XGBoost",
+      "LSTM",
+      "pandas",
+      "NumPy",
+      "Jupyter"
+    ],
+    "experience": [
+      {
+        "company": "Finance Corp",
+        "role": "AI Engineer",
+        "duration": "2020 - 2023",
+        "responsibilities": [
+          "Built LSTM and XGBoost models for forecasting and anomaly detection.",
+          "Automated feature engineering using pandas.",
+          "Produced interactive analysis dashboards in Jupyter."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Sc. in Statistics",
+      "university": "Delhi University",
+      "year": "2020"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Maya Thomas",
+    "email": "maya.thomas@example.com",
+    "phone": "+91-9188899008",
+    "summary": "AI Engineer with expertise in speech recognition, sequence modeling, and audio AI.",
+    "skills": [
+      "Python",
+      "Kaldi",
+      "TensorFlow",
+      "Speech Recognition",
+      "Deep Learning",
+      "NumPy"
+    ],
+    "experience": [
+      {
+        "company": "AudioTech",
+        "role": "AI Engineer",
+        "duration": "2022 - 2023",
+        "responsibilities": [
+          "Implemented ASR systems for multilingual audio using Kaldi.",
+          "Designed sequence models in TensorFlow and NumPy.",
+          "Optimized model latency for online speech processing."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Electronics",
+      "university": "NIT Trichy",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Kabir Khan",
+    "email": "kabir.khan@example.com",
+    "phone": "+91-9199900009",
+    "summary": "AI engineer with experience in enterprise document AI and multimodal models.",
+    "skills": [
+      "Python",
+      "OpenCV",
+      "spaCy",
+      "TensorFlow",
+      "Docker",
+      "pandas"
+    ],
+    "experience": [
+      {
+        "company": "Consultancy",
+        "role": "AI Engineer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Built document parsing models with spaCy and OpenCV.",
+          "Containerized models for deployment in Azure ML.",
+          "Developed custom pipelines for invoice extraction."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in AI",
+      "university": "IIT Madras",
+      "year": "2020"
+    },
+    "certifications": ["Azure AI Engineer Associate"]
+  },
+  {
+    "name": "Divya Nair",
+    "email": "divya.nair@example.com",
+    "phone": "+91-9111122210",
+    "summary": "AI Engineer focused on healthcare analytics and ML interpretability.",
+    "skills": [
+      "Python",
+      "SHAP",
+      "TensorFlow",
+      "scikit-learn",
+      "pandas",
+      "Git"
+    ],
+    "experience": [
+      {
+        "company": "Health Analytics",
+        "role": "AI Engineer",
+        "duration": "2019 - 2023",
+        "responsibilities": [
+          "Built disease prediction models in scikit-learn and TensorFlow.",
+          "Engineered explainable outcomes with SHAP values.",
+          "Worked on data preprocessing pipelines in pandas."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "VIT",
+      "year": "2019"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Vikram Desai",
+    "email": "vikram.desai@example.com",
+    "phone": "+91-9122233311",
+    "summary": "AI engineer with specialization in robotics, CV, and RL for autonomous systems.",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "ROS",
+      "OpenCV",
+      "TensorFlow",
+      "scikit-learn"
+    ],
+    "experience": [
+      {
+        "company": "Robotics Lab",
+        "role": "AI Engineer",
+        "duration": "2020 - 2023",
+        "responsibilities": [
+          "Developed perception models (CV, RL) in PyTorch.",
+          "Integrated computer vision with robotic control via ROS.",
+          "Published RL and path planning algorithms on GitHub."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Robotics",
+      "university": "IIT Bombay",
+      "year": "2020"
+    },
+    "certifications": ["Google TensorFlow Developer Certificate"]
+  },
+  {
+    "name": "Megha Rao",
+    "email": "megha.rao@example.com",
+    "phone": "+91-9133344412",
+    "summary": "AI Engineer with production experience in fraud detection and anomaly discovery.",
+    "skills": [
+      "Python",
+      "scikit-learn",
+      "Anomaly Detection",
+      "AutoML",
+      "Docker",
+      "MLflow"
+    ],
+    "experience": [
+      {
+        "company": "Fintech Startup",
+        "role": "AI Engineer",
+        "duration": "2018 - Present",
+        "responsibilities": [
+          "Launched anomaly detection services for large-scale financial transactions.",
+          "Built scalable pipelines using MLflow and Docker.",
+          "Integrated AutoML tools for rapid model iteration."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Roorkee",
+      "year": "2018"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Rohan Kumar",
+    "email": "rohan.kumar@example.com",
+    "phone": "+91-9144455513",
+    "summary": "AI Engineer with experience in recommender systems and Spark ML.",
+    "skills": [
+      "Python",
+      "Keras",
+      "Recommendation",
+      "Spark MLlib",
+      "scikit-learn",
+      "Git"
+    ],
+    "experience": [
+      {
+        "company": "E-commerce",
+        "role": "AI Engineer",
+        "duration": "2021 - Present",
+        "responsibilities": [
+          "Built collaborative filtering models with Keras and Spark MLlib.",
+          "Optimized product recommendation engines for conversion.",
+          "Led A/B testing for personalization features."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Data Science",
+      "university": "IIT Hyderabad",
+      "year": "2021"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Swati Patel",
+    "email": "swati.patel@example.com",
+    "phone": "+91-9155566614",
+    "summary": "AI Engineer with strong experience in ML algorithms and responsible AI.",
+    "skills": [
+      "Python",
+      "CatBoost",
+      "LightGBM",
+      "scikit-learn",
+      "pandas",
+      "Jupyter"
+    ],
+    "experience": [
+      {
+        "company": "Bank",
+        "role": "AI Engineer",
+        "duration": "2018 - 2023",
+        "responsibilities": [
+          "Deployed credit risk models using CatBoost and LightGBM.",
+          "Automated compliance testing for ML predictions.",
+          "Built reproducible notebooks for ML model audits."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in IT",
+      "university": "Delhi University",
+      "year": "2018"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Ankit Gupta",
+    "email": "ankit.gupta@example.com",
+    "phone": "+91-9166677015",
+    "summary": "AI engineer, open-source contributor to NLP and vision libraries.",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "Transformers",
+      "spaCy",
+      "OpenCV",
+      "Jupyter"
+    ],
+    "experience": [
+      {
+        "company": "Open Source Projects",
+        "role": "AI Engineer Intern",
+        "duration": "2023",
+        "responsibilities": [
+          "Contributed to transformer-based NLP models.",
+          "Built benchmarking scripts for image classification libraries.",
+          "Documented tutorials in Jupyter and GitHub."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Guwahati",
+      "year": "2023"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Tina Sharma",
+    "email": "tina.sharma@example.com",
+    "phone": "+91-9177788016",
+    "summary": "AI engineer specializing in edge computing and federated learning for IoT.",
+    "skills": [
+      "Python",
+      "TensorFlow Lite",
+      "IoT",
+      "Edge ML",
+      "Docker",
+      "NumPy"
+    ],
+    "experience": [
+      {
+        "company": "IoT Solutions",
+        "role": "AI Engineer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Deployed AI models on embedded edge devices.",
+          "Utilized TensorFlow Lite for on-device inference.",
+          "Built federated pipelines to ensure privacy."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Electronics",
+      "university": "NIT Surathkal",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Kavya Iyer",
+    "email": "kavya.iyer@example.com",
+    "phone": "+91-9188899017",
+    "summary": "AI Engineer with focus on multilingual NLP, translation, and speech technologies.",
+    "skills": [
+      "Python",
+      "Transformers",
+      "Speech-to-Text",
+      "NLTK",
+      "spaCy",
+      "Google Cloud AI"
+    ],
+    "experience": [
+      {
+        "company": "LanguageTech",
+        "role": "AI Engineer",
+        "duration": "2023",
+        "responsibilities": [
+          "Developed speech-to-text models for Indian languages.",
+          "Fine-tuned transformer models for translation tasks.",
+          "Integrated NLP services into Google Cloud pipelines."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Delhi",
+      "year": "2023"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Aditya Deshmukh",
+    "email": "aditya.deshmukh@example.com",
+    "phone": "+91-9199900018",
+    "summary": "AI Engineer with proficiency in responsible AI and adversarial robustness.",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Adversarial ML",
+      "Explainable AI",
+      "MLOps",
+      "Jupyter"
+    ],
+    "experience": [
+      {
+        "company": "University Projects",
+        "role": "AI Engineer Intern",
+        "duration": "2022 - 2023",
+        "responsibilities": [
+          "Designed adversarial attacks and defenses for ML models.",
+          "Documented explainability methods in Jupyter notebooks.",
+          "Helped develop MLOps practices for reproducibility."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in AI",
+      "university": "IIT Madras",
+      "year": "2023"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Nitika Rao",
+    "email": "nitika.rao@example.com",
+    "phone": "+91-9111122219",
+    "summary": "AI Engineer advancing ML adoption for retail and data-driven forecasting.",
+    "skills": [
+      "Python",
+      "scikit-learn",
+      "Forecasting",
+      "Optimization",
+      "pandas",
+      "Azure ML"
+    ],
+    "experience": [
+      {
+        "company": "Retail Corp",
+        "role": "AI Engineer",
+        "duration": "2021 - Present",
+        "responsibilities": [
+          "Built demand forecasting models and deployed to Azure ML.",
+          "Automated data pipelines for inventory optimization.",
+          "Diagnosed model drift and maintained retraining routines."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Kanpur",
+      "year": "2020"
+    },
+    "certifications": ["Azure AI Engineer Associate"]
+  },
+  {
+    "name": "Manish Gupta",
+    "email": "manish.gupta@example.com",
+    "phone": "+91-9122233320",
+    "summary": "AI engineer building conversational agents, dialog systems, and NLP stacks.",
+    "skills": [
+      "Python",
+      "Rasa",
+      "Dialogflow",
+      "spaCy",
+      "TensorFlow",
+      "NLTK"
+    ],
+    "experience": [
+      {
+        "company": "Chatbot Solutions",
+        "role": "AI Engineer",
+        "duration": "2021 - Present",
+        "responsibilities": [
+          "Developed custom chatbots and dialog flows for clients.",
+          "Integrated speech recognition and NLP pipelines.",
+          "Secured deployments and built scalable REST APIs."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in IT",
+      "university": "Delhi University",
+      "year": "2021"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Rohit Malhotra",
+    "email": "rohit.malhotra@example.com",
+    "phone": "+91-9133344421",
+    "summary": "AI Engineer leading projects in autonomous driving, sensor fusion, and multimodal AI.",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "Sensor Fusion",
+      "Autonomous Driving",
+      "Deep Learning",
+      "OpenCV",
+      "scikit-learn"
+    ],
+    "experience": [
+      {
+        "company": "Automotive AI",
+        "role": "AI Engineer",
+        "duration": "2019 - Present",
+        "responsibilities": [
+          "Built sensor fusion models combining radar, lidar, and image streams.",
+          "Integrated computer vision pipelines with deep learning frameworks.",
+          "Conducted on-vehicle model evaluations and real-time processing."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Bombay",
+      "year": "2019"
+    },
+    "certifications": ["Google TensorFlow Developer Certificate"]
+  }
+]

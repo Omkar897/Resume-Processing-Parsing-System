@@ -6,6 +6,7 @@ __pycache__/
 venv/
 env/
 .env
+*.pyc
 
 # IDE
 .vscode/
@@ -16,14 +17,16 @@ env/
 .DS_Store
 Thumbs.db
 
-# Project-specific exclusions
-models/
-data/
-config/
+# Uploaded files (temporary)
+web/static/uploads/*
+!web/static/uploads/.gitkeep
 
-# Additional data file types
-*.pdf
-*.csv
-*.json
-*.pkl
-*.joblib
+# Generated job search results (too many files)
+src/jobs/*.json
+!src/jobs/.gitkeep
+
+# Data - exclude large datasets but keep test data
+data/logs/
+data/resumes/*.pdf
+
+

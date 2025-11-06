@@ -717,7 +717,10 @@ class APILayerResumeParser:
 
 class APIOnlyProcessor:
     def __init__(self):
-        self.api_parser = APILayerResumeParser("AOgZ3sfIgykh5qyDT5RIpbLpbJvQvZTZ")
+        api_key = os.getenv("APILAYER_KEY")
+        if not api_key:
+            raise Exception("APILAYER_KEY not found in .env file")
+        self.api_parser = APILayerResumeParser(api_key)
         self.classifier = ResumeClassifier()
 
     def process_resume(self, pdf_path):

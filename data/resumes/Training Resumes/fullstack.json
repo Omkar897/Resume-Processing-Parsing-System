@@ -1,0 +1,827 @@
+[
+  {
+    "name": "Rohit Mehra",
+    "email": "rohit.mehra@example.com",
+    "phone": "+91-9759613189",
+    "summary": "Entry-level fullstack engineer with experience in modern web technologies and cloud deployment.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "AWS",
+      "Docker",
+      "Git"
+    ],
+    "experience": [
+      {
+        "company": "Tech Startup",
+        "role": "Junior Fullstack Developer",
+        "duration": "2023 - Present",
+        "responsibilities": [
+          "Built responsive web applications using React and Node.js with Express.",
+          "Designed RESTful APIs and integrated with MongoDB database.",
+          "Deployed applications to AWS using Docker containers and EC2 instances."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "BITS Pilani",
+      "year": "2023"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Sneha Reddy",
+    "email": "sneha.reddy@example.com",
+    "phone": "+91-9573480572",
+    "summary": "Fullstack developer with expertise in Python/Django backend and React frontend development.",
+    "skills": [
+      "Python",
+      "Django",
+      "React",
+      "PostgreSQL",
+      "Redis",
+      "Heroku",
+      "REST APIs"
+    ],
+    "experience": [
+      {
+        "company": "E-commerce Platform",
+        "role": "Fullstack Developer",
+        "duration": "2021 - 2023",
+        "responsibilities": [
+          "Developed e-commerce platform using Django REST framework and React.",
+          "Implemented database design and optimization for PostgreSQL.",
+          "Deployed applications on Heroku with Redis caching for performance."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Information Technology",
+      "university": "VIT",
+      "year": "2021"
+    },
+    "certifications": ["AWS Certified Developer Associate"]
+  },
+  {
+    "name": "Aman Singh",
+    "email": "aman.singh@example.com",
+    "phone": "+91-9259091474",
+    "summary": "Full-stack engineer specializing in Java Spring Boot and Angular applications.",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Angular",
+      "MySQL",
+      "Docker",
+      "Jenkins",
+      "Microservices"
+    ],
+    "experience": [
+      {
+        "company": "Financial Services",
+        "role": "Fullstack Developer",
+        "duration": "2020 - 2023",
+        "responsibilities": [
+          "Built microservices architecture using Spring Boot and Docker.",
+          "Developed Angular frontend with responsive design and state management.",
+          "Implemented CI/CD pipelines using Jenkins for automated deployments."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Delhi",
+      "year": "2020"
+    },
+    "certifications": ["Oracle Certified Professional Java SE"]
+  },
+  {
+    "name": "Priya Sharma",
+    "email": "priya.sharma@example.com",
+    "phone": "+91-9504696011",
+    "summary": "Fullstack developer with experience in modern JavaScript frameworks and cloud deployment.",
+    "skills": [
+      "TypeScript",
+      "Next.js",
+      "Node.js",
+      "PostgreSQL",
+      "GraphQL",
+      "Vercel",
+      "Prisma"
+    ],
+    "experience": [
+      {
+        "company": "SaaS Startup",
+        "role": "Fullstack Engineer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Developed SaaS platform using Next.js with TypeScript and GraphQL APIs.",
+          "Implemented database schema design and queries using Prisma ORM.",
+          "Deployed applications on Vercel with automated preview deployments."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Software Engineering",
+      "university": "IIIT Hyderabad",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Kunal Verma",
+    "email": "kunal.verma@example.com",
+    "phone": "+91-9597310534",
+    "summary": "Junior fullstack developer with focus on API development and database design.",
+    "skills": [
+      "Python",
+      "Flask",
+      "Vue.js",
+      "MongoDB",
+      "Docker",
+      "GitHub Actions",
+      "API Design"
+    ],
+    "experience": [
+      {
+        "company": "EdTech Startup",
+        "role": "Junior Fullstack Developer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Built RESTful APIs using Flask with comprehensive documentation.",
+          "Developed Vue.js frontend with Vuex for state management.",
+          "Implemented automated testing and deployment using GitHub Actions."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Sc. in Computer Science",
+      "university": "Delhi University",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Anjali Singh",
+    "email": "anjali.singh@example.com",
+    "phone": "+91-9846040251",
+    "summary": "Fullstack developer with expertise in MERN stack and cloud infrastructure.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "AWS",
+      "CloudFormation"
+    ],
+    "experience": [
+      {
+        "company": "Media Streaming Company",
+        "role": "MERN Stack Developer",
+        "duration": "2021 - 2023",
+        "responsibilities": [
+          "Developed video streaming platform using MERN stack architecture.",
+          "Designed MongoDB schema for user management and content metadata.",
+          "Deployed scalable infrastructure on AWS using CloudFormation templates."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "NIT Surathkal",
+      "year": "2021"
+    },
+    "certifications": ["AWS Certified Solutions Architect Associate"]
+  },
+  {
+    "name": "Arjun Kapoor",
+    "email": "arjun.kapoor@example.com",
+    "phone": "+91-9460578316",
+    "summary": "Senior fullstack engineer with expertise in system design and performance optimization.",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "React",
+      "PostgreSQL",
+      "Redis",
+      "Kubernetes",
+      "System Design"
+    ],
+    "experience": [
+      {
+        "company": "Tech Corporation",
+        "role": "Senior Fullstack Engineer",
+        "duration": "2018 - Present",
+        "responsibilities": [
+          "Architected scalable web applications serving 1M+ users daily.",
+          "Optimized database performance and implemented caching with Redis.",
+          "Led deployment automation using Kubernetes and container orchestration."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "university": "IIT Bombay",
+      "year": "2018"
+    },
+    "certifications": ["Certified Kubernetes Application Developer"]
+  },
+  {
+    "name": "Simran Kaur",
+    "email": "simran.kaur@example.com",
+    "phone": "+91-9169038194",
+    "summary": "Fullstack developer specializing in enterprise web applications and DevOps practices.",
+    "skills": [
+      "C#",
+      ".NET Core",
+      "Angular",
+      "SQL Server",
+      "Azure",
+      "Azure DevOps",
+      "Terraform"
+    ],
+    "experience": [
+      {
+        "company": "Enterprise Software",
+        "role": "Fullstack .NET Developer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Developed enterprise applications using .NET Core and Angular.",
+          "Implemented database design and stored procedures in SQL Server.",
+          "Automated infrastructure deployment on Azure using Terraform."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.E. in Software Engineering",
+      "university": "Pune University",
+      "year": "2020"
+    },
+    "certifications": ["Microsoft Certified: Azure Developer Associate"]
+  },
+  {
+    "name": "Aditya Joshi",
+    "email": "aditya.joshi@example.com",
+    "phone": "+91-9169820422",
+    "summary": "Full-stack engineer with focus on mobile-responsive web applications and API integration.",
+    "skills": [
+      "JavaScript",
+      "Vue.js",
+      "Node.js",
+      "MySQL",
+      "Docker",
+      "Digital Ocean",
+      "API Integration"
+    ],
+    "experience": [
+      {
+        "company": "Healthcare Tech",
+        "role": "Fullstack Developer",
+        "duration": "2021 - 2023",
+        "responsibilities": [
+          "Built healthcare management system with Vue.js and Node.js.",
+          "Integrated third-party APIs for payment processing and notifications.",
+          "Deployed applications on Digital Ocean with automated backups."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Information Technology",
+      "university": "VIT",
+      "year": "2021"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Neha Malhotra",
+    "email": "neha.malhotra@example.com",
+    "phone": "+91-9422191166",
+    "summary": "Fullstack developer with expertise in GraphQL APIs and modern frontend frameworks.",
+    "skills": [
+      "TypeScript",
+      "React",
+      "GraphQL",
+      "Node.js",
+      "PostgreSQL",
+      "Apollo",
+      "Hasura"
+    ],
+    "experience": [
+      {
+        "company": "Social Media Startup",
+        "role": "Fullstack Engineer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Developed real-time social platform using React and GraphQL subscriptions.",
+          "Built scalable GraphQL APIs with Apollo Server and PostgreSQL.",
+          "Implemented real-time features using WebSocket and GraphQL subscriptions."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "BITS Pilani",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Siddharth Chatterjee",
+    "email": "siddharth.chatterjee@example.com",
+    "phone": "+91-9996402720",
+    "summary": "Junior fullstack developer with experience in e-commerce and payment integration.",
+    "skills": [
+      "PHP",
+      "Laravel",
+      "Vue.js",
+      "MySQL",
+      "Stripe API",
+      "cPanel",
+      "Payment Gateways"
+    ],
+    "experience": [
+      {
+        "company": "E-commerce Agency",
+        "role": "PHP Fullstack Developer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Built e-commerce websites using Laravel and Vue.js components.",
+          "Integrated multiple payment gateways including Stripe and PayPal.",
+          "Managed hosting and deployment on shared hosting with cPanel."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "BCA",
+      "university": "Christ University",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Ritika Jain",
+    "email": "ritika.jain@example.com",
+    "phone": "+91-9568967045",
+    "summary": "Fullstack developer with focus on performance optimization and SEO-friendly applications.",
+    "skills": [
+      "JavaScript",
+      "Next.js",
+      "Node.js",
+      "MongoDB",
+      "SEO",
+      "Vercel",
+      "Google Analytics"
+    ],
+    "experience": [
+      {
+        "company": "Digital Marketing Agency",
+        "role": "Fullstack Developer",
+        "duration": "2021 - 2023",
+        "responsibilities": [
+          "Developed SEO-optimized websites using Next.js and server-side rendering.",
+          "Built content management APIs with Node.js and MongoDB.",
+          "Implemented analytics tracking and performance monitoring."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Information Technology",
+      "university": "Delhi Technological University",
+      "year": "2021"
+    },
+    "certifications": ["Google Analytics Certified"]
+  },
+  {
+    "name": "Vikram Desai",
+    "email": "vikram.desai@example.com",
+    "phone": "+91-9858692967",
+    "summary": "Senior fullstack developer with expertise in microservices and distributed systems.",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "React",
+      "PostgreSQL",
+      "Kafka",
+      "Docker",
+      "Kubernetes"
+    ],
+    "experience": [
+      {
+        "company": "Fintech Platform",
+        "role": "Senior Fullstack Engineer",
+        "duration": "2017 - Present",
+        "responsibilities": [
+          "Architected microservices-based fintech platform using Spring Boot.",
+          "Implemented event-driven architecture with Apache Kafka.",
+          "Led containerization and orchestration using Docker and Kubernetes."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Software Systems",
+      "university": "BITS Pilani",
+      "year": "2017"
+    },
+    "certifications": ["Certified Kubernetes Administrator"]
+  },
+  {
+    "name": "Kavya Purohit",
+    "email": "kavya.purohit@example.com",
+    "phone": "+91-9204550811",
+    "summary": "Fullstack developer with expertise in real-time applications and WebSocket integration.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Socket.io",
+      "Node.js",
+      "MongoDB",
+      "WebRTC",
+      "Real-time Apps"
+    ],
+    "experience": [
+      {
+        "company": "Communication Platform",
+        "role": "Fullstack Developer",
+        "duration": "2020 - 2023",
+        "responsibilities": [
+          "Built real-time chat and video calling application using WebRTC.",
+          "Implemented WebSocket connections with Socket.io for live messaging.",
+          "Optimized MongoDB queries for handling large-scale real-time data."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "NIT Trichy",
+      "year": "2020"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Harsh Gupta",
+    "email": "harsh.gupta@example.com",
+    "phone": "+91-9132152410",
+    "summary": "Fullstack engineer with focus on testing, code quality, and continuous integration.",
+    "skills": [
+      "Python",
+      "Django",
+      "React",
+      "PostgreSQL",
+      "Jest",
+      "Pytest",
+      "GitHub Actions"
+    ],
+    "experience": [
+      {
+        "company": "Software Development Company",
+        "role": "Fullstack Engineer",
+        "duration": "2019 - Present",
+        "responsibilities": [
+          "Developed Django REST APIs with comprehensive test coverage using Pytest.",
+          "Built React components with unit tests using Jest and React Testing Library.",
+          "Implemented CI/CD pipelines with automated testing and deployment."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Roorkee",
+      "year": "2019"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Divya Nair",
+    "email": "divya.nair@example.com",
+    "phone": "+91-9805259099",
+    "summary": "Fullstack developer specializing in progressive web applications and mobile-first design.",
+    "skills": [
+      "JavaScript",
+      "PWA",
+      "React",
+      "Service Workers",
+      "IndexedDB",
+      "Firebase",
+      "Mobile-First"
+    ],
+    "experience": [
+      {
+        "company": "Mobile App Development",
+        "role": "PWA Developer",
+        "duration": "2021 - Present",
+        "responsibilities": [
+          "Developed progressive web applications with offline functionality.",
+          "Implemented service workers for caching and background sync.",
+          "Built mobile-first responsive designs with React and Firebase backend."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Information Technology",
+      "university": "Anna University",
+      "year": "2021"
+    },
+    "certifications": ["Google Mobile Web Specialist"]
+  },
+  {
+    "name": "Rahul Kumar",
+    "email": "rahul.kumar@example.com",
+    "phone": "+91-9684338255",
+    "summary": "Fullstack developer with experience in blockchain integration and Web3 technologies.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Solidity",
+      "Web3.js",
+      "Ethereum",
+      "IPFS"
+    ],
+    "experience": [
+      {
+        "company": "Blockchain Startup",
+        "role": "Web3 Fullstack Developer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Developed decentralized applications (DApps) using React and Web3.js.",
+          "Integrated smart contracts with frontend using Ethereum blockchain.",
+          "Implemented IPFS for decentralized file storage and retrieval."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "IIT Delhi",
+      "year": "2022"
+    },
+    "certifications": ["Certified Blockchain Developer"]
+  },
+  {
+    "name": "Swati Patel",
+    "email": "swati.patel@example.com",
+    "phone": "+91-9682296495",
+    "summary": "Junior fullstack developer with focus on content management systems and headless CMS.",
+    "skills": [
+      "JavaScript",
+      "Gatsby",
+      "Strapi",
+      "GraphQL",
+      "JAMstack",
+      "Netlify",
+      "Headless CMS"
+    ],
+    "experience": [
+      {
+        "company": "Content Agency",
+        "role": "JAMstack Developer",
+        "duration": "2022 - Present",
+        "responsibilities": [
+          "Built static sites using Gatsby with Strapi headless CMS.",
+          "Implemented GraphQL queries for dynamic content rendering.",
+          "Deployed JAMstack applications on Netlify with automated builds."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Sc. in Computer Science",
+      "university": "Mumbai University",
+      "year": "2022"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Rajeev Menon",
+    "email": "rajeev.menon@example.com",
+    "phone": "+91-9447430119",
+    "summary": "Fullstack developer with expertise in serverless architecture and cloud functions.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "AWS Lambda",
+      "DynamoDB",
+      "Serverless Framework",
+      "CloudWatch",
+      "API Gateway"
+    ],
+    "experience": [
+      {
+        "company": "Cloud Solutions",
+        "role": "Serverless Fullstack Developer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Built serverless applications using AWS Lambda and API Gateway.",
+          "Implemented React frontend with serverless backend architecture.",
+          "Optimized costs and performance using DynamoDB and CloudWatch monitoring."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Cloud Computing",
+      "university": "IIIT Bangalore",
+      "year": "2020"
+    },
+    "certifications": ["AWS Certified Developer Associate"]
+  },
+  {
+    "name": "Maya Thomas",
+    "email": "maya.thomas@example.com",
+    "phone": "+91-9273408450",
+    "summary": "Senior fullstack architect with expertise in enterprise application development.",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Angular",
+      "Oracle",
+      "Jenkins",
+      "SonarQube",
+      "Enterprise Architecture"
+    ],
+    "experience": [
+      {
+        "company": "Enterprise Solutions",
+        "role": "Senior Fullstack Architect",
+        "duration": "2016 - Present",
+        "responsibilities": [
+          "Architected enterprise applications for Fortune 500 clients.",
+          "Implemented code quality practices using SonarQube and code reviews.",
+          "Led technical teams and established development best practices."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Software Engineering",
+      "university": "IISc Bangalore",
+      "year": "2016"
+    },
+    "certifications": ["TOGAF Certified", "AWS Solutions Architect Professional"]
+  },
+  {
+    "name": "Ankit Sharma",
+    "email": "ankit.sharma@example.com",
+    "phone": "+91-9170076360",
+    "summary": "Fullstack developer with focus on data visualization and analytics dashboards.",
+    "skills": [
+      "JavaScript",
+      "D3.js",
+      "React",
+      "Python",
+      "Flask",
+      "PostgreSQL",
+      "Data Visualization"
+    ],
+    "experience": [
+      {
+        "company": "Analytics Platform",
+        "role": "Fullstack Developer",
+        "duration": "2021 - Present",
+        "responsibilities": [
+          "Built interactive data visualization dashboards using D3.js and React.",
+          "Developed Python Flask APIs for data processing and analytics.",
+          "Optimized PostgreSQL queries for large-scale data operations."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "NIT Warangal",
+      "year": "2021"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Sneha Kulkarni",
+    "email": "sneha.kulkarni@example.com",
+    "phone": "+91-9213047631",
+    "summary": "Fullstack developer with expertise in multi-tenant SaaS applications and subscription billing.",
+    "skills": [
+      "Ruby",
+      "Ruby on Rails",
+      "React",
+      "PostgreSQL",
+      "Stripe",
+      "Multi-tenancy",
+      "SaaS"
+    ],
+    "experience": [
+      {
+        "company": "SaaS Platform",
+        "role": "Rails Fullstack Developer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Developed multi-tenant SaaS platform using Ruby on Rails.",
+          "Implemented subscription billing and payment processing with Stripe.",
+          "Built React dashboard for tenant management and analytics."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.E. in Information Technology",
+      "university": "Pune University",
+      "year": "2020"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Yash Shah",
+    "email": "yash.shah@example.com",
+    "phone": "+91-9461856339",
+    "summary": "Fullstack developer with expertise in gaming applications and real-time multiplayer systems.",
+    "skills": [
+      "JavaScript",
+      "Phaser.js",
+      "Node.js",
+      "Socket.io",
+      "Redis",
+      "WebSocket",
+      "Game Development"
+    ],
+    "experience": [
+      {
+        "company": "Gaming Studio",
+        "role": "Game Fullstack Developer",
+        "duration": "2021 - Present",
+        "responsibilities": [
+          "Developed browser-based multiplayer games using Phaser.js and Node.js.",
+          "Implemented real-time game state synchronization with Socket.io.",
+          "Built game analytics dashboard and player management system."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "university": "VIT",
+      "year": "2021"
+    },
+    "certifications": []
+  },
+  {
+    "name": "Meera Joshi",
+    "email": "meera.joshi@example.com",
+    "phone": "+91-9160727560",
+    "summary": "Fullstack developer specializing in IoT applications and sensor data management.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "InfluxDB",
+      "MQTT",
+      "IoT Integration",
+      "Time Series Data"
+    ],
+    "experience": [
+      {
+        "company": "IoT Solutions",
+        "role": "IoT Fullstack Developer",
+        "duration": "2020 - Present",
+        "responsibilities": [
+          "Built IoT dashboard for sensor data visualization using React.",
+          "Developed Node.js backend for MQTT message processing and storage.",
+          "Implemented time-series data analysis using InfluxDB."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Electronics and Communication",
+      "university": "NIT Surathkal",
+      "year": "2020"
+    },
+    "certifications": ["AWS IoT Core Specialty"]
+  },
+  {
+    "name": "Kabir Khan",
+    "email": "kabir.khan@example.com",
+    "phone": "+91-9420659029",
+    "summary": "Fullstack team lead with expertise in code architecture and team management.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Team Leadership",
+      "Code Review",
+      "Architecture"
+    ],
+    "experience": [
+      {
+        "company": "Technology Company",
+        "role": "Fullstack Team Lead",
+        "duration": "2018 - Present",
+        "responsibilities": [
+          "Led team of 6 fullstack developers on multiple product initiatives.",
+          "Established coding standards and conducted technical code reviews.",
+          "Mentored junior developers and designed system architecture."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "university": "IIT Madras",
+      "year": "2018"
+    },
+    "certifications": ["Scrum Master Certified"]
+  }
+]

@@ -13,9 +13,9 @@ env["PYTHONIOENCODING"] = "utf-8"
 
 class IntegratedJobScraper:
     def __init__(self, headless=False):
-        self.serpapi_key = (
-            "206fd79ebb2efca9f63d527a53171d31ef42d9351da6af8219b4f3ed20c96a11"
-        )
+        self.serpapi_key = os.getenv("SERPAPI_KEY")
+        if not self.serpapi_key:
+            raise Exception("SERPAPI_KEY not found in .env file")
         self.headless = headless
 
     def parse_duration_to_months(self, duration_str):

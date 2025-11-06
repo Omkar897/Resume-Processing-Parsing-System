@@ -1,0 +1,804 @@
+[
+    {
+      "name": "Rohit Sharma",
+      "email": "rohit.sharma@example.com",
+      "phone": "+91-9111111001",
+      "summary": "Software Development Engineer with experience in building scalable web applications and microservices.",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "JavaScript",
+        "React",
+        "MySQL",
+        "REST APIs",
+        "Git"
+      ],
+      "experience": [
+        {
+          "company": "Tech Startup",
+          "role": "Software Development Engineer",
+          "duration": "2022 - Present",
+          "responsibilities": [
+            "Developed RESTful APIs using Spring Boot and Java.",
+            "Built responsive frontend components with React and JavaScript.",
+            "Collaborated with cross-functional teams on feature development."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "IIT Delhi",
+        "year": "2022"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Priya Singh",
+      "email": "priya.singh@example.com",
+      "phone": "+91-9222222002",
+      "summary": "SDE with expertise in full-stack development and database design.",
+      "skills": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "HTML/CSS",
+        "JavaScript",
+        "AWS"
+      ],
+      "experience": [
+        {
+          "company": "Fintech Company",
+          "role": "Software Engineer",
+          "duration": "2021 - 2023",
+          "responsibilities": [
+            "Implemented payment processing systems using Django and Python.",
+            "Designed and optimized database schemas in PostgreSQL.",
+            "Deployed applications on AWS cloud infrastructure."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.E. in Information Technology",
+        "university": "Pune University",
+        "year": "2021"
+      },
+      "certifications": ["AWS Certified Developer Associate"]
+    },
+    {
+      "name": "Aman Verma",
+      "email": "aman.verma@example.com",
+      "phone": "+91-9333333003",
+      "summary": "Junior SDE focused on backend development and API integration.",
+      "skills": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "JavaScript",
+        "Docker",
+        "Git"
+      ],
+      "experience": [
+        {
+          "company": "E-commerce Startup",
+          "role": "Junior Software Engineer",
+          "duration": "2023 - Present",
+          "responsibilities": [
+            "Built scalable backend services using Node.js and Express.",
+            "Integrated third-party payment and shipping APIs.",
+            "Implemented database operations with MongoDB."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "VIT",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Sneha Gupta",
+      "email": "sneha.gupta@example.com",
+      "phone": "+91-9444444004",
+      "summary": "SDE with strong foundation in algorithms and system design.",
+      "skills": [
+        "Java",
+        "Spring Framework",
+        "MySQL",
+        "Redis",
+        "Microservices",
+        "JUnit"
+      ],
+      "experience": [
+        {
+          "company": "Product Company",
+          "role": "Software Development Engineer",
+          "duration": "2020 - Present",
+          "responsibilities": [
+            "Architected microservices using Spring Framework and Java.",
+            "Implemented caching solutions with Redis for performance optimization.",
+            "Wrote comprehensive unit tests using JUnit framework."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "IIT Bombay",
+        "year": "2020"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Karan Patel",
+      "email": "karan.patel@example.com",
+      "phone": "+91-9555555005",
+      "summary": "Full-stack SDE with experience in modern web technologies.",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "GraphQL",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "experience": [
+        {
+          "company": "Tech Consultancy",
+          "role": "Full Stack Developer",
+          "duration": "2021 - 2023",
+          "responsibilities": [
+            "Developed modern web applications using React and TypeScript.",
+            "Implemented GraphQL APIs for efficient data fetching.",
+            "Containerized applications using Docker for deployment."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "M.Tech in Software Engineering",
+        "university": "BITS Pilani",
+        "year": "2021"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Nisha Reddy",
+      "email": "nisha.reddy@example.com",
+      "phone": "+91-9666666006",
+      "summary": "Software Engineer specializing in mobile application development.",
+      "skills": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "REST APIs",
+        "SQLite",
+        "Git"
+      ],
+      "experience": [
+        {
+          "company": "Mobile App Startup",
+          "role": "Mobile Developer",
+          "duration": "2022 - Present",
+          "responsibilities": [
+            "Built cross-platform mobile apps using Flutter and Dart.",
+            "Integrated Firebase for authentication and real-time database.",
+            "Implemented offline functionality with SQLite database."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "NIT Trichy",
+        "year": "2022"
+      },
+      "certifications": ["Google Flutter Certified Developer"]
+    },
+    {
+      "name": "Aditya Kumar",
+      "email": "aditya.kumar@example.com",
+      "phone": "+91-9777777007",
+      "summary": "Backend SDE with expertise in distributed systems and cloud technologies.",
+      "skills": [
+        "Go",
+        "Kubernetes",
+        "Docker",
+        "gRPC",
+        "Prometheus",
+        "AWS"
+      ],
+      "experience": [
+        {
+          "company": "Cloud Solutions",
+          "role": "Backend Engineer",
+          "duration": "2019 - Present",
+          "responsibilities": [
+            "Developed high-performance backend services using Go language.",
+            "Orchestrated containerized applications with Kubernetes.",
+            "Implemented monitoring and alerting using Prometheus."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "IIT Kanpur",
+        "year": "2019"
+      },
+      "certifications": ["Certified Kubernetes Application Developer"]
+    },
+    {
+      "name": "Anjali Das",
+      "email": "anjali.das@example.com",
+      "phone": "+91-9888888008",
+      "summary": "Frontend SDE passionate about user experience and interface design.",
+      "skills": [
+        "React",
+        "Vue.js",
+        "JavaScript",
+        "HTML/CSS",
+        "Webpack",
+        "Jest"
+      ],
+      "experience": [
+        {
+          "company": "Design Agency",
+          "role": "Frontend Developer",
+          "duration": "2021 - 2023",
+          "responsibilities": [
+            "Created interactive user interfaces using React and Vue.js.",
+            "Optimized web applications for performance and accessibility.",
+            "Implemented automated testing using Jest framework."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Sc. in Computer Science",
+        "university": "Delhi University",
+        "year": "2021"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Arjun Joshi",
+      "email": "arjun.joshi@example.com",
+      "phone": "+91-9999999009",
+      "summary": "SDE with experience in enterprise software development and integration.",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Apache Kafka",
+        "Oracle DB",
+        "Maven",
+        "Jenkins"
+      ],
+      "experience": [
+        {
+          "company": "Enterprise Corp",
+          "role": "Software Engineer",
+          "duration": "2018 - Present",
+          "responsibilities": [
+            "Developed enterprise applications using Java and Spring Boot.",
+            "Implemented event-driven architecture using Apache Kafka.",
+            "Managed database operations with Oracle Database."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.E. in Computer Engineering",
+        "university": "Mumbai University",
+        "year": "2018"
+      },
+      "certifications": ["Oracle Certified Professional Java SE"]
+    },
+    {
+      "name": "Divya Shah",
+      "email": "divya.shah@example.com",
+      "phone": "+91-9111111010",
+      "summary": "Full-stack SDE with focus on scalable web application architecture.",
+      "skills": [
+        "Python",
+        "Flask",
+        "React",
+        "MongoDB",
+        "Redis",
+        "Docker"
+      ],
+      "experience": [
+        {
+          "company": "SaaS Company",
+          "role": "Full Stack Engineer",
+          "duration": "2020 - 2023",
+          "responsibilities": [
+            "Built SaaS applications using Flask and Python backend.",
+            "Developed dynamic frontends with React and modern JavaScript.",
+            "Implemented caching strategies using Redis and MongoDB."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "M.Sc. in Computer Science",
+        "university": "BITS Pilani",
+        "year": "2020"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Ritika Malhotra",
+      "email": "ritika.malhotra@example.com",
+      "phone": "+91-9222222011",
+      "summary": "Software Engineer with expertise in game development and graphics programming.",
+      "skills": [
+        "C++",
+        "Unity",
+        "C#",
+        "OpenGL",
+        "Game Development",
+        "Git"
+      ],
+      "experience": [
+        {
+          "company": "Game Studio",
+          "role": "Game Developer",
+          "duration": "2021 - Present",
+          "responsibilities": [
+            "Developed 2D and 3D games using Unity and C# scripting.",
+            "Implemented graphics rendering optimizations using OpenGL.",
+            "Collaborated with artists and designers on game mechanics."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "IIT Madras",
+        "year": "2021"
+      },
+      "certifications": ["Unity Certified Developer"]
+    },
+    {
+      "name": "Siddharth Nair",
+      "email": "siddharth.nair@example.com",
+      "phone": "+91-9333333012",
+      "summary": "SDE specializing in database systems and data engineering.",
+      "skills": [
+        "SQL",
+        "Python",
+        "Apache Spark",
+        "Hadoop",
+        "ETL",
+        "PostgreSQL"
+      ],
+      "experience": [
+        {
+          "company": "Data Solutions",
+          "role": "Data Engineer",
+          "duration": "2019 - 2023",
+          "responsibilities": [
+            "Built ETL pipelines using Apache Spark and Python.",
+            "Designed and optimized data warehouses in PostgreSQL.",
+            "Processed large datasets using Hadoop ecosystem."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Information Technology",
+        "university": "VIT",
+        "year": "2019"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Neha Agarwal",
+      "email": "neha.agarwal@example.com",
+      "phone": "+91-9444444013",
+      "summary": "Software Development Engineer with focus on security and performance optimization.",
+      "skills": [
+        "Java",
+        "Spring Security",
+        "OAuth",
+        "JMeter",
+        "Security Testing",
+        "MySQL"
+      ],
+      "experience": [
+        {
+          "company": "Security Solutions",
+          "role": "Security Engineer",
+          "duration": "2020 - Present",
+          "responsibilities": [
+            "Implemented authentication and authorization using Spring Security.",
+            "Conducted security testing and vulnerability assessments.",
+            "Optimized application performance using JMeter and profiling tools."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "M.Tech in Cybersecurity",
+        "university": "IIT Delhi",
+        "year": "2020"
+      },
+      "certifications": ["Certified Ethical Hacker"]
+    },
+    {
+      "name": "Rohan Mehta",
+      "email": "rohan.mehta@example.com",
+      "phone": "+91-9555555014",
+      "summary": "Junior SDE with passion for clean code and test-driven development.",
+      "skills": [
+        "Python",
+        "Django",
+        "pytest",
+        "Git",
+        "Linux",
+        "PostgreSQL"
+      ],
+      "experience": [
+        {
+          "company": "Software House",
+          "role": "Junior Software Engineer",
+          "duration": "2023 - Present",
+          "responsibilities": [
+            "Developed web applications using Django framework and Python.",
+            "Practiced test-driven development with pytest and unit testing.",
+            "Maintained code quality through code reviews and best practices."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "NIT Surathkal",
+        "year": "2023"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Amit Sharma",
+      "email": "amit.sharma@example.com",
+      "phone": "+91-9666666015",
+      "summary": "Senior SDE with extensive experience in system architecture and team leadership.",
+      "skills": [
+        "Java",
+        "Microservices",
+        "System Design",
+        "AWS",
+        "Kubernetes",
+        "Leadership"
+      ],
+      "experience": [
+        {
+          "company": "Tech Giant",
+          "role": "Senior Software Engineer",
+          "duration": "2016 - Present",
+          "responsibilities": [
+            "Architected large-scale distributed systems and microservices.",
+            "Led a team of 8 engineers on critical product features.",
+            "Mentored junior developers and conducted technical interviews."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "IIT Bombay",
+        "year": "2016"
+      },
+      "certifications": ["AWS Certified Solutions Architect"]
+    },
+    {
+      "name": "Megha Joshi",
+      "email": "megha.joshi@example.com",
+      "phone": "+91-9777777016",
+      "summary": "SDE with expertise in real-time systems and embedded programming.",
+      "skills": [
+        "C",
+        "C++",
+        "Embedded Systems",
+        "Real-time OS",
+        "Hardware Integration",
+        "Git"
+      ],
+      "experience": [
+        {
+          "company": "IoT Solutions",
+          "role": "Embedded Software Engineer",
+          "duration": "2020 - 2023",
+          "responsibilities": [
+            "Developed firmware for IoT devices using C and C++.",
+            "Implemented real-time communication protocols.",
+            "Integrated hardware components with software systems."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Electronics and Communication",
+        "university": "NIT Trichy",
+        "year": "2020"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Vikram Sehgal",
+      "email": "vikram.sehgal@example.com",
+      "phone": "+91-9888888017",
+      "summary": "Software Engineer specializing in machine learning integration and AI applications.",
+      "skills": [
+        "Python",
+        "TensorFlow",
+        "Flask",
+        "ML Deployment",
+        "Docker",
+        "REST APIs"
+      ],
+      "experience": [
+        {
+          "company": "AI Startup",
+          "role": "ML Engineer",
+          "duration": "2021 - Present",
+          "responsibilities": [
+            "Integrated machine learning models into production applications.",
+            "Built ML serving infrastructure using Flask and Docker.",
+            "Developed APIs for real-time model inference and predictions."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "M.Tech in Artificial Intelligence",
+        "university": "IIT Hyderabad",
+        "year": "2021"
+      },
+      "certifications": ["TensorFlow Developer Certificate"]
+    },
+    {
+      "name": "Swati Kapoor",
+      "email": "swati.kapoor@example.com",
+      "phone": "+91-9999999018",
+      "summary": "Frontend SDE with expertise in modern JavaScript frameworks and UI/UX.",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Angular",
+        "TypeScript",
+        "SASS",
+        "Figma"
+      ],
+      "experience": [
+        {
+          "company": "Design Studio",
+          "role": "Frontend Developer",
+          "duration": "2022 - Present",
+          "responsibilities": [
+            "Created responsive web applications using React and Angular.",
+            "Collaborated with designers to implement pixel-perfect UI designs.",
+            "Optimized frontend performance and implemented accessibility standards."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Des in Interaction Design",
+        "university": "NID Ahmedabad",
+        "year": "2022"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Rajeev Khanna",
+      "email": "rajeev.khanna@example.com",
+      "phone": "+91-9111111019",
+      "summary": "Full-stack SDE with experience in e-commerce and payment systems.",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "Vue.js",
+        "MySQL",
+        "Payment Gateways",
+        "Redis"
+      ],
+      "experience": [
+        {
+          "company": "E-commerce Platform",
+          "role": "Full Stack Developer",
+          "duration": "2019 - 2023",
+          "responsibilities": [
+            "Built e-commerce applications using Laravel and PHP.",
+            "Integrated multiple payment gateways and shipping providers.",
+            "Developed admin dashboards with Vue.js and real-time analytics."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "Pune University",
+        "year": "2019"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Maya Banerjee",
+      "email": "maya.banerjee@example.com",
+      "phone": "+91-9222222020",
+      "summary": "Software Engineer with focus on DevOps practices and automation.",
+      "skills": [
+        "Python",
+        "Jenkins",
+        "Docker",
+        "Ansible",
+        "Terraform",
+        "AWS"
+      ],
+      "experience": [
+        {
+          "company": "DevOps Solutions",
+          "role": "DevOps Engineer",
+          "duration": "2020 - Present",
+          "responsibilities": [
+            "Automated deployment pipelines using Jenkins and Python scripts.",
+            "Managed infrastructure as code with Terraform and Ansible.",
+            "Implemented containerized deployments using Docker and orchestration."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.E. in Information Technology",
+        "university": "VIT",
+        "year": "2020"
+      },
+      "certifications": ["AWS Certified DevOps Engineer"]
+    },
+    {
+      "name": "Kabir Khan",
+      "email": "kabir.khan@example.com",
+      "phone": "+91-9333333021",
+      "summary": "Backend SDE specializing in API development and microservices architecture.",
+      "skills": [
+        "Node.js",
+        "Express",
+        "GraphQL",
+        "MongoDB",
+        "Microservices",
+        "Docker"
+      ],
+      "experience": [
+        {
+          "company": "API Platform",
+          "role": "Backend Developer",
+          "duration": "2021 - Present",
+          "responsibilities": [
+            "Designed and implemented RESTful and GraphQL APIs.",
+            "Built microservices architecture using Node.js and Express.",
+            "Managed database operations and optimization in MongoDB."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "IIT Roorkee",
+        "year": "2021"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Simran Sharma",
+      "email": "simran.sharma@example.com",
+      "phone": "+91-9444444022",
+      "summary": "Software Development Engineer with expertise in cross-platform mobile development.",
+      "skills": [
+        "React Native",
+        "JavaScript",
+        "Swift",
+        "Kotlin",
+        "Firebase",
+        "Native Modules"
+      ],
+      "experience": [
+        {
+          "company": "Mobile Tech",
+          "role": "Mobile Developer",
+          "duration": "2020 - 2023",
+          "responsibilities": [
+            "Developed cross-platform mobile apps using React Native.",
+            "Created native modules in Swift and Kotlin for platform-specific features.",
+            "Implemented push notifications and analytics using Firebase."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "BITS Pilani",
+        "year": "2020"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Tina Thomas",
+      "email": "tina.thomas@example.com",
+      "phone": "+91-9555555023",
+      "summary": "SDE with passion for blockchain technology and decentralized applications.",
+      "skills": [
+        "Solidity",
+        "Web3.js",
+        "JavaScript",
+        "Ethereum",
+        "Smart Contracts",
+        "React"
+      ],
+      "experience": [
+        {
+          "company": "Blockchain Startup",
+          "role": "Blockchain Developer",
+          "duration": "2022 - Present",
+          "responsibilities": [
+            "Developed smart contracts using Solidity programming language.",
+            "Built decentralized applications (DApps) with Web3.js and React.",
+            "Implemented cryptocurrency wallet integrations and DeFi protocols."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "IIT Delhi",
+        "year": "2022"
+      },
+      "certifications": ["Certified Blockchain Developer"]
+    },
+    {
+      "name": "Rahul Singh",
+      "email": "rahul.singh@example.com",
+      "phone": "+91-9666666024",
+      "summary": "Senior Software Engineer with expertise in scalable system design and performance optimization.",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "Redis",
+        "Elasticsearch",
+        "System Design"
+      ],
+      "experience": [
+        {
+          "company": "Tech Corporation",
+          "role": "Senior Software Engineer",
+          "duration": "2017 - Present",
+          "responsibilities": [
+            "Designed high-performance systems serving millions of users daily.",
+            "Implemented search functionality using Elasticsearch and optimization techniques.",
+            "Led performance optimization initiatives reducing response times by 60%."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "M.Tech in Computer Science",
+        "university": "IIT Kanpur",
+        "year": "2017"
+      },
+      "certifications": []
+    },
+    {
+      "name": "Nitika Rao",
+      "email": "nitika.rao@example.com",
+      "phone": "+91-9777777025",
+      "summary": "Full-stack SDE with experience in fintech and regulatory compliance systems.",
+      "skills": [
+        "C#",
+        ".NET Core",
+        "SQL Server",
+        "Angular",
+        "Azure",
+        "Compliance"
+      ],
+      "experience": [
+        {
+          "company": "Financial Services",
+          "role": "Software Engineer",
+          "duration": "2019 - Present",
+          "responsibilities": [
+            "Developed financial applications using C# and .NET Core framework.",
+            "Implemented compliance monitoring systems for regulatory requirements.",
+            "Built reporting dashboards using Angular and SQL Server integration."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "B.Tech in Computer Science",
+        "university": "Delhi University",
+        "year": "2019"
+      },
+      "certifications": ["Microsoft Certified: Azure Developer Associate"]
+    }
+  ]
+  
