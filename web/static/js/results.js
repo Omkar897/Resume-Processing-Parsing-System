@@ -46,3 +46,72 @@ resultsData.jobs.forEach((job, index) => {
     
     jobsContainer.appendChild(jobCard);
 });
+
+// Email functionality
+const sendEmailBtn = document.getElementById('sendEmailBtn');
+const emailInput = document.getElementById('emailInput');
+const emailStatus = document.getElementById('emailStatus');
+
+sendEmailBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    
+    // Validate email
+    if (!email) {
+        showEmailStatus('Please enter your email address', 'error');
+        return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showEmailStatus('Please enter a valid email address', 'error');
+        return;
+    }
+    
+    // Disable button and show sending status
+    sendEmailBtn.disabled = true;
+    sendEmailBtn.textContent = 'Sending...';
+    showEmailStatus('📤 Sending email...', 'sending');
+    
+    try {
+        const response = await fetch('/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                jobs: resultsData.jobs,
+                category: resultsData.category,
+                experience: resultsData.experience
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showEmailStatus('✅ Email sent successfully! Check your inbox.', 'success');
+            emailInput.value = '';
+        } else {
+            showEmailStatus('❌ Failed to send email: ' + data.error, 'error');
+        }
+        
+    } catch (error) {
+        showEmailStatus('❌ Error sending email. Please try again.', 'error');
+        console.error('Email error:', error);
+    } finally {
+        sendEmailBtn.disabled = false;
+        sendEmailBtn.textContent = 'Send to Email';
+    }
+});
+
+function showEmailStatus(message, type) {
+    emailStatus.textContent = message;
+    emailStatus.className = `email-status ${type}`;
+}
+
+// Allow Enter key to send email
+emailInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendEmailBtn.click();
+    }
+});
