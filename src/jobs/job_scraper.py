@@ -72,7 +72,7 @@ class IntegratedJobScraper:
         """Extract category and calculate total experience from resume"""
         try:
             main_script_path = os.path.join(
-                os.path.dirname(__file__), "..", "..", "api_only_main.py"
+                os.path.dirname(__file__), "..", "..", "main.py"
             )
             cmd = [sys.executable, main_script_path, "--file", resume_path]
 
@@ -292,7 +292,9 @@ class IntegratedJobScraper:
         # CRITICAL: In headless mode, raise exception if no category
         if not category:
             if self.headless:
-                raise Exception("Failed to extract category from resume")
+                raise Exception(
+                    "Could not identify job category from resume. Please ensure your resume contains clear work experience, job titles, and skills sections."
+                )
             else:
                 print("\n❌ Failed to extract category automatically")
                 category = input("Please enter job category manually: ").strip()

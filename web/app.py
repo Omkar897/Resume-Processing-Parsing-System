@@ -43,17 +43,37 @@ def index():
 @app.route("/upload", methods=["POST"])
 def upload_resume():
     try:
+        # Check if file exists in request
         if "resume" not in request.files:
             return jsonify({"error": "No file uploaded"}), 400
 
         file = request.files["resume"]
 
+        # Check if filename is empty
         if file.filename == "":
             return jsonify({"error": "No file selected"}), 400
 
+        # Check file type
         if not allowed_file(file.filename):
             return jsonify({"error": "Only PDF files are allowed"}), 400
 
+        # Check file size (additional check beyond MAX_CONTENT_LENGTH)
+        file.seek(0, os.SEEK_END)
+        file_size = file.tell()
+        file.seek(0)
+
+        if file_size < 1000:  # Less than 1KB
+            return (
+                jsonify(
+                    {"error": "File is too small. Please upload a valid resume PDF."}
+                ),
+                400,
+            )
+
+        if file_size > 16 * 1024 * 1024:  # More than 16MB
+            return jsonify({"error": "File is too large. Maximum size is 16MB."}), 400
+
+        # Save file
         filename = secure_filename(file.filename)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         unique_filename = f"{timestamp}_{filename}"
@@ -63,10 +83,12 @@ def upload_resume():
         abs_filepath = os.path.abspath(filepath)
         print(f"✅ File saved: {abs_filepath}")
 
+        # Get paths
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         scraper_path = os.path.join(project_root, "src", "jobs", "job_scraper.py")
         jobs_folder = os.path.join(project_root, "src", "jobs")
 
+        # Prepare environment
         env = os.environ.copy()
         env["PYTHONIOENCODING"] = "utf-8"
         env["PYTHONUNBUFFERED"] = "1"
@@ -80,15 +102,55 @@ def upload_resume():
             env=env,
             cwd=jobs_folder,
             stdin=subprocess.DEVNULL,
+            timeout=60,  # 60 second timeout
         )
 
+        # Enhanced error handling
         if result.returncode != 0:
-            error_msg = (
-                f"Scraper failed.\nOutput: {result.stdout}\nError: {result.stderr}"
-            )
-            print(f"❌ {error_msg}")
-            return jsonify({"error": error_msg}), 500
+            error_output = result.stdout + result.stderr
 
+            # Check for specific errors and provide friendly messages
+            if (
+                "Failed to extract category" in error_output
+                or "Could not identify" in error_output
+            ):
+                user_msg = """Unable to identify your job category from the resume. 
+
+Please ensure your resume includes:
+• Clear job titles (e.g., Software Engineer, Data Scientist)
+• Work Experience section with company names
+• Skills section
+• Education details
+
+Try uploading a more detailed resume or a different format."""
+
+            elif "No module named" in error_output:
+                user_msg = "System error: Missing required dependencies. Please contact support."
+
+            elif "FileNotFoundError" in error_output or "No such file" in error_output:
+                user_msg = "Error reading the PDF file. Please ensure it's a valid PDF and try again."
+
+            elif "PDF" in error_output and "error" in error_output.lower():
+                user_msg = "Unable to extract text from this PDF. The file might be corrupted or image-based. Please try a different resume."
+
+            elif "timeout" in error_output.lower():
+                user_msg = "Processing is taking too long. Please try with a smaller or simpler resume."
+
+            else:
+                # Generic error with first 200 chars
+                user_msg = f"Unable to process your resume. Please try again with a different file.\n\nDetails: {error_output[:200]}"
+
+            print(f"❌ Full error: {error_output}")
+
+            # Clean up uploaded file
+            try:
+                os.remove(filepath)
+            except:
+                pass
+
+            return jsonify({"error": user_msg}), 500
+
+        # Parse output to find JSON filename
         json_file = None
         for line in result.stdout.split("\n"):
             if "✅ Scraped" in line and ".json" in line:
@@ -98,19 +160,56 @@ def upload_resume():
                     break
 
         if not json_file:
+            # Clean up
+            try:
+                os.remove(filepath)
+            except:
+                pass
             return (
-                jsonify({"error": f"No JSON file created. Output: {result.stdout}"}),
+                jsonify(
+                    {
+                        "error": "Processing completed but no jobs were found. This might happen if:\n• The resume category is unclear\n• No matching jobs are currently available\n\nPlease try again or upload a different resume."
+                    }
+                ),
                 500,
             )
 
+        # Read JSON
         json_path = os.path.join(jobs_folder, json_file)
 
         if not os.path.exists(json_path):
-            return jsonify({"error": f"JSON not found: {json_path}"}), 500
+            try:
+                os.remove(filepath)
+            except:
+                pass
+            return (
+                jsonify(
+                    {
+                        "error": f"Results file not found. Please try uploading your resume again."
+                    }
+                ),
+                500,
+            )
 
         with open(json_path, "r", encoding="utf-8") as f:
             jobs_data = json.load(f)
 
+        # Check if we actually got jobs
+        if not jobs_data.get("jobs") or len(jobs_data.get("jobs", [])) == 0:
+            try:
+                os.remove(filepath)
+            except:
+                pass
+            return (
+                jsonify(
+                    {
+                        "error": f"No jobs found for your profile ({jobs_data.get('search_category', 'Unknown category')}). This could mean:\n• No current openings match your experience level\n• Try again later as new jobs are posted daily\n• Consider broadening your job search"
+                    }
+                ),
+                404,
+            )
+
+        # Clean up uploaded file
         try:
             os.remove(filepath)
         except:
@@ -131,12 +230,43 @@ def upload_resume():
             }
         )
 
+    except subprocess.TimeoutExpired:
+        # Clean up
+        try:
+            os.remove(filepath)
+        except:
+            pass
+        return (
+            jsonify(
+                {
+                    "error": "Processing timeout. Your resume is taking too long to analyze. Please try with a simpler PDF."
+                }
+            ),
+            500,
+        )
+
     except Exception as e:
         import traceback
 
         error_trace = traceback.format_exc()
         print(f"❌ Exception: {error_trace}")
-        return jsonify({"error": str(e)}), 500
+
+        # Clean up uploaded file
+        try:
+            if "filepath" in locals():
+                os.remove(filepath)
+        except:
+            pass
+
+        # User-friendly error message
+        return (
+            jsonify(
+                {
+                    "error": f"An unexpected error occurred while processing your resume. Please try again.\n\nError: {str(e)}"
+                }
+            ),
+            500,
+        )
 
 
 @app.route("/send-email", methods=["POST"])
@@ -155,6 +285,7 @@ def send_email():
         if not jobs:
             return jsonify({"error": "No jobs to send"}), 400
 
+        # Create message
         msg = Message(
             subject=f"Your Personalized {category} Jobs - {len(jobs)} Matches",
             recipients=[user_email],
@@ -162,6 +293,7 @@ def send_email():
 
         msg.html = generate_email_html(jobs, category, experience)
 
+        # Send email
         mail.send(msg)
 
         print(f"✅ Email sent to {user_email}")
@@ -172,7 +304,20 @@ def send_email():
 
         error_trace = traceback.format_exc()
         print(f"❌ Email error: {error_trace}")
-        return jsonify({"error": f"Failed to send email: {str(e)}"}), 500
+
+        # Specific email errors
+        if "Authentication" in str(e) or "Username and Password not accepted" in str(e):
+            error_msg = (
+                "Email authentication failed. Please check your email configuration."
+            )
+        elif "Connection" in str(e):
+            error_msg = "Unable to connect to email server. Please check your internet connection."
+        elif "Invalid" in str(e) and "address" in str(e):
+            error_msg = "Invalid email address. Please check and try again."
+        else:
+            error_msg = f"Failed to send email. Please try again. Error: {str(e)[:100]}"
+
+        return jsonify({"error": error_msg}), 500
 
 
 def generate_email_html(jobs, category, experience):
