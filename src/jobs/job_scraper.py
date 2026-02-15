@@ -6,6 +6,10 @@ import requests
 import json
 import math
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 env = os.environ.copy()
 env["PYTHONIOENCODING"] = "utf-8"
