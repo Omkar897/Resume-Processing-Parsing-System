@@ -5,13 +5,107 @@ if (!resultsData) {
     window.location.href = '/';
 }
 
+function escapeHtml(text) {
+    if (text == null) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 // Display resume info
 const resumeInfo = document.getElementById('resumeInfo');
+const ragBadge = resultsData.rag_enabled ? '🧠 RAG: ON' : '🧠 RAG: OFF';
+const claudeBadge = resultsData.claude_enabled ? '🤖 Claude: ON' : '🤖 Claude: OFF';
 resumeInfo.innerHTML = `
     <div class="info-badge">📊 ${resultsData.category}</div>
     <div class="info-badge">💼 ${resultsData.experience} years experience</div>
     <div class="info-badge">🎯 ${resultsData.total_jobs} jobs found</div>
+    <div class="info-badge">${ragBadge}</div>
+    <div class="info-badge">${claudeBadge}</div>
 `;
+
+function renderResumeInsights(analysis) {
+    const section = document.getElementById('resumeInsightsSection');
+    const content = document.getElementById('resumeInsightsContent');
+    let html = '';
+    if (analysis.ats_score != null) {
+        html += `<div class="insight-block"><strong>ATS score</strong>: ${analysis.ats_score}/100</div>`;
+        if (analysis.ats_explanation) {
+            html += `<p class="insight-text">${escapeHtml(analysis.ats_explanation)}</p>`;
+        }
+    }
+    if (analysis.strengths?.length) {
+        html += `<div class="insight-block"><strong>Strengths</strong><ul>${analysis.strengths.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ul></div>`;
+    }
+    if (analysis.missing_keywords?.length) {
+        html += `<div class="insight-block"><strong>Missing keywords</strong><ul>${analysis.missing_keywords.map(k => `<li>${escapeHtml(k)}</li>`).join('')}</ul></div>`;
+    }
+    if (analysis.suggestions?.length) {
+        html += `<div class="insight-block"><strong>Improvement tips</strong><ul>${analysis.suggestions.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ul></div>`;
+    }
+    content.innerHTML = html;
+    section.style.display = 'block';
+}
+
+// Display resume insights (RAG + Claude) if present
+const resumeAnalysis = resultsData.resume_analysis || {};
+const hasResumeAnalysis = resumeAnalysis.strengths?.length || resumeAnalysis.suggestions?.length ||
+    resumeAnalysis.missing_keywords?.length || resumeAnalysis.ats_score != null;
+if (hasResumeAnalysis) {
+    renderResumeInsights(resumeAnalysis);
+}
+
+// On-demand Claude analysis button: show whenever Claude is ON and we don't already have full insights
+const analyzeBtn = document.getElementById('analyzeResumeBtn');
+const analyzeStatus = document.getElementById('analyzeStatus');
+const resumeExtracted = resultsData.resume_extracted_data || {};
+const hasExtracted = (resumeExtracted.skills && resumeExtracted.skills.length) ||
+    (resumeExtracted.experience && resumeExtracted.experience.length) ||
+    (resumeExtracted.education && resumeExtracted.education.length);
+
+if (analyzeBtn && resultsData.claude_enabled && !hasResumeAnalysis) {
+    analyzeBtn.style.display = 'inline-block';
+}
+
+if (analyzeBtn) {
+    analyzeBtn.addEventListener('click', async () => {
+        analyzeStatus.textContent = '';
+        if (!hasExtracted) {
+            analyzeStatus.textContent = 'Resume text wasn’t extracted for this run. Re-upload your resume to get AI tips (use the same PDF).';
+            return;
+        }
+        analyzeBtn.disabled = true;
+        analyzeBtn.textContent = 'Analyzing...';
+        analyzeStatus.textContent = 'Running Claude resume analysis...';
+
+        try {
+            const response = await fetch('/analyze-resume', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    category: resultsData.category,
+                    extracted_data: resumeExtracted
+                })
+            });
+            const data = await response.json();
+            if (!data.success) {
+                analyzeStatus.textContent = `Analysis failed: ${data.error || 'Unknown error'}`;
+                return;
+            }
+            resultsData.resume_analysis = data.resume_analysis;
+            sessionStorage.setItem('jobResults', JSON.stringify(resultsData));
+            renderResumeInsights(data.resume_analysis || {});
+            analyzeStatus.textContent = 'Done. Scroll up to see Resume insights.';
+            document.getElementById('resumeInsightsSection')?.scrollIntoView({ behavior: 'smooth' });
+            analyzeBtn.style.display = 'none';
+        } catch (e) {
+            analyzeStatus.textContent = `Analysis error: ${e.message || e}`;
+        } finally {
+            analyzeBtn.disabled = false;
+            analyzeBtn.textContent = 'Analyze Resume (AI) →';
+        }
+    });
+}
 
 // Display jobs
 const jobsContainer = document.getElementById('jobsContainer');
@@ -20,26 +114,29 @@ resultsData.jobs.forEach((job, index) => {
     const jobCard = document.createElement('div');
     jobCard.className = 'job-card';
     jobCard.style.animationDelay = `${index * 0.1}s`;
+    const matchScore = job.match_score != null ? job.match_score : null;
+    const matchExplanation = job.match_explanation || '';
     
     jobCard.innerHTML = `
         <div class="job-header">
             <div>
-                <h3 class="job-title">${job.title}</h3>
-                <div class="job-company">🏢 ${job.company}</div>
+                <h3 class="job-title">${escapeHtml(job.title || '')}</h3>
+                <div class="job-company">🏢 ${escapeHtml(job.company || '')}</div>
+                ${matchScore != null ? `<div class="job-match"><span class="match-badge">${matchScore}% match</span>${matchExplanation ? `<p class="match-explanation">${escapeHtml(matchExplanation)}</p>` : ''}</div>` : ''}
             </div>
         </div>
         
         <div class="job-meta">
-            ${job.location ? `<span class="meta-item">📍 ${job.location}</span>` : ''}
-            ${job.posted_at ? `<span class="meta-item">⏰ ${job.posted_at}</span>` : ''}
-            ${job.schedule_type ? `<span class="meta-item">💼 ${job.schedule_type}</span>` : ''}
-            ${job.salary ? `<span class="meta-item">💰 ${job.salary}</span>` : ''}
-            ${job.via ? `<span class="meta-item">📢 via ${job.via}</span>` : ''}
+            ${job.location ? `<span class="meta-item">📍 ${escapeHtml(job.location)}</span>` : ''}
+            ${job.posted_at ? `<span class="meta-item">⏰ ${escapeHtml(job.posted_at)}</span>` : ''}
+            ${job.schedule_type ? `<span class="meta-item">💼 ${escapeHtml(job.schedule_type)}</span>` : ''}
+            ${job.salary ? `<span class="meta-item">💰 ${escapeHtml(job.salary)}</span>` : ''}
+            ${job.via ? `<span class="meta-item">📢 via ${escapeHtml(job.via)}</span>` : ''}
         </div>
         
-        ${job.description ? `<p class="job-description">${job.description}</p>` : ''}
+        ${job.description ? `<p class="job-description">${escapeHtml(job.description)}</p>` : ''}
         
-        <a href="${job.apply_link}" target="_blank" class="btn-apply">
+        <a href="${job.apply_link || '#'}" target="_blank" class="btn-apply">
             Apply Now →
         </a>
     `;

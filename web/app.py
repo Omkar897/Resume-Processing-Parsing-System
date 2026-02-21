@@ -3,6 +3,7 @@ import os
 import sys
 import subprocess
 import json
+import re
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from flask_mail import Mail, Message
@@ -85,25 +86,39 @@ def upload_resume():
 
         # Get paths
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        scraper_path = os.path.join(project_root, "src", "jobs", "job_scraper.py")
+        scraper_path = os.path.join(
+            project_root, "src", "jobs", "enhanced_job_scraper.py"
+        )
         jobs_folder = os.path.join(project_root, "src", "jobs")
 
-        # Prepare environment
+        # Prepare environment (run from project root so RAG/data paths and model cache resolve correctly)
         env = os.environ.copy()
         env["PYTHONIOENCODING"] = "utf-8"
         env["PYTHONUNBUFFERED"] = "1"
+        env["RESUME_PROJECT_ROOT"] = project_root
+        env["RESUME_HEADLESS"] = "1"
+        cache_dir = os.path.join(project_root, "data", ".embedding_cache")
+        os.makedirs(cache_dir, exist_ok=True)
+        env["TRANSFORMERS_CACHE"] = os.path.abspath(cache_dir)
+        env["HF_HOME"] = os.path.abspath(cache_dir)
 
-        print(f"🚀 Running scraper...")
+        print(f"🚀 Running RAG-enhanced scraper...")
         result = subprocess.run(
             [sys.executable, scraper_path, abs_filepath],
             capture_output=True,
             text=True,
             encoding="utf-8",
             env=env,
-            cwd=jobs_folder,
+            cwd=project_root,
             stdin=subprocess.DEVNULL,
-            timeout=60,  # 60 second timeout
+            timeout=120,  # Increased timeout for RAG processing
         )
+
+        # Log scraper output so we can see RAG/Claude init warnings (stdout is captured, not shown)
+        scraper_out = (result.stdout or "") + (result.stderr or "")
+        for line in scraper_out.splitlines():
+            if "⚠️" in line or "RAG engine disabled" in line or "Claude analyzer disabled" in line:
+                print(f"[Scraper] {line}")
 
         # Enhanced error handling
         if result.returncode != 0:
@@ -150,14 +165,21 @@ Try uploading a more detailed resume or a different format."""
 
             return jsonify({"error": user_msg}), 500
 
-        # Parse output to find JSON filename
+        # Parse output to find JSON filename (scraper writes it to cwd = project_root when run from web)
         json_file = None
         for line in result.stdout.split("\n"):
-            if "✅ Scraped" in line and ".json" in line:
-                parts = line.split("→")
-                if len(parts) > 1:
-                    json_file = parts[-1].strip()
+            if "Scraped" in line and ".json" in line:
+                # Handles both clean UTF-8 and mojibake output variants.
+                match = re.search(r"([^\s]+\.json)", line)
+                if match:
+                    json_file = match.group(1).strip()
                     break
+
+        # Fallback: scan full stdout if line parsing missed it.
+        if not json_file:
+            match = re.search(r"([^\s]+\.json)", result.stdout or "")
+            if match:
+                json_file = match.group(1).strip()
 
         if not json_file:
             # Clean up
@@ -174,8 +196,8 @@ Try uploading a more detailed resume or a different format."""
                 500,
             )
 
-        # Read JSON
-        json_path = os.path.join(jobs_folder, json_file)
+        # Read JSON (scraper runs with cwd=project_root, so file is there)
+        json_path = os.path.join(project_root, json_file)
 
         if not os.path.exists(json_path):
             try:
@@ -225,6 +247,10 @@ Try uploading a more detailed resume or a different format."""
                 "search_experience": jobs_data.get("search_experience_years"),
                 "total_jobs": jobs_data.get("total_jobs"),
                 "jobs": jobs_data.get("jobs", []),
+                "resume_analysis": jobs_data.get("resume_analysis", {}),
+                "resume_extracted_data": jobs_data.get("resume_extracted_data", {}),
+                "rag_enabled": jobs_data.get("rag_enabled", False),
+                "claude_enabled": jobs_data.get("claude_enabled", False),
                 "scrape_date": jobs_data.get("scrape_date"),
                 "scrape_time": jobs_data.get("scrape_time"),
             }
@@ -263,6 +289,46 @@ Try uploading a more detailed resume or a different format."""
             jsonify(
                 {
                     "error": f"An unexpected error occurred while processing your resume. Please try again.\n\nError: {str(e)}"
+                }
+            ),
+            500,
+        )
+
+
+@app.route("/analyze-resume", methods=["POST"])
+def analyze_resume():
+    """Run Claude resume analysis on-demand from the results page."""
+    data = request.get_json(silent=True) or {}
+    extracted_data = data.get("extracted_data") or data.get("resume_extracted_data")
+    category = data.get("category")
+
+    if not extracted_data or not category:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "error": "Missing required fields: extracted_data and category",
+                }
+            ),
+            400,
+        )
+
+    try:
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        if project_root not in sys.path:
+            sys.path.insert(0, project_root)
+
+        from src.rag.resume_analyzer import ResumeAnalyzer
+
+        analyzer = ResumeAnalyzer()
+        analysis = analyzer.analyze_resume(extracted_data, category)
+        return jsonify({"success": True, "resume_analysis": analysis})
+    except Exception as e:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "error": str(e),
                 }
             ),
             500,

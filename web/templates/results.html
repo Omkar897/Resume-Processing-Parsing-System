@@ -13,7 +13,13 @@
             <div id="resumeInfo" class="resume-info"></div>
         </header>
 
-        <!-- NEW: Email Section -->
+        <!-- Resume insights (RAG + Claude) -->
+        <div id="resumeInsightsSection" class="resume-insights-section" style="display: none;">
+            <h2>📋 Resume insights</h2>
+            <div id="resumeInsightsContent" class="resume-insights-content"></div>
+        </div>
+
+        <!-- Email Section -->
         <div class="email-section">
             <div class="email-box">
                 <h3>📧 Email Me These Jobs</h3>
@@ -41,6 +47,10 @@
             <button class="btn-secondary" onclick="window.location.href='/'">
                 Upload Another Resume
             </button>
+            <button id="analyzeResumeBtn" class="btn-primary" style="display: none;">
+                Analyze Resume (AI) →
+            </button>
+            <div id="analyzeStatus" class="analyze-status"></div>
         </div>
     </div>
 

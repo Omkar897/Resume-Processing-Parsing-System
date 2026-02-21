@@ -764,6 +764,11 @@ def main():
     )
     parser.add_argument("--file", help="PDF file to process")
     parser.add_argument("--test", action="store_true", help="Use default test resume")
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Output machine-readable JSON only (for scraper integration)",
+    )
 
     args = parser.parse_args()
 
@@ -772,13 +777,19 @@ def main():
     elif args.file:
         pdf_path = args.file
     else:
-        print("Please provide a file path or use --test flag")
-        print('Example: python api_only_main.py --file "path\\to\\your\\resume.pdf"')
+        if not args.json:
+            print("Please provide a file path or use --test flag")
+            print('Example: python api_only_main.py --file "path\\to\\your\\resume.pdf"')
+        else:
+            print(json.dumps({"error": "No file path provided"}))
         return
 
     if not os.path.exists(pdf_path):
-        print(f"❌ Error: File not found: {pdf_path}")
-        print("Please check the file path and try again.")
+        if args.json:
+            print(json.dumps({"error": f"File not found: {pdf_path}"}))
+        else:
+            print(f"❌ Error: File not found: {pdf_path}")
+            print("Please check the file path and try again.")
         return
 
     try:
@@ -786,7 +797,19 @@ def main():
         result = processor.process_resume(pdf_path)
 
         if "error" in result:
-            print(f"❌ Error: {result['error']}")
+            if args.json:
+                print(json.dumps({"error": result["error"]}))
+            else:
+                print(f"❌ Error: {result['error']}")
+            return
+
+        if args.json:
+            payload = {
+                "extracted_data": result["extracted_data"],
+                "category": result["classification"]["predicted_category"],
+                "confidence": result["classification"]["confidence"],
+            }
+            print(json.dumps(payload, ensure_ascii=False))
             return
 
         print(f"\n" + "=" * 80)
@@ -927,10 +950,13 @@ def main():
         print(f"=" * 80)
 
     except Exception as e:
-        print(f"❌ Error: {e}")
-        import traceback
+        if args.json:
+            print(json.dumps({"error": str(e)}))
+        else:
+            print(f"❌ Error: {e}")
+            import traceback
 
-        traceback.print_exc()
+            traceback.print_exc()
 
 
 if __name__ == "__main__":
