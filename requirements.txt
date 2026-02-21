@@ -10,3 +10,8 @@ Jinja2==3.1.6
 MarkupSafe==3.0.2
 itsdangerous==2.2.0
 click==8.1.8
+chromadb==0.4.22
+anthropic==0.18.1
+sentence-transformers==2.3.1
+langchain==0.1.6
+langchain-anthropic==0.1.4

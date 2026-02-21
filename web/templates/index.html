@@ -1,65 +1,72 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Resume Job Matcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🎯 AI Resume Job Matcher</h1>
-            <p class="subtitle">Upload your resume and discover perfectly matched job opportunities</p>
+<body class="home-page">
+    <div class="noise-grid" aria-hidden="true"></div>
+    <div class="aurora aurora-a" aria-hidden="true"></div>
+    <div class="aurora aurora-b" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+    <canvas id="particleField" class="particle-field" aria-hidden="true"></canvas>
+
+    <div class="container app-shell">
+        <header class="hero reveal" data-reveal>
+            <p class="kicker">AI Resume Intelligence</p>
+            <h1>Turn your resume into a living job map</h1>
+            <p class="subtitle">Upload once. Extract context. Rank jobs with semantic matching and realtime market data.</p>
         </header>
 
-        <div class="upload-section">
+        <div class="upload-section reveal" data-reveal>
             <div class="upload-box" id="uploadBox">
-                <div class="upload-icon">📄</div>
-                <h2>Drop your resume here</h2>
-                <p>or click to browse</p>
+                <div class="upload-icon">Resume PDF</div>
+                <h2>Drop your file here</h2>
+                <p>or browse from your device</p>
                 <input type="file" id="resumeInput" accept=".pdf" hidden>
-                <button class="btn-primary" onclick="document.getElementById('resumeInput').click()">
-                    Choose File
-                </button>
-                <p class="file-info">PDF files only (Max 16MB)</p>
+                <button class="btn-primary" onclick="document.getElementById('resumeInput').click()">Choose PDF</button>
+                <p class="file-info">Only PDF files, up to 16MB</p>
             </div>
 
             <div id="fileName" class="file-name"></div>
-            
-            <button id="uploadBtn" class="btn-upload" style="display:none;">
-                🚀 Find Matching Jobs
-            </button>
+
+            <button id="uploadBtn" class="btn-upload" style="display:none;">Find Best-Fit Jobs</button>
         </div>
 
         <div id="loadingSection" class="loading-section" style="display:none;">
             <div class="spinner"></div>
-            <h3>Analyzing Your Resume...</h3>
-            <p id="loadingText">Extracting skills and experience</p>
+            <h3>Analyzing your resume...</h3>
+            <p id="loadingText">Extracting profile signals</p>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
         </div>
 
         <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>AI-Powered Analysis</h3>
-                <p>Advanced ML model categorizes your resume and identifies your experience level</p>
+            <div class="feature-card reveal" data-reveal>
+                <div class="feature-icon">Semantic Profile</div>
+                <h3>Deep Resume Reading</h3>
+                <p>Builds a structured profile from your skills, experience, projects, and role context.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Perfect Matches</h3>
-                <p>Get jobs tailored to your exact experience level and skill set</p>
+            <div class="feature-card reveal" data-reveal>
+                <div class="feature-icon">RAG Ranking</div>
+                <h3>Contextual Match Scoring</h3>
+                <p>Ranks jobs with vector similarity so fit quality goes beyond plain keyword overlap.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Real-Time Results</h3>
-                <p>Instant job listings from top companies across India</p>
+            <div class="feature-card reveal" data-reveal>
+                <div class="feature-icon">Live Jobs</div>
+                <h3>Realtime Opportunities</h3>
+                <p>Fetches fresh openings and maps them to your profile with explainable confidence signals.</p>
             </div>
         </div>
     </div>
 
+    <script src="{{ url_for('static', filename='js/motion.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

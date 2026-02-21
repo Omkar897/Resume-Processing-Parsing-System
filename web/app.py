@@ -387,130 +387,140 @@ def send_email():
 
 
 def generate_email_html(jobs, category, experience):
-    """Generate beautiful HTML email with job listings"""
+    """Generate HTML email with job listings using the app's current design language."""
 
     html = f"""
     <!DOCTYPE html>
     <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             body {{
-                font-family: 'Segoe UI', Arial, sans-serif;
-                background-color: #f5f5f5;
                 margin: 0;
-                padding: 20px;
+                padding: 24px;
+                background: radial-gradient(1000px 500px at 0% 0%, #1e5f74 0%, transparent 58%),
+                            radial-gradient(800px 420px at 100% 100%, #1d6257 0%, transparent 55%),
+                            linear-gradient(145deg, #07131d, #102a35 48%, #163f4f);
+                font-family: 'Segoe UI', Arial, sans-serif;
+                color: #e9fbff;
             }}
             .container {{
-                max-width: 600px;
+                max-width: 680px;
                 margin: 0 auto;
-                background: white;
-                border-radius: 10px;
+                background: rgba(11, 22, 30, 0.78);
+                border: 1px solid rgba(165, 235, 255, 0.16);
+                border-radius: 18px;
                 overflow: hidden;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
             }}
             .header {{
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                padding: 30px;
-                text-align: center;
+                padding: 28px 30px;
+                border-bottom: 1px solid rgba(165, 235, 255, 0.14);
+                background: linear-gradient(120deg, rgba(69, 240, 255, 0.12), rgba(107, 255, 203, 0.08));
             }}
             .header h1 {{
                 margin: 0;
                 font-size: 24px;
+                letter-spacing: -0.02em;
+                color: #f2feff;
             }}
             .header p {{
                 margin: 10px 0 0 0;
-                opacity: 0.9;
+                color: #a9d2dd;
+                font-size: 14px;
             }}
             .content {{
-                padding: 30px;
+                padding: 24px;
             }}
             .job-card {{
-                border: 1px solid #e0e0e0;
-                border-radius: 8px;
-                padding: 20px;
-                margin-bottom: 20px;
+                border: 1px solid rgba(165, 235, 255, 0.18);
+                border-radius: 14px;
+                background: rgba(10, 21, 29, 0.68);
+                padding: 18px;
+                margin-bottom: 14px;
             }}
             .job-title {{
+                margin: 0;
+                color: #eafcff;
                 font-size: 18px;
-                color: #333;
-                font-weight: bold;
-                margin: 0 0 5px 0;
+                line-height: 1.35;
             }}
             .job-company {{
-                color: #667eea;
-                font-size: 16px;
+                margin: 6px 0 10px 0;
+                color: #6bffcb;
+                font-size: 14px;
                 font-weight: 600;
-                margin: 0 0 10px 0;
             }}
             .job-meta {{
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin: 10px 0;
+                margin: 8px 0 10px 0;
             }}
             .meta-tag {{
-                background: #f0f0f0;
-                padding: 5px 12px;
-                border-radius: 15px;
-                font-size: 13px;
-                color: #666;
+                display: inline-block;
+                margin: 4px 6px 0 0;
+                padding: 5px 10px;
+                border-radius: 999px;
+                border: 1px solid rgba(165, 235, 255, 0.22);
+                background: rgba(15, 32, 42, 0.76);
+                color: #b9dfe8;
+                font-size: 12px;
             }}
             .job-description {{
-                color: #666;
+                color: #a9d2dd;
                 line-height: 1.6;
-                margin: 10px 0;
-                font-size: 14px;
+                font-size: 13px;
+                margin: 10px 0 0 0;
             }}
             .apply-btn {{
                 display: inline-block;
-                background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-                color: white;
-                padding: 12px 25px;
-                border-radius: 25px;
+                margin-top: 14px;
                 text-decoration: none;
-                font-weight: bold;
-                margin-top: 10px;
+                color: #05212b;
+                font-weight: 700;
+                font-size: 13px;
+                padding: 10px 16px;
+                border-radius: 999px;
+                background: linear-gradient(110deg, #45f0ff, #7dfff1, #6bffcb);
             }}
             .footer {{
-                background: #f9f9f9;
-                padding: 20px;
-                text-align: center;
-                color: #666;
-                font-size: 14px;
+                padding: 18px 24px;
+                border-top: 1px solid rgba(165, 235, 255, 0.12);
+                color: #95c4d0;
+                font-size: 12px;
+                background: rgba(8, 18, 25, 0.65);
+            }}
+            .footer p {{
+                margin: 4px 0;
             }}
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <h1>🎯 Your Personalized Job Matches</h1>
-                <p>{category} • {experience} years experience • {len(jobs)} jobs found</p>
+                <h1>Your Personalized Job Matches</h1>
+                <p>{category} | {experience} years experience | {len(jobs)} jobs found</p>
             </div>
-            
             <div class="content">
     """
 
-    for i, job in enumerate(jobs, 1):
+    for job in jobs:
         html += f"""
                 <div class="job-card">
                     <h2 class="job-title">{job.get('title', 'N/A')}</h2>
-                    <p class="job-company">🏢 {job.get('company', 'N/A')}</p>
-                    
+                    <p class="job-company">{job.get('company', 'N/A')}</p>
                     <div class="job-meta">
         """
 
         if job.get("location"):
-            html += f'<span class="meta-tag">📍 {job["location"]}</span>'
+            html += f'<span class="meta-tag">Location: {job["location"]}</span>'
         if job.get("posted_at"):
-            html += f'<span class="meta-tag">⏰ {job["posted_at"]}</span>'
+            html += f'<span class="meta-tag">Posted: {job["posted_at"]}</span>'
         if job.get("schedule_type"):
-            html += f'<span class="meta-tag">💼 {job["schedule_type"]}</span>'
+            html += f'<span class="meta-tag">Type: {job["schedule_type"]}</span>'
         if job.get("salary"):
-            html += f'<span class="meta-tag">💰 {job["salary"]}</span>'
+            html += f'<span class="meta-tag">Salary: {job["salary"]}</span>'
         if job.get("via"):
-            html += f'<span class="meta-tag">📢 via {job["via"]}</span>'
+            html += f'<span class="meta-tag">Source: {job["via"]}</span>'
 
         html += """
                     </div>
@@ -521,19 +531,15 @@ def generate_email_html(jobs, category, experience):
 
         apply_link = job.get("apply_link", "#")
         html += f"""
-                    <a href="{apply_link}" class="apply-btn" target="_blank">Apply Now →</a>
+                    <a href="{apply_link}" class="apply-btn" target="_blank">Open Application</a>
                 </div>
         """
 
     html += f"""
             </div>
-            
             <div class="footer">
-                <p>📧 These jobs were found on {datetime.now().strftime('%B %d, %Y')}</p>
-                <p>Good luck with your job search! 🚀</p>
-                <p style="font-size: 12px; margin-top: 15px;">
-                    Generated by AI Resume Job Matcher
-                </p>
+                <p>Generated on {datetime.now().strftime('%B %d, %Y')}</p>
+                <p>Sent by AI Resume Job Matcher</p>
             </div>
         </div>
     </body>

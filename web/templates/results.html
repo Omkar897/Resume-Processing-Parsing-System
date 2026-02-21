@@ -1,59 +1,60 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Results - AI Resume Matcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="container">
-        <header class="results-header">
-            <h1>🎉 Your Matched Jobs</h1>
+<body class="results-page">
+    <div class="noise-grid" aria-hidden="true"></div>
+    <div class="aurora aurora-a" aria-hidden="true"></div>
+    <div class="aurora aurora-b" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+    <canvas id="particleField" class="particle-field" aria-hidden="true"></canvas>
+
+    <div class="container app-shell">
+        <header class="results-header reveal" data-reveal>
+            <p class="kicker">Matching Results</p>
+            <h1>Your job landscape is ready</h1>
             <div id="resumeInfo" class="resume-info"></div>
         </header>
 
-        <!-- Resume insights (RAG + Claude) -->
-        <div id="resumeInsightsSection" class="resume-insights-section" style="display: none;">
-            <h2>📋 Resume insights</h2>
+        <div id="resumeInsightsSection" class="resume-insights-section reveal" data-reveal style="display: none;">
+            <h2>Resume insights</h2>
             <div id="resumeInsightsContent" class="resume-insights-content"></div>
         </div>
 
-        <!-- Email Section -->
-        <div class="email-section">
+        <div class="email-section reveal" data-reveal>
             <div class="email-box">
-                <h3>📧 Email Me These Jobs</h3>
-                <p>Get this list delivered to your inbox</p>
+                <h3>Email these matches</h3>
+                <p>Send this job board to your inbox in one click.</p>
                 <div class="email-form">
-                    <input 
-                        type="email" 
-                        id="emailInput" 
+                    <input
+                        type="email"
+                        id="emailInput"
                         placeholder="your.email@example.com"
                         class="email-input"
                     >
-                    <button id="sendEmailBtn" class="btn-email">
-                        Send to Email
-                    </button>
+                    <button id="sendEmailBtn" class="btn-email">Send</button>
                 </div>
                 <div id="emailStatus" class="email-status"></div>
             </div>
         </div>
 
-        <div id="jobsContainer" class="jobs-container">
-            <!-- Jobs will be inserted here by JavaScript -->
-        </div>
+        <div id="jobsContainer" class="jobs-container"></div>
 
-        <div class="actions">
-            <button class="btn-secondary" onclick="window.location.href='/'">
-                Upload Another Resume
-            </button>
-            <button id="analyzeResumeBtn" class="btn-primary" style="display: none;">
-                Analyze Resume (AI) →
-            </button>
+        <div class="actions reveal" data-reveal>
+            <button class="btn-secondary" onclick="window.location.href='/'">Upload Another Resume</button>
+            <button id="analyzeResumeBtn" class="btn-primary" style="display: none;">Analyze Resume (AI)</button>
             <div id="analyzeStatus" class="analyze-status"></div>
         </div>
     </div>
 
+    <script src="{{ url_for('static', filename='js/motion.js') }}"></script>
     <script src="{{ url_for('static', filename='js/results.js') }}"></script>
 </body>
 </html>

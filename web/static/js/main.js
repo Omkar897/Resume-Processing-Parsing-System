@@ -1,4 +1,4 @@
-const uploadBox = document.getElementById('uploadBox');
+﻿const uploadBox = document.getElementById('uploadBox');
 const resumeInput = document.getElementById('resumeInput');
 const fileName = document.getElementById('fileName');
 const uploadBtn = document.getElementById('uploadBtn');
@@ -11,19 +11,16 @@ let selectedFile = null;
 // Drag and drop
 uploadBox.addEventListener('dragover', (e) => {
     e.preventDefault();
-    uploadBox.style.borderColor = '#764ba2';
-    uploadBox.style.background = '#f8f9ff';
+    uploadBox.classList.add('dragging');
 });
 
 uploadBox.addEventListener('dragleave', () => {
-    uploadBox.style.borderColor = '#667eea';
-    uploadBox.style.background = 'white';
+    uploadBox.classList.remove('dragging');
 });
 
 uploadBox.addEventListener('drop', (e) => {
     e.preventDefault();
-    uploadBox.style.borderColor = '#667eea';
-    uploadBox.style.background = 'white';
+    uploadBox.classList.remove('dragging');
     
     const files = e.dataTransfer.files;
     if (files.length > 0 && files[0].type === 'application/pdf') {
@@ -41,7 +38,7 @@ resumeInput.addEventListener('change', (e) => {
 });
 
 function showFileName(name) {
-    fileName.textContent = `📄 ${name}`;
+    fileName.textContent = `Selected file: ${name}`;
     uploadBtn.style.display = 'block';
 }
 

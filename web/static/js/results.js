@@ -1,4 +1,4 @@
-// Get results from sessionStorage
+﻿// Get results from sessionStorage
 const resultsData = JSON.parse(sessionStorage.getItem('jobResults'));
 
 if (!resultsData) {
@@ -14,12 +14,12 @@ function escapeHtml(text) {
 
 // Display resume info
 const resumeInfo = document.getElementById('resumeInfo');
-const ragBadge = resultsData.rag_enabled ? '🧠 RAG: ON' : '🧠 RAG: OFF';
-const claudeBadge = resultsData.claude_enabled ? '🤖 Claude: ON' : '🤖 Claude: OFF';
+const ragBadge = resultsData.rag_enabled ? 'RAG: ON' : 'RAG: OFF';
+const claudeBadge = resultsData.claude_enabled ? 'Analyzer: ON' : 'Analyzer: OFF';
 resumeInfo.innerHTML = `
-    <div class="info-badge">📊 ${resultsData.category}</div>
-    <div class="info-badge">💼 ${resultsData.experience} years experience</div>
-    <div class="info-badge">🎯 ${resultsData.total_jobs} jobs found</div>
+    <div class="info-badge">Category: ${escapeHtml(resultsData.category || 'Unknown')}</div>
+    <div class="info-badge">Experience: ${escapeHtml(resultsData.experience)} years</div>
+    <div class="info-badge">Jobs: ${escapeHtml(resultsData.total_jobs)}</div>
     <div class="info-badge">${ragBadge}</div>
     <div class="info-badge">${claudeBadge}</div>
 `;
@@ -47,7 +47,7 @@ function renderResumeInsights(analysis) {
     section.style.display = 'block';
 }
 
-// Display resume insights (RAG + Claude) if present
+// Display resume insights if present
 const resumeAnalysis = resultsData.resume_analysis || {};
 const hasResumeAnalysis = resumeAnalysis.strengths?.length || resumeAnalysis.suggestions?.length ||
     resumeAnalysis.missing_keywords?.length || resumeAnalysis.ats_score != null;
@@ -55,7 +55,7 @@ if (hasResumeAnalysis) {
     renderResumeInsights(resumeAnalysis);
 }
 
-// On-demand Claude analysis button: show whenever Claude is ON and we don't already have full insights
+// On-demand analysis button
 const analyzeBtn = document.getElementById('analyzeResumeBtn');
 const analyzeStatus = document.getElementById('analyzeStatus');
 const resumeExtracted = resultsData.resume_extracted_data || {};
@@ -71,12 +71,12 @@ if (analyzeBtn) {
     analyzeBtn.addEventListener('click', async () => {
         analyzeStatus.textContent = '';
         if (!hasExtracted) {
-            analyzeStatus.textContent = 'Resume text wasn’t extracted for this run. Re-upload your resume to get AI tips (use the same PDF).';
+            analyzeStatus.textContent = 'Resume text was not extracted for this run. Re-upload your resume to get analysis.';
             return;
         }
         analyzeBtn.disabled = true;
         analyzeBtn.textContent = 'Analyzing...';
-        analyzeStatus.textContent = 'Running Claude resume analysis...';
+        analyzeStatus.textContent = 'Running resume analysis...';
 
         try {
             const response = await fetch('/analyze-resume', {
@@ -95,14 +95,14 @@ if (analyzeBtn) {
             resultsData.resume_analysis = data.resume_analysis;
             sessionStorage.setItem('jobResults', JSON.stringify(resultsData));
             renderResumeInsights(data.resume_analysis || {});
-            analyzeStatus.textContent = 'Done. Scroll up to see Resume insights.';
+            analyzeStatus.textContent = 'Done. Scroll up to see resume insights.';
             document.getElementById('resumeInsightsSection')?.scrollIntoView({ behavior: 'smooth' });
             analyzeBtn.style.display = 'none';
         } catch (e) {
             analyzeStatus.textContent = `Analysis error: ${e.message || e}`;
         } finally {
             analyzeBtn.disabled = false;
-            analyzeBtn.textContent = 'Analyze Resume (AI) →';
+            analyzeBtn.textContent = 'Analyze Resume (AI)';
         }
     });
 }
@@ -112,35 +112,35 @@ const jobsContainer = document.getElementById('jobsContainer');
 
 resultsData.jobs.forEach((job, index) => {
     const jobCard = document.createElement('div');
-    jobCard.className = 'job-card';
-    jobCard.style.animationDelay = `${index * 0.1}s`;
+    jobCard.className = 'job-card interactive-surface';
+    jobCard.style.animationDelay = `${index * 0.08}s`;
     const matchScore = job.match_score != null ? job.match_score : null;
     const matchExplanation = job.match_explanation || '';
-    
+
     jobCard.innerHTML = `
         <div class="job-header">
             <div>
                 <h3 class="job-title">${escapeHtml(job.title || '')}</h3>
-                <div class="job-company">🏢 ${escapeHtml(job.company || '')}</div>
+                <div class="job-company">${escapeHtml(job.company || '')}</div>
                 ${matchScore != null ? `<div class="job-match"><span class="match-badge">${matchScore}% match</span>${matchExplanation ? `<p class="match-explanation">${escapeHtml(matchExplanation)}</p>` : ''}</div>` : ''}
             </div>
         </div>
-        
+
         <div class="job-meta">
-            ${job.location ? `<span class="meta-item">📍 ${escapeHtml(job.location)}</span>` : ''}
-            ${job.posted_at ? `<span class="meta-item">⏰ ${escapeHtml(job.posted_at)}</span>` : ''}
-            ${job.schedule_type ? `<span class="meta-item">💼 ${escapeHtml(job.schedule_type)}</span>` : ''}
-            ${job.salary ? `<span class="meta-item">💰 ${escapeHtml(job.salary)}</span>` : ''}
-            ${job.via ? `<span class="meta-item">📢 via ${escapeHtml(job.via)}</span>` : ''}
+            ${job.location ? `<span class="meta-item">Location: ${escapeHtml(job.location)}</span>` : ''}
+            ${job.posted_at ? `<span class="meta-item">Posted: ${escapeHtml(job.posted_at)}</span>` : ''}
+            ${job.schedule_type ? `<span class="meta-item">Type: ${escapeHtml(job.schedule_type)}</span>` : ''}
+            ${job.salary ? `<span class="meta-item">Salary: ${escapeHtml(job.salary)}</span>` : ''}
+            ${job.via ? `<span class="meta-item">Source: ${escapeHtml(job.via)}</span>` : ''}
         </div>
-        
+
         ${job.description ? `<p class="job-description">${escapeHtml(job.description)}</p>` : ''}
-        
+
         <a href="${job.apply_link || '#'}" target="_blank" class="btn-apply">
-            Apply Now →
+            Open Application
         </a>
     `;
-    
+
     jobsContainer.appendChild(jobCard);
 });
 
@@ -151,24 +151,22 @@ const emailStatus = document.getElementById('emailStatus');
 
 sendEmailBtn.addEventListener('click', async () => {
     const email = emailInput.value.trim();
-    
-    // Validate email
+
     if (!email) {
         showEmailStatus('Please enter your email address', 'error');
         return;
     }
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         showEmailStatus('Please enter a valid email address', 'error');
         return;
     }
-    
-    // Disable button and show sending status
+
     sendEmailBtn.disabled = true;
     sendEmailBtn.textContent = 'Sending...';
-    showEmailStatus('📤 Sending email...', 'sending');
-    
+    showEmailStatus('Sending email...', 'sending');
+
     try {
         const response = await fetch('/send-email', {
             method: 'POST',
@@ -182,22 +180,22 @@ sendEmailBtn.addEventListener('click', async () => {
                 experience: resultsData.experience
             })
         });
-        
+
         const data = await response.json();
-        
+
         if (data.success) {
-            showEmailStatus('✅ Email sent successfully! Check your inbox.', 'success');
+            showEmailStatus('Email sent successfully. Check your inbox.', 'success');
             emailInput.value = '';
         } else {
-            showEmailStatus('❌ Failed to send email: ' + data.error, 'error');
+            showEmailStatus('Failed to send email: ' + data.error, 'error');
         }
-        
+
     } catch (error) {
-        showEmailStatus('❌ Error sending email. Please try again.', 'error');
+        showEmailStatus('Error sending email. Please try again.', 'error');
         console.error('Email error:', error);
     } finally {
         sendEmailBtn.disabled = false;
-        sendEmailBtn.textContent = 'Send to Email';
+        sendEmailBtn.textContent = 'Send';
     }
 });
 
