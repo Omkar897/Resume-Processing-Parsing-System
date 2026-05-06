@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+﻿from flask import Flask, render_template, request, jsonify
 import os
 import sys
 import subprocess
@@ -32,8 +32,73 @@ mail = Mail(app)
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 
+def is_render_environment():
+    return os.getenv("RENDER", "").strip().lower() in {"1", "true", "yes"}
+
+
+def is_email_enabled():
+    explicit = (os.getenv("RENDER_EMAIL_DISABLED") or "").strip().lower()
+    if explicit in {"1", "true", "yes"}:
+        return False
+    if explicit in {"0", "false", "no"}:
+        return True
+    # Render free services block SMTP ports (25/465/587).
+    if is_render_environment():
+        return False
+    return bool(app.config.get("MAIL_USERNAME") and app.config.get("MAIL_PASSWORD"))
+
+
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def _clean_subprocess_error(raw_output):
+    """Filter noisy warnings and return the most relevant error lines."""
+    if not raw_output:
+        return ""
+
+    lines = [line.strip() for line in raw_output.splitlines() if line.strip()]
+    if not lines:
+        return ""
+
+    noisy_markers = [
+        "FutureWarning",
+        "transformers/utils/hub.py",
+        "Using 'TRANSFORMERS_CACHE' is deprecated",
+    ]
+    filtered = [
+        line for line in lines if not any(marker in line for marker in noisy_markers)
+    ]
+
+    chosen = filtered if filtered else lines
+    return "\n".join(chosen[-10:])
+
+
+def _extract_last_json_object(output_text):
+    """Extract the last valid JSON object from noisy subprocess output."""
+    if not output_text:
+        return None
+    text = output_text.strip()
+    if not text:
+        return None
+
+    for line in reversed(text.splitlines()):
+        line = line.strip()
+        if not (line.startswith("{") and line.endswith("}")):
+            continue
+        try:
+            return json.loads(line)
+        except Exception:
+            continue
+
+    start = text.rfind("{")
+    while start != -1:
+        candidate = text[start:].strip()
+        try:
+            return json.loads(candidate)
+        except Exception:
+            start = text.rfind("{", 0, start)
+    return None
 
 
 @app.route("/")
@@ -82,7 +147,7 @@ def upload_resume():
         file.save(filepath)
 
         abs_filepath = os.path.abspath(filepath)
-        print(f"✅ File saved: {abs_filepath}")
+        print(f"[Upload] File saved: {abs_filepath}")
 
         # Get paths
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -96,13 +161,41 @@ def upload_resume():
         env["PYTHONIOENCODING"] = "utf-8"
         env["PYTHONUNBUFFERED"] = "1"
         env["RESUME_PROJECT_ROOT"] = project_root
-        env["RESUME_HEADLESS"] = "1"
+        env["RESUME_HEADLESS"] = "1"  # Disable debug output for production
+
+        # Explicitly pass Fireworks environment variables
+        env["FIREWORKS_API_KEY"] = os.getenv("FIREWORKS_API_KEY", "")
+        env["FIREWORKS_PRIMARY_CHAT_MODEL"] = os.getenv(
+            "FIREWORKS_PRIMARY_CHAT_MODEL", "fireworks/minimax-m2p7"
+        )
+        env["FIREWORKS_FALLBACK_CHAT_MODEL"] = os.getenv(
+            "FIREWORKS_FALLBACK_CHAT_MODEL", "fireworks/deepseek-v3p2"
+        )
+        env["FIREWORKS_EMBED_MODEL"] = os.getenv(
+            "FIREWORKS_EMBED_MODEL", "fireworks/qwen3-embedding-8b"
+        )
+        env["FIREWORKS_RERANK_MODEL"] = os.getenv(
+            "FIREWORKS_RERANK_MODEL", "fireworks/qwen3-reranker-8b"
+        )
+        env["USE_FIREWORKS_LLM"] = os.getenv("USE_FIREWORKS_LLM", "1")
+        env["USE_LLM_QUERY_EXPANSION"] = os.getenv("USE_LLM_QUERY_EXPANSION", "1")
+        env["USE_LLM_RERANK"] = os.getenv("USE_LLM_RERANK", "1")
+
+        # Debug: Check if API key is being passed
+        print(
+            f"DEBUG: FIREWORKS_API_KEY being passed: {bool(env.get('FIREWORKS_API_KEY'))}"
+        )
+        print(
+            f"DEBUG: FIREWORKS_API_KEY length: {len(env.get('FIREWORKS_API_KEY', ''))}"
+        )
+
         cache_dir = os.path.join(project_root, "data", ".embedding_cache")
         os.makedirs(cache_dir, exist_ok=True)
-        env["TRANSFORMERS_CACHE"] = os.path.abspath(cache_dir)
         env["HF_HOME"] = os.path.abspath(cache_dir)
+        env["HF_HUB_CACHE"] = os.path.abspath(os.path.join(cache_dir, "hub"))
+        env.pop("TRANSFORMERS_CACHE", None)
 
-        print(f"🚀 Running RAG-enhanced scraper...")
+        print("[Upload] Running RAG-enhanced scraper...")
         result = subprocess.run(
             [sys.executable, scraper_path, abs_filepath],
             capture_output=True,
@@ -117,7 +210,13 @@ def upload_resume():
         # Log scraper output so we can see RAG/Claude init warnings (stdout is captured, not shown)
         scraper_out = (result.stdout or "") + (result.stderr or "")
         for line in scraper_out.splitlines():
-            if "⚠️" in line or "RAG engine disabled" in line or "Claude analyzer disabled" in line:
+            if (
+                "⚠️" in line
+                or "[RAG]" in line
+                or "RAG engine disabled" in line
+                or "Claude analyzer disabled" in line
+                or "Fireworks resume intelligence disabled" in line
+            ):
                 print(f"[Scraper] {line}")
 
         # Enhanced error handling
@@ -129,15 +228,18 @@ def upload_resume():
                 "Failed to extract category" in error_output
                 or "Could not identify" in error_output
             ):
-                user_msg = """Unable to identify your job category from the resume. 
-
-Please ensure your resume includes:
-• Clear job titles (e.g., Software Engineer, Data Scientist)
-• Work Experience section with company names
-• Skills section
-• Education details
-
-Try uploading a more detailed resume or a different format."""
+                reason_match = re.search(r"Reason:\s*(.+)", error_output)
+                reason_text = (
+                    reason_match.group(1).strip()
+                    if reason_match
+                    else "Automatic extraction/categorization failed."
+                )
+                user_msg = (
+                    "Unable to identify your job category from the resume.\n\n"
+                    "Automatic extraction or categorization failed.\n"
+                    f"Reason: {reason_text}\n\n"
+                    "Please try again after checking Fireworks API connectivity and your resume text quality."
+                )
 
             elif "No module named" in error_output:
                 user_msg = "System error: Missing required dependencies. Please contact support."
@@ -152,10 +254,15 @@ Try uploading a more detailed resume or a different format."""
                 user_msg = "Processing is taking too long. Please try with a smaller or simpler resume."
 
             else:
-                # Generic error with first 200 chars
-                user_msg = f"Unable to process your resume. Please try again with a different file.\n\nDetails: {error_output[:200]}"
+                cleaned_details = _clean_subprocess_error(error_output)
+                if not cleaned_details:
+                    cleaned_details = "Unknown processing error."
+                user_msg = (
+                    "Unable to process your resume. Please try again with a different file.\n\n"
+                    f"Details: {cleaned_details[:1200]}"
+                )
 
-            print(f"❌ Full error: {error_output}")
+            print(f"[Upload][Error] Full error: {error_output}")
 
             # Clean up uploaded file
             try:
@@ -165,24 +272,20 @@ Try uploading a more detailed resume or a different format."""
 
             return jsonify({"error": user_msg}), 500
 
-        # Parse output to find JSON filename (scraper writes it to cwd = project_root when run from web)
-        json_file = None
-        for line in result.stdout.split("\n"):
-            if "Scraped" in line and ".json" in line:
-                # Handles both clean UTF-8 and mojibake output variants.
-                match = re.search(r"([^\s]+\.json)", line)
-                if match:
-                    json_file = match.group(1).strip()
-                    break
+        jobs_data = None
+        for line in reversed((result.stdout or "").splitlines()):
+            if line.startswith("RESULT_JSON:"):
+                payload = line[len("RESULT_JSON:") :].strip()
+                try:
+                    jobs_data = json.loads(payload)
+                except Exception:
+                    jobs_data = None
+                break
 
-        # Fallback: scan full stdout if line parsing missed it.
-        if not json_file:
-            match = re.search(r"([^\s]+\.json)", result.stdout or "")
-            if match:
-                json_file = match.group(1).strip()
+        if jobs_data is None:
+            jobs_data = _extract_last_json_object(result.stdout or "")
 
-        if not json_file:
-            # Clean up
+        if not isinstance(jobs_data, dict):
             try:
                 os.remove(filepath)
             except:
@@ -190,31 +293,11 @@ Try uploading a more detailed resume or a different format."""
             return (
                 jsonify(
                     {
-                        "error": "Processing completed but no jobs were found. This might happen if:\n• The resume category is unclear\n• No matching jobs are currently available\n\nPlease try again or upload a different resume."
+                        "error": "Processing completed but no structured results were returned. Please try again."
                     }
                 ),
                 500,
             )
-
-        # Read JSON (scraper runs with cwd=project_root, so file is there)
-        json_path = os.path.join(project_root, json_file)
-
-        if not os.path.exists(json_path):
-            try:
-                os.remove(filepath)
-            except:
-                pass
-            return (
-                jsonify(
-                    {
-                        "error": f"Results file not found. Please try uploading your resume again."
-                    }
-                ),
-                500,
-            )
-
-        with open(json_path, "r", encoding="utf-8") as f:
-            jobs_data = json.load(f)
 
         # Check if we actually got jobs
         if not jobs_data.get("jobs") or len(jobs_data.get("jobs", [])) == 0:
@@ -225,7 +308,7 @@ Try uploading a more detailed resume or a different format."""
             return (
                 jsonify(
                     {
-                        "error": f"No jobs found for your profile ({jobs_data.get('search_category', 'Unknown category')}). This could mean:\n• No current openings match your experience level\n• Try again later as new jobs are posted daily\n• Consider broadening your job search"
+                        "error": f"No jobs found for your profile ({jobs_data.get('search_category', 'Unknown category')}). This could mean:\n- No current openings match your experience level\n- Try again later as new jobs are posted daily\n- Consider broadening your job search"
                     }
                 ),
                 404,
@@ -237,13 +320,15 @@ Try uploading a more detailed resume or a different format."""
         except:
             pass
 
-        print(f"✅ Successfully processed resume")
+        print("[Upload] Successfully processed resume")
 
         return jsonify(
             {
                 "success": True,
                 "category": jobs_data.get("search_category"),
                 "experience": jobs_data.get("total_experience_years"),
+                "experience_months": jobs_data.get("total_experience_months"),
+                "experience_display": jobs_data.get("experience_display"),
                 "search_experience": jobs_data.get("search_experience_years"),
                 "total_jobs": jobs_data.get("total_jobs"),
                 "jobs": jobs_data.get("jobs", []),
@@ -251,8 +336,11 @@ Try uploading a more detailed resume or a different format."""
                 "resume_extracted_data": jobs_data.get("resume_extracted_data", {}),
                 "rag_enabled": jobs_data.get("rag_enabled", False),
                 "claude_enabled": jobs_data.get("claude_enabled", False),
+                "llm_provider": jobs_data.get("llm_provider", "unknown"),
+                "llm_model": jobs_data.get("llm_model") or jobs_data.get("category_model"),
                 "scrape_date": jobs_data.get("scrape_date"),
                 "scrape_time": jobs_data.get("scrape_time"),
+                "email_enabled": is_email_enabled(),
             }
         )
 
@@ -275,7 +363,7 @@ Try uploading a more detailed resume or a different format."""
         import traceback
 
         error_trace = traceback.format_exc()
-        print(f"❌ Exception: {error_trace}")
+        print(f"[Upload][Error] Exception: {error_trace}")
 
         # Clean up uploaded file
         try:
@@ -297,7 +385,7 @@ Try uploading a more detailed resume or a different format."""
 
 @app.route("/analyze-resume", methods=["POST"])
 def analyze_resume():
-    """Run Claude resume analysis on-demand from the results page."""
+    """Run resume analysis on-demand from the results page."""
     data = request.get_json(silent=True) or {}
     extracted_data = data.get("extracted_data") or data.get("resume_extracted_data")
     category = data.get("category")
@@ -339,6 +427,19 @@ def analyze_resume():
 def send_email():
     """Send job results via email"""
     try:
+        if not is_email_enabled():
+            return (
+                jsonify(
+                    {
+                        "error": (
+                            "Email delivery is disabled in this deployment environment. "
+                            "Use local run or enable an HTTP email provider."
+                        )
+                    }
+                ),
+                503,
+            )
+
         data = request.json
         user_email = data.get("email")
         jobs = data.get("jobs", [])
@@ -362,14 +463,14 @@ def send_email():
         # Send email
         mail.send(msg)
 
-        print(f"✅ Email sent to {user_email}")
+        print(f"[Email] Sent to {user_email}")
         return jsonify({"success": True, "message": "Email sent successfully!"})
 
     except Exception as e:
         import traceback
 
         error_trace = traceback.format_exc()
-        print(f"❌ Email error: {error_trace}")
+        print(f"[Email][Error] {error_trace}")
 
         # Specific email errors
         if "Authentication" in str(e) or "Username and Password not accepted" in str(e):
@@ -549,12 +650,19 @@ def generate_email_html(jobs, category, experience):
     return html
 
 
+@app.route("/healthz")
+def healthz():
+    return jsonify({"status": "ok"})
+
+
 @app.route("/results")
 def results():
     return render_template("results.html")
 
 
 if __name__ == "__main__":
-    print("🌐 Flask server starting...")
-    print(f"📂 Upload folder: {app.config['UPLOAD_FOLDER']}")
-    app.run(debug=True, port=5000, host="0.0.0.0")
+    print("Flask server starting...")
+    print(f"Upload folder: {app.config['UPLOAD_FOLDER']}")
+    debug = os.getenv("FLASK_DEBUG", "0").strip().lower() in {"1", "true", "yes"}
+    port = int(os.getenv("PORT", "5000"))
+    app.run(debug=debug, port=port, host="0.0.0.0")

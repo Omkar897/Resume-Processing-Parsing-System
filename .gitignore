@@ -1,32 +1,58 @@
-# Python
-__pycache__/
+# Strict allowlist: ignore everything first
+*
+
+# Root files required for app/deploy/docs
+!.gitignore
+!README.md
+!LICENSE
+!requirements.txt
+!render.yaml
+!Dockerfile
+!docker-compose.yml
+!.dockerignore
+!.env.example
+
+# Required source trees
+!web/
+!web/**
+!src/
+!src/**
+!LLM/
+!LLM/**
+!models/
+!models/**
+!tests/
+!tests/**
+
+# Optional legacy entrypoint kept for compatibility
+!main.py
+
+# Ignore local/runtime artifacts even inside allowed folders
+.env
+venv/
+env/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
-venv/
-env/
-.env
-*.pyc
-
-# IDE
-.vscode/
+*.sqlite3
+*.log
+*.tmp
+*.bak
 *.swp
 *.swo
-
-# OS
 .DS_Store
 Thumbs.db
 
-# Uploaded files (temporary)
+# Runtime/generated data and uploads
+data/
 web/static/uploads/*
 !web/static/uploads/.gitkeep
 
-# Generated job search results (too many files)
+# Generated results
 src/jobs/*.json
 !src/jobs/.gitkeep
-
-# Data - exclude large datasets but keep test data
-data/logs/
-data/resumes/*.pdf
+*_20??-??-??.json
+test_output.txt
 
 

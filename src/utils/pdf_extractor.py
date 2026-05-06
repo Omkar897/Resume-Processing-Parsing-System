@@ -1,6 +1,5 @@
 # pdf_text_extractor.py
 import fitz  # PyMuPDF
-import pdfplumber
 import os
 
 class PDFTextExtractor:
@@ -28,6 +27,12 @@ class PDFTextExtractor:
     def extract_text_pdfplumber(self, pdf_path):
         """Extract text using pdfplumber (better for tables/complex layouts)"""
         try:
+            try:
+                import pdfplumber
+            except Exception as import_err:
+                print(f"pdfplumber not available: {import_err}")
+                return None
+
             text = ""
             
             with pdfplumber.open(pdf_path) as pdf:

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: ai-resume-job-matcher
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn web.app:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.14
+      - key: RESUME_PROJECT_ROOT
+        value: /opt/render/project/src
+      - key: RESUME_HEADLESS
+        value: "1"
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: RENDER_EMAIL_DISABLED
+        value: "1"
+      - key: USE_FIREWORKS_LLM
+        value: "1"
+      - key: USE_LLM_QUERY_EXPANSION
+        value: "1"
+      - key: USE_LLM_RERANK
+        value: "1"

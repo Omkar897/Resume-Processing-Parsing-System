@@ -12,6 +12,11 @@ try:
 except Exception:
     Anthropic = None
 
+try:
+    from LLM.fireworks_client import FireworksClient
+except Exception:
+    FireworksClient = None
+
 # Load environment variables
 load_dotenv()
 
@@ -23,14 +28,35 @@ class ResumeAnalyzer:
         """Initialize analyzer in local mode by default; Claude API is optional."""
         self.model = "claude-3-haiku-20240307"
         self.client = None
+        self.fireworks_client = None
+        self.fireworks_model = (
+            os.getenv("FIREWORKS_ANALYZER_MODEL")
+            or os.getenv("FIREWORKS_PRIMARY_CHAT_MODEL")
+            or os.getenv("FIREWORKS_CHAT_MODEL")
+            or "fireworks/minimax-m2p7"
+        )
+        self.analysis_provider = "local"
 
         # Keep Claude integration logic, but disable remote calls unless explicitly enabled.
         use_claude_env = os.getenv("USE_CLAUDE_API", "0").strip().lower()
         self.use_claude_api = use_claude_env in {"1", "true", "yes"}
+        use_fireworks_env = os.getenv("USE_FIREWORKS_RESUME_ANALYZER", "1").strip().lower()
+        self.use_fireworks_api = use_fireworks_env in {"1", "true", "yes"}
 
         api_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
+        fireworks_key = os.getenv("FIREWORKS_API_KEY", "").strip()
+        if self.use_fireworks_api and FireworksClient is not None and fireworks_key:
+            try:
+                self.fireworks_client = FireworksClient(api_key=fireworks_key)
+                self.analysis_provider = "fireworks"
+            except Exception:
+                self.fireworks_client = None
+                self.use_fireworks_api = False
+
         if self.use_claude_api and Anthropic is not None and api_key:
             self.client = Anthropic(api_key=api_key)
+            if self.analysis_provider == "local":
+                self.analysis_provider = "claude"
         elif self.use_claude_api:
             # Graceful downgrade when API is requested but unavailable/misconfigured.
             self.use_claude_api = False
@@ -50,6 +76,13 @@ class ResumeAnalyzer:
         """
         # Build resume summary for Claude
         resume_summary = self._build_resume_summary(extracted_data)
+
+        if self.use_fireworks_api and self.fireworks_client is not None:
+            analysis = self._analyze_with_fireworks(resume_summary, predicted_category)
+            if analysis is not None:
+                return self._normalize_analysis(
+                    analysis, extracted_data, predicted_category, analysis_mode="fireworks"
+                )
 
         if not self.use_claude_api or self.client is None:
             return self._create_dynamic_fallback_analysis(
@@ -109,6 +142,47 @@ Format your response as JSON:
             return self._create_dynamic_fallback_analysis(
                 extracted_data, predicted_category, str(e)
             )
+
+    def _analyze_with_fireworks(
+        self, resume_summary: str, predicted_category: str
+    ) -> Optional[Dict[str, Any]]:
+        """Run resume analysis through Fireworks chat completion."""
+        if not self.fireworks_client:
+            return None
+
+        prompt = f"""You are an expert resume reviewer and career coach. Analyze this resume for a {predicted_category} position.
+
+RESUME SUMMARY:
+{resume_summary}
+
+TARGET JOB CATEGORY: {predicted_category}
+
+Return strict JSON only:
+{{
+  "strengths": ["strength1", "strength2", "strength3"],
+  "missing_keywords": ["keyword1", "keyword2", "keyword3"],
+  "suggestions": ["suggestion1", "suggestion2", "suggestion3"],
+  "ats_score": 75,
+  "ats_explanation": "Brief explanation of the score"
+}}"""
+
+        messages = [
+            {"role": "system", "content": "You output strict JSON only."},
+            {"role": "user", "content": prompt},
+        ]
+
+        try:
+            parsed, _raw = self.fireworks_client.chat_json(
+                model=self.fireworks_model,
+                messages=messages,
+                max_tokens=700,
+                temperature=0.0,
+            )
+            if isinstance(parsed, dict):
+                return parsed
+            return None
+        except Exception:
+            return None
 
     def generate_match_explanation(
         self, job_title: str, job_description: str, resume_skills: List[str]

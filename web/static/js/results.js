@@ -12,16 +12,36 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+function formatExperience(data) {
+    if (data.experience_display) return data.experience_display;
+    const months = Number.isFinite(Number(data.experience_months)) ? Number(data.experience_months) : null;
+    if (months != null && months >= 0) {
+        const yearsPart = Math.floor(months / 12);
+        const monthsPart = months % 12;
+        if (yearsPart === 0 && monthsPart === 0) return '0 months';
+        if (yearsPart === 0) return `${monthsPart} month${monthsPart === 1 ? '' : 's'}`;
+        if (monthsPart === 0) return `${yearsPart} year${yearsPart === 1 ? '' : 's'}`;
+        return `${yearsPart} year${yearsPart === 1 ? '' : 's'} ${monthsPart} month${monthsPart === 1 ? '' : 's'}`;
+    }
+    const years = Number(data.experience || 0);
+    const roundedMonths = Math.max(0, Math.round(years * 12));
+    const y = Math.floor(roundedMonths / 12);
+    const m = roundedMonths % 12;
+    if (y === 0 && m === 0) return '0 months';
+    if (y === 0) return `${m} month${m === 1 ? '' : 's'}`;
+    if (m === 0) return `${y} year${y === 1 ? '' : 's'}`;
+    return `${y} year${y === 1 ? '' : 's'} ${m} month${m === 1 ? '' : 's'}`;
+}
+
 // Display resume info
 const resumeInfo = document.getElementById('resumeInfo');
-const ragBadge = resultsData.rag_enabled ? 'RAG: ON' : 'RAG: OFF';
-const claudeBadge = resultsData.claude_enabled ? 'Analyzer: ON' : 'Analyzer: OFF';
+const llmModelBadge = `LLM Model: ${escapeHtml(resultsData.llm_model || 'Unknown')}`;
+const experienceLabel = formatExperience(resultsData);
 resumeInfo.innerHTML = `
     <div class="info-badge">Category: ${escapeHtml(resultsData.category || 'Unknown')}</div>
-    <div class="info-badge">Experience: ${escapeHtml(resultsData.experience)} years</div>
+    <div class="info-badge">Experience: ${escapeHtml(experienceLabel)}</div>
     <div class="info-badge">Jobs: ${escapeHtml(resultsData.total_jobs)}</div>
-    <div class="info-badge">${ragBadge}</div>
-    <div class="info-badge">${claudeBadge}</div>
+    <div class="info-badge">${llmModelBadge}</div>
 `;
 
 function renderResumeInsights(analysis) {
@@ -63,7 +83,7 @@ const hasExtracted = (resumeExtracted.skills && resumeExtracted.skills.length) |
     (resumeExtracted.experience && resumeExtracted.experience.length) ||
     (resumeExtracted.education && resumeExtracted.education.length);
 
-if (analyzeBtn && resultsData.claude_enabled && !hasResumeAnalysis) {
+if (analyzeBtn && hasExtracted && !hasResumeAnalysis) {
     analyzeBtn.style.display = 'inline-block';
 }
 
@@ -148,8 +168,21 @@ resultsData.jobs.forEach((job, index) => {
 const sendEmailBtn = document.getElementById('sendEmailBtn');
 const emailInput = document.getElementById('emailInput');
 const emailStatus = document.getElementById('emailStatus');
+const emailEnabled = resultsData.email_enabled !== false;
 
+if (!emailEnabled) {
+    const emailSection = document.querySelector('.email-section');
+    if (emailSection) {
+        emailSection.style.display = 'none';
+    }
+}
+
+if (sendEmailBtn && emailInput) {
 sendEmailBtn.addEventListener('click', async () => {
+    if (!emailEnabled) {
+        showEmailStatus('Email delivery is disabled for this deployment.', 'error');
+        return;
+    }
     const email = emailInput.value.trim();
 
     if (!email) {
@@ -198,6 +231,7 @@ sendEmailBtn.addEventListener('click', async () => {
         sendEmailBtn.textContent = 'Send';
     }
 });
+}
 
 function showEmailStatus(message, type) {
     emailStatus.textContent = message;
@@ -205,8 +239,10 @@ function showEmailStatus(message, type) {
 }
 
 // Allow Enter key to send email
-emailInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendEmailBtn.click();
-    }
-});
+if (emailInput && sendEmailBtn) {
+    emailInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendEmailBtn.click();
+        }
+    });
+}
