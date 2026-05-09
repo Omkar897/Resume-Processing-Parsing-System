@@ -484,7 +484,17 @@ def send_email():
         error_trace = traceback.format_exc()
         print(f"[Email][Error] {error_trace}")
 
-        # Specific email errors
+        # Check if this is Railway environment
+        if is_railway_environment():
+            error_msg = "Email delivery is not supported on Railway platform. Railway blocks SMTP ports for security. Please use local deployment or a different email provider."
+            return jsonify({"error": error_msg, "platform": "railway"}), 503
+
+        # Check if this is Render environment
+        if is_render_environment():
+            error_msg = "Email delivery is not supported on Render free tier. Render blocks SMTP ports for security. Please upgrade to Render paid tier or use a different email provider."
+            return jsonify({"error": error_msg, "platform": "render"}), 503
+
+        # Specific email errors for other environments
         if "Authentication" in str(e) or "Username and Password not accepted" in str(e):
             error_msg = (
                 "Email authentication failed. Please check your email configuration."
