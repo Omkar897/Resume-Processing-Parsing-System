@@ -36,14 +36,25 @@ def is_render_environment():
     return os.getenv("RENDER", "").strip().lower() in {"1", "true", "yes"}
 
 
+def is_railway_environment():
+    return os.getenv("RAILWAY", "").strip().lower() in {"1", "true", "yes"}
+
+
 def is_email_enabled():
     explicit = (os.getenv("RENDER_EMAIL_DISABLED") or "").strip().lower()
     if explicit in {"1", "true", "yes"}:
         return False
     if explicit in {"0", "false", "no"}:
         return True
-    # Render free services block SMTP ports (25/465/587).
-    if is_render_environment():
+
+    railway_explicit = (os.getenv("RAILWAY_EMAIL_DISABLED") or "").strip().lower()
+    if railway_explicit in {"1", "true", "yes"}:
+        return False
+    if railway_explicit in {"0", "false", "no"}:
+        return True
+
+    # Render and Railway free services block SMTP ports (25/465/587).
+    if is_render_environment() or is_railway_environment():
         return False
     return bool(app.config.get("MAIL_USERNAME") and app.config.get("MAIL_PASSWORD"))
 
@@ -337,7 +348,8 @@ def upload_resume():
                 "rag_enabled": jobs_data.get("rag_enabled", False),
                 "claude_enabled": jobs_data.get("claude_enabled", False),
                 "llm_provider": jobs_data.get("llm_provider", "unknown"),
-                "llm_model": jobs_data.get("llm_model") or jobs_data.get("category_model"),
+                "llm_model": jobs_data.get("llm_model")
+                or jobs_data.get("category_model"),
                 "scrape_date": jobs_data.get("scrape_date"),
                 "scrape_time": jobs_data.get("scrape_time"),
                 "email_enabled": is_email_enabled(),
