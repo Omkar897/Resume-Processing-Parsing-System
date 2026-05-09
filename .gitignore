@@ -7,6 +7,8 @@
 !LICENSE
 !requirements.txt
 !render.yaml
+!railway.toml
+!Procfile
 !Dockerfile
 !docker-compose.yml
 !.dockerignore
