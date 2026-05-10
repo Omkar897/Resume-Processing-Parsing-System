@@ -31,15 +31,16 @@
         <div class="email-section reveal" data-reveal>
             <div class="email-box">
                 <h3>Email these matches</h3>
-                <p>Send this job board to your inbox in one click.</p>
+                <p class="email-disabled-message">Email delivery is not available on this platform. Railway blocks SMTP ports for security. Please use local deployment for email functionality.</p>
                 <div class="email-form">
                     <input
                         type="email"
                         id="emailInput"
-                        placeholder="your.email@example.com"
+                        placeholder="Email not available on Railway deployment"
                         class="email-input"
+                        disabled
                     >
-                    <button id="sendEmailBtn" class="btn-email">Send</button>
+                    <button id="sendEmailBtn" class="btn-email" disabled>Unavailable</button>
                 </div>
                 <div id="emailStatus" class="email-status"></div>
             </div>
