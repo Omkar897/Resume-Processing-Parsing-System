@@ -1,60 +1,67 @@
-﻿# AI Resume Job Matcher
+﻿# AI Resume Intelligence System
 
-Fireworks-first resume-to-job matching web app.
+An AI-powered resume processing and job matching platform using AMD-backed Fireworks API, vector embeddings, and semantic search for intelligent candidate analysis and job recommendations.
 
 ## What it does
-- Upload a PDF resume.
-- Extract text locally.
-- Use Fireworks LLM to infer:
-  - target role/category
-  - years of experience
-  - role family/seniority
-  - key skills/signals
-- Scrape live jobs from Google Jobs via SerpAPI.
-- Rank jobs with semantic similarity (embeddings + cosine).
-- Apply Fireworks reranker as second-stage refinement.
-- Show ranked jobs with match scores and explanations.
+- Upload a PDF resume
+- Extract text locally using PyMuPDF and pdfplumber
+- Use AMD-backed Fireworks LLM to infer:
+  - Target role/category
+  - Years of experience
+  - Role family/seniority
+  - Key skills/signals
+- Scrape live jobs from Google Jobs via SerpAPI
+- Rank jobs with semantic similarity (vector embeddings + cosine similarity)
+- Apply Fireworks reranker as second-stage refinement
+- Show ranked jobs with match scores and explanations
+- ATS scoring for candidate evaluation
 
 ## Active provider stack
-- LLM extraction/classification (cost-first routing):
-  - Primary: `fireworks/minimax-m2p7`
-  - Fallback: `fireworks/deepseek-v3p2` when primary output is weak/invalid
-- Embeddings: `fireworks/qwen3-embedding-8b`
-- Reranker: `fireworks/qwen3-reranker-8b`
-
-Bedrock files are kept in repo for demo/interview discussion, but are not active by default.
+- **LLM extraction/classification** (AMD-backed Fireworks API):
+  - Primary: `fireworks/minimax-m2p7` (AMD GPU-accelerated)
+  - Fallback: `fireworks/deepseek-v3p2` (AMD GPU-accelerated)
+- **Embeddings**: `fireworks/qwen3-embedding-8b` (AMD GPU-accelerated)
+- **Reranker**: `fireworks/qwen3-reranker-8b` (AMD GPU-accelerated)
+- **Job Search**: SerpAPI (Google Jobs)
+- **Vector Storage**: ChromaDB
 
 ## Tech stack
-- Backend: Flask, requests
-- Resume parsing: PyMuPDF (+ pdfplumber fallback)
-- Retrieval & ranking: Fireworks embeddings/rerank + optional ChromaDB persistence
-- Job source: SerpAPI (Google Jobs)
-- Frontend: HTML/CSS/Vanilla JS
+- **Backend**: Flask, Gunicorn (production)
+- **Resume parsing**: PyMuPDF, pdfplumber
+- **AI/ML**: Fireworks API (AMD-backed), Sentence Transformers, ChromaDB
+- **Job source**: SerpAPI (Google Jobs)
+- **Frontend**: HTML/CSS/Vanilla JS
+- **Deployment**: Railway (cloud platform)
 
-## Project entrypoint
-- Web app: `web/app.py`
-- Core pipeline: `src/jobs/enhanced_job_scraper.py`
+## Project structure
+- **Web app**: `web/app.py` - Flask application entry point
+- **Core pipeline**: `src/jobs/enhanced_job_scraper.py` - Main job scraping and resume processing logic
+- **AI integration**: `LLM/fireworks_resume_intelligence.py` - Fireworks API integration
+- **RAG system**: `src/rag/resume_analyzer.py` - Resume analysis and ATS scoring
 
 ## Environment variables
-Required:
-- `FIREWORKS_API_KEY`
-- `SERPAPI_KEY`
+### Required:
+- `FIREWORKS_API_KEY` - Your Fireworks API key (AMD-backed)
+- `SERPAPI_KEY` - Your SerpAPI key for job search
 
-Recommended defaults:
-- `FIREWORKS_PRIMARY_CHAT_MODEL=fireworks/minimax-m2p7`
-- `FIREWORKS_FALLBACK_CHAT_MODEL=fireworks/deepseek-v3p2`
-- `FIREWORKS_EMBED_MODEL=fireworks/qwen3-embedding-8b`
-- `FIREWORKS_RERANK_MODEL=fireworks/qwen3-reranker-8b`
-- `USE_FIREWORKS_LLM=1`
-- `USE_LLM_QUERY_EXPANSION=1`
-- `USE_LLM_RERANK=1`
-- `LLM_QUERY_EXPANSIONS=2`
-- `LLM_RERANK_TOP_K=8`
+### Recommended defaults:
+```bash
+FIREWORKS_PRIMARY_CHAT_MODEL=fireworks/minimax-m2p7
+FIREWORKS_FALLBACK_CHAT_MODEL=fireworks/deepseek-v3p2
+FIREWORKS_EMBED_MODEL=fireworks/qwen3-embedding-8b
+FIREWORKS_RERANK_MODEL=fireworks/qwen3-reranker-8b
+USE_FIREWORKS_LLM=1
+USE_LLM_QUERY_EXPANSION=1
+USE_LLM_RERANK=1
+LLM_QUERY_EXPANSIONS=2
+LLM_RERANK_TOP_K=8
+```
 
-Optional:
-- `USE_LEGACY_MAIN_PARSER=0` (set `1` only if you want legacy `main.py` enrichment path)
-- `MAIL_USERNAME`, `MAIL_PASSWORD` (local SMTP mode only)
-- `RENDER_EMAIL_DISABLED=1` (auto-assumed on Render free)
+### Optional:
+- `USE_LEGACY_MAIN_PARSER=0` - Set to `1` only for legacy `main.py` enrichment path
+- `MAIL_USERNAME`, `MAIL_PASSWORD` - Email credentials (local SMTP mode only)
+- `RAILWAY=1` - Set to `1` for Railway deployment
+- `RAILWAY_EMAIL_DISABLED=1` - Email disabled on Railway (SMTP ports blocked)
 
 ## Local run
 ```bash
@@ -63,46 +70,90 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python web/app.py
 ```
-Open `http://localhost:5000`.
+Open `http://localhost:5000`
 
-## Render deploy (native, non-Docker)
-This repo includes `render.yaml`.
+## Railway deployment
+This project is deployed on Railway using the Railway CLI.
 
-1. Push repo to GitHub.
-2. In Render, create a new Blueprint/Web Service from this repo.
-3. Set env vars in Render dashboard:
-   - `FIREWORKS_API_KEY`
-   - `SERPAPI_KEY`
-4. Deploy.
+### Deployment setup:
+1. **Install Railway CLI**:
+   ```bash
+   npm install -g @railway/cli
+   ```
 
-Health check endpoint: `/healthz`
+2. **Login to Railway**:
+   ```bash
+   railway login
+   ```
 
-Notes for Render free:
-- SMTP ports are blocked, so email sending is disabled by default in this deployment mode.
-- Results, uploads, and caches are ephemeral unless externalized.
+3. **Create service**:
+   - Go to [railway.app](https://railway.app)
+   - Create new project "glorious-insight"
+   - Create empty service "alluring-wholeness"
+
+4. **Link and deploy**:
+   ```bash
+   railway link
+   railway up
+   ```
+
+5. **Set environment variables**:
+   - Go to Railway dashboard
+   - Add `FIREWORKS_API_KEY`, `SERPAPI_KEY`, and other required variables
+
+### Health check:
+- Health check endpoint: `/healthz`
+- Railway URL: `https://alluring-wholeness-production-669c.up.railway.app`
+
+### Railway notes:
+- **Email functionality disabled** - Railway blocks SMTP ports for security
+- **Results are ephemeral** - Use external storage for persistence if needed
+- **AMD GPU acceleration** - Fireworks API uses AMD GPU infrastructure
 
 ## Current pipeline (runtime)
-1. Upload PDF
-2. Local PDF text extraction
-3. Fireworks LLM structured profile extraction
+1. Upload PDF resume
+2. Local PDF text extraction (PyMuPDF + pdfplumber fallback)
+3. Fireworks LLM structured profile extraction (AMD GPU-accelerated)
 4. Query generation + SerpAPI job fetch
-5. Embedding similarity scoring
-6. Fireworks rerank blend
-7. Return ranked jobs to UI
+5. Vector embedding similarity scoring
+6. Fireworks reranker blend (AMD GPU-accelerated)
+7. Return ranked jobs with match scores to UI
 
 ## Development notes
-- Keep API keys in `.env` locally (never commit secrets).
-- Fireworks API key should only be read from env (`FIREWORKS_API_KEY`).
-- Legacy Bedrock module remains for reference but is inactive by default.
+- Keep API keys in `.env` locally (never commit secrets)
+- Fireworks API key should only be read from env (`FIREWORKS_API_KEY`)
+- Email functionality is automatically disabled on Railway and Render platforms
+- The system uses AMD-backed Fireworks API for cost-efficient AI processing
+- Vector embeddings and semantic search provide intelligent job matching
 
 ## Tests
-Added:
-- `tests/test_fireworks_resume_intelligence.py`
-
 Run unit tests (if `pytest` is installed):
 ```bash
 python -m pytest -q
 ```
 
-## Optional Docker
-Existing Docker assets remain in repo, but Render deployment is configured for native Python runtime.
+## Live demo
+- **Railway deployment**: https://alluring-wholeness-production-669c.up.railway.app
+- **GitHub repository**: https://github.com/Omkar897/resume-processing-parsing-system
+
+## Features
+- ✅ AI-powered resume analysis using AMD-backed LLMs
+- ✅ Semantic job matching with vector embeddings
+- ✅ Real-time job search and ranking
+- ✅ ATS scoring for candidate evaluation
+- ✅ Production-ready deployment on Railway
+- ✅ Platform-specific email handling
+- ✅ Robust error handling and fallback mechanisms
+- ✅ Cost-efficient AI processing using AMD GPU infrastructure
+
+## Technologies Used
+- **Fireworks API** (AMD-backed LLMs: minimax-m2p7, deepseek-v3p2)
+- **ChromaDB** (Vector Database)
+- **Flask** (Web Framework)
+- **APILayer Resume Parser API** (Resume extraction)
+- **SerpAPI** (Job Search)
+- **PyMuPDF & pdfplumber** (PDF Processing)
+- **Sentence Transformers** (Embeddings)
+- **Railway** (Cloud Deployment)
+- **Git & GitHub** (Version Control)
+- **Gunicorn** (WSGI Server)
