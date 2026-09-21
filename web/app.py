@@ -4,6 +4,7 @@ import sys
 import subprocess
 import json
 import re
+from types import SimpleNamespace
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from flask_mail import Mail, Message
@@ -107,6 +108,41 @@ def _extract_last_json_object(output_text):
     return None
 
 
+def _run_resume_pipeline_in_process(resume_path, project_root):
+    """Run the scraper in the current process for serverless environments.
+
+    Vercel's Python Function dependencies are not reliably inherited by a child
+    interpreter launched with ``sys.executable``. Running the existing pipeline
+    in-process keeps the configured packages and environment available.
+    """
+    if project_root not in sys.path:
+        sys.path.insert(0, project_root)
+
+    from src.jobs.enhanced_job_scraper import EnhancedJobScraper
+
+    scraper = EnhancedJobScraper(headless=True)
+    (
+        resume_analysis,
+        ranked_jobs,
+        category,
+        years_experience,
+        rounded_years,
+        extracted_data,
+    ) = scraper.process_resume_and_scrape_jobs(resume_path)
+
+    if not ranked_jobs or not category:
+        return {}
+
+    return scraper.save_results(
+        ranked_jobs,
+        category,
+        years_experience,
+        rounded_years,
+        resume_analysis,
+        extracted_data,
+    )
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -202,16 +238,37 @@ def upload_resume():
         env.pop("TRANSFORMERS_CACHE", None)
 
         print("[Upload] Running RAG-enhanced scraper...")
-        result = subprocess.run(
-            [sys.executable, scraper_path, abs_filepath],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            env=env,
-            cwd=project_root,
-            stdin=subprocess.DEVNULL,
-            timeout=120,  # Increased timeout for RAG processing
-        )
+        if os.getenv("VERCEL"):
+            # Vercel Functions must run the pipeline in-process. A child Python
+            # interpreter does not inherit the function's installed packages.
+            os.environ.update(
+                {
+                    "RESUME_PROJECT_ROOT": project_root,
+                    "RESUME_HEADLESS": "1",
+                    "RESUME_RUNTIME_DIR": env["RESUME_RUNTIME_DIR"],
+                    "HF_HOME": cache_dir,
+                    "HF_HUB_CACHE": env["HF_HUB_CACHE"],
+                }
+            )
+            in_process_data = _run_resume_pipeline_in_process(
+                abs_filepath, project_root
+            )
+            result = SimpleNamespace(
+                returncode=0,
+                stdout="RESULT_JSON:" + json.dumps(in_process_data) + "\n",
+                stderr="",
+            )
+        else:
+            result = subprocess.run(
+                [sys.executable, scraper_path, abs_filepath],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=env,
+                cwd=project_root,
+                stdin=subprocess.DEVNULL,
+                timeout=120,
+            )
 
         # Log scraper output so we can see RAG/Claude init warnings (stdout is captured, not shown)
         scraper_out = (result.stdout or "") + (result.stderr or "")
