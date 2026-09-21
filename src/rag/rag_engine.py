@@ -24,7 +24,8 @@ class RAGEngine:
         self.embedding_model = None
         self.embedding_provider = "unknown"
         self.fireworks_embed_model = (
-            os.getenv("FIREWORKS_EMBED_MODEL") or "fireworks/qwen3-embedding-8b"
+            os.getenv("FIREWORKS_EMBED_MODEL")
+            or "accounts/fireworks/models/qwen3-embedding-8b"
         )
         self.persist_directory = os.path.abspath(persist_directory)
 

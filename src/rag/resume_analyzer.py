@@ -33,7 +33,7 @@ class ResumeAnalyzer:
             os.getenv("FIREWORKS_ANALYZER_MODEL")
             or os.getenv("FIREWORKS_PRIMARY_CHAT_MODEL")
             or os.getenv("FIREWORKS_CHAT_MODEL")
-            or "fireworks/minimax-m2p7"
+            or "accounts/fireworks/models/minimax-m2p7"
         )
         self.analysis_provider = "local"
 

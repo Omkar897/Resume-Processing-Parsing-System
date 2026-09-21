@@ -35,22 +35,22 @@ class FireworksResumeIntelligence:
             primary_model
             or os.getenv("FIREWORKS_PRIMARY_CHAT_MODEL")
             or os.getenv("FIREWORKS_CHAT_MODEL")
-            or "fireworks/minimax-m2p7"
+            or "accounts/fireworks/models/minimax-m2p7"
         )
         self.fallback_model = (
             fallback_model
             or os.getenv("FIREWORKS_FALLBACK_CHAT_MODEL")
-            or "fireworks/deepseek-v3p2"
+            or "accounts/fireworks/models/deepseek-v3p2"
         )
         self.embedding_model = (
             embedding_model
             or os.getenv("FIREWORKS_EMBED_MODEL")
-            or "fireworks/qwen3-embedding-8b"
+            or "accounts/fireworks/models/qwen3-embedding-8b"
         )
         self.rerank_model = (
             rerank_model
             or os.getenv("FIREWORKS_RERANK_MODEL")
-            or "fireworks/qwen3-reranker-8b"
+            or "accounts/fireworks/models/qwen3-reranker-8b"
         )
         self.confidence_threshold = float(
             os.getenv("FIREWORKS_CLASSIFY_CONF_THRESHOLD", confidence_threshold)

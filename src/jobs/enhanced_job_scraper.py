@@ -1501,7 +1501,7 @@ class EnhancedJobScraper:
                 )
                 or os.getenv("FIREWORKS_PRIMARY_CHAT_MODEL")
                 or os.getenv("FIREWORKS_CHAT_MODEL")
-                or "fireworks/minimax-m2p7"
+                or "accounts/fireworks/models/minimax-m2p7"
             ),
             # Backward compatibility keys retained for older consumers.
             "bedrock_category_enabled": False,
