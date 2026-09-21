@@ -6,13 +6,10 @@
 !README.md
 !LICENSE
 !requirements.txt
-!render.yaml
-!railway.toml
-!Procfile
-!Dockerfile
-!docker-compose.yml
-!.dockerignore
 !.env.example
+!vercel.json
+!api/
+!api/**
 
 # Required source trees
 !web/

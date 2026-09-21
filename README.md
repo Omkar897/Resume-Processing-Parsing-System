@@ -1,50 +1,44 @@
-﻿# AI Resume Intelligence System
+# AI Resume Intelligence System
 
-An AI-powered resume processing and job matching platform using AMD-backed Fireworks API, vector embeddings, and semantic search for intelligent candidate analysis and job recommendations.
+An AI-powered resume processing and job matching platform. Upload a PDF resume to extract a candidate profile, find current roles through SerpAPI, and rank them with Fireworks embeddings and reranking.
 
-## What it does
-- Upload a PDF resume
-- Extract text locally using PyMuPDF and pdfplumber
-- Use AMD-backed Fireworks LLM to infer:
-  - Target role/category
-  - Years of experience
-  - Role family/seniority
-  - Key skills/signals
-- Scrape live jobs from Google Jobs via SerpAPI
-- Rank jobs with semantic similarity (vector embeddings + cosine similarity)
-- Apply Fireworks reranker as second-stage refinement
-- Show ranked jobs with match scores and explanations
-- ATS scoring for candidate evaluation
+## Features
 
-## Active provider stack
-- **LLM extraction/classification** (AMD-backed Fireworks API):
-  - Primary: `fireworks/minimax-m2p7` (AMD GPU-accelerated)
-  - Fallback: `fireworks/deepseek-v3p2` (AMD GPU-accelerated)
-- **Embeddings**: `fireworks/qwen3-embedding-8b` (AMD GPU-accelerated)
-- **Reranker**: `fireworks/qwen3-reranker-8b` (AMD GPU-accelerated)
-- **Job Search**: SerpAPI (Google Jobs)
-- **Vector Storage**: ChromaDB
+- PDF resume upload and local text extraction with PyMuPDF and pdfplumber
+- Fireworks LLM profile extraction: role, experience, seniority, and skills
+- Google Jobs search through SerpAPI
+- Semantic matching with Fireworks embeddings and reranking
+- Resume insights and ATS scoring
+- Vercel deployment with a Flask serverless function
 
 ## Tech stack
-- **Backend**: Flask, Gunicorn (production)
-- **Resume parsing**: PyMuPDF, pdfplumber
-- **AI/ML**: Fireworks API (AMD-backed), Sentence Transformers, ChromaDB
-- **Job source**: SerpAPI (Google Jobs)
-- **Frontend**: HTML/CSS/Vanilla JS
-- **Deployment**: Railway (cloud platform)
+
+- Flask and Jinja templates
+- Fireworks API for LLM, embeddings, and reranking
+- SerpAPI for Google Jobs
+- ChromaDB for the optional runtime vector store
+- Vercel Functions for deployment
 
 ## Project structure
-- **Web app**: `web/app.py` - Flask application entry point
-- **Core pipeline**: `src/jobs/enhanced_job_scraper.py` - Main job scraping and resume processing logic
-- **AI integration**: `LLM/fireworks_resume_intelligence.py` - Fireworks API integration
-- **RAG system**: `src/rag/resume_analyzer.py` - Resume analysis and ATS scoring
+
+- `api/index.py` - Vercel Function entry point
+- `web/app.py` - Flask application and API routes
+- `src/jobs/enhanced_job_scraper.py` - Resume-processing and job-matching pipeline
+- `src/rag/resume_analyzer.py` - Resume analysis and ATS scoring
+- `LLM/fireworks_resume_intelligence.py` - Fireworks integration
+- `vercel.json` - Vercel routing, bundled files, and function duration
 
 ## Environment variables
-### Required:
-- `FIREWORKS_API_KEY` - Your Fireworks API key (AMD-backed)
-- `SERPAPI_KEY` - Your SerpAPI key for job search
 
-### Recommended defaults:
+Create a local `.env` from [`.env.example`](.env.example). Never commit real credentials.
+
+Required:
+
+- `FIREWORKS_API_KEY` - Fireworks API key
+- `SERPAPI_KEY` - SerpAPI key for Google Jobs search
+
+Optional Fireworks settings:
+
 ```bash
 FIREWORKS_PRIMARY_CHAT_MODEL=fireworks/minimax-m2p7
 FIREWORKS_FALLBACK_CHAT_MODEL=fireworks/deepseek-v3p2
@@ -57,103 +51,53 @@ LLM_QUERY_EXPANSIONS=2
 LLM_RERANK_TOP_K=8
 ```
 
-### Optional:
-- `USE_LEGACY_MAIN_PARSER=0` - Set to `1` only for legacy `main.py` enrichment path
-- `MAIL_USERNAME`, `MAIL_PASSWORD` - Email credentials (local SMTP mode only)
-- `RAILWAY=1` - Set to `1` for Railway deployment
-- `RAILWAY_EMAIL_DISABLED=1` - Email disabled on Railway (SMTP ports blocked)
+Email is disabled by default on Vercel. Set `EMAIL_ENABLED=1` only if you have configured an email provider that is supported from the deployed function. For production email, an HTTP email API is preferable to direct SMTP.
 
-## Local run
+## Run locally
+
 ```bash
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 python web/app.py
 ```
-Open `http://localhost:5000`
 
-## Railway deployment
-This project is deployed on Railway using the Railway CLI.
+Open `http://localhost:5000`.
 
-### Deployment setup:
-1. **Install Railway CLI**:
+## Deploy on Vercel
+
+The repository is configured for Vercel. The Flask app is served through `api/index.py`; all application routes are rewritten to that function.
+
+1. Import [Omkar897/Resume-Processing-Parsing-System](https://github.com/Omkar897/Resume-Processing-Parsing-System) into Vercel, or run the CLI from the project root:
+
    ```bash
-   npm install -g @railway/cli
+   npm install -g vercel
+   vercel login
+   vercel
    ```
 
-2. **Login to Railway**:
+2. In **Vercel Project Settings → Environment Variables**, add `FIREWORKS_API_KEY` and `SERPAPI_KEY`. Add any optional variables from `.env.example` that you use locally.
+
+3. Deploy to production:
+
    ```bash
-   railway login
+   vercel --prod
    ```
 
-3. **Create service**:
-   - Go to [railway.app](https://railway.app)
-   - Create new project "glorious-insight"
-   - Create empty service "alluring-wholeness"
+4. Future pushes to the selected GitHub branch automatically trigger a Vercel deployment.
 
-4. **Link and deploy**:
-   ```bash
-   railway link
-   railway up
-   ```
+### Vercel runtime notes
 
-5. **Set environment variables**:
-   - Go to Railway dashboard
-   - Add `FIREWORKS_API_KEY`, `SERPAPI_KEY`, and other required variables
-
-### Health check:
-- Health check endpoint: `/healthz`
-- Railway URL: `https://alluring-wholeness-production-669c.up.railway.app`
-
-### Railway notes:
-- **Email functionality disabled** - Railway blocks SMTP ports for security
-- **Results are ephemeral** - Use external storage for persistence if needed
-- **AMD GPU acceleration** - Fireworks API uses AMD GPU infrastructure
-
-## Current pipeline (runtime)
-1. Upload PDF resume
-2. Local PDF text extraction (PyMuPDF + pdfplumber fallback)
-3. Fireworks LLM structured profile extraction (AMD GPU-accelerated)
-4. Query generation + SerpAPI job fetch
-5. Vector embedding similarity scoring
-6. Fireworks reranker blend (AMD GPU-accelerated)
-7. Return ranked jobs with match scores to UI
-
-## Development notes
-- Keep API keys in `.env` locally (never commit secrets)
-- Fireworks API key should only be read from env (`FIREWORKS_API_KEY`)
-- Email functionality is automatically disabled on Railway and Render platforms
-- The system uses AMD-backed Fireworks API for cost-efficient AI processing
-- Vector embeddings and semantic search provide intelligent job matching
+- Resume uploads, the ChromaDB store, and embedding cache use `/tmp` on Vercel. They are temporary and are not shared between function instances.
+- The function is configured for a 60-second maximum duration. Very large resumes or slow upstream APIs can still exceed this limit.
+- The application uses Fireworks embeddings by default. The local Sentence Transformers fallback is deliberately not packaged for Vercel to keep the Python function within bundle limits.
 
 ## Tests
-Run unit tests (if `pytest` is installed):
+
 ```bash
 python -m pytest -q
 ```
 
-## Live demo
-- **Railway deployment**: https://alluring-wholeness-production-669c.up.railway.app
-- **GitHub repository**: https://github.com/Omkar897/resume-processing-parsing-system
+## License
 
-## Features
-- ✅ AI-powered resume analysis using AMD-backed LLMs
-- ✅ Semantic job matching with vector embeddings
-- ✅ Real-time job search and ranking
-- ✅ ATS scoring for candidate evaluation
-- ✅ Production-ready deployment on Railway
-- ✅ Platform-specific email handling
-- ✅ Robust error handling and fallback mechanisms
-- ✅ Cost-efficient AI processing using AMD GPU infrastructure
-
-## Technologies Used
-- **Fireworks API** (AMD-backed LLMs: minimax-m2p7, deepseek-v3p2)
-- **ChromaDB** (Vector Database)
-- **Flask** (Web Framework)
-- **APILayer Resume Parser API** (Resume extraction)
-- **SerpAPI** (Job Search)
-- **PyMuPDF & pdfplumber** (PDF Processing)
-- **Sentence Transformers** (Embeddings)
-- **Railway** (Cloud Deployment)
-- **Git & GitHub** (Version Control)
-- **Gunicorn** (WSGI Server)
+See [LICENSE](LICENSE).

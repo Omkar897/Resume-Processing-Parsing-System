@@ -9,8 +9,6 @@ from typing import Dict, List, Optional, Tuple
 
 import chromadb
 import numpy as np
-from sentence_transformers import SentenceTransformer
-
 from LLM.fireworks_client import FireworksClient
 
 
@@ -43,6 +41,8 @@ class RAGEngine:
         except Exception as e:
             print(f"[RAG] Fireworks embeddings unavailable, using local model: {e}")
             print("Loading local embedding model...")
+            from sentence_transformers import SentenceTransformer
+
             self.embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
             self.embedding_provider = "local_minilm"
             print("Local embedding model loaded")
@@ -153,6 +153,8 @@ class RAGEngine:
             except Exception as exc:
                 # Runtime fallback to local model to avoid hard failures.
                 if self.embedding_model is None:
+                    from sentence_transformers import SentenceTransformer
+
                     self.embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
                 self.embedding_provider = "local_minilm"
                 print(f"[RAG] Fireworks embedding failed, switching to local: {exc}")

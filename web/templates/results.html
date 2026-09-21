@@ -31,16 +31,18 @@
         <div class="email-section reveal" data-reveal>
             <div class="email-box">
                 <h3>Email these matches</h3>
-                <p class="email-disabled-message">Email delivery is not available on this platform. Railway blocks SMTP ports for security. Please use local deployment for email functionality.</p>
+                {% if not email_enabled %}
+                <p class="email-disabled-message">Email delivery is disabled for this deployment.</p>
+                {% endif %}
                 <div class="email-form">
                     <input
                         type="email"
                         id="emailInput"
-                        placeholder="Email not available on Railway deployment"
+                        placeholder="Enter your email address"
                         class="email-input"
-                        disabled
+                        {% if not email_enabled %}disabled{% endif %}
                     >
-                    <button id="sendEmailBtn" class="btn-email" disabled>Unavailable</button>
+                    <button id="sendEmailBtn" class="btn-email" {% if not email_enabled %}disabled{% endif %}>{% if email_enabled %}Send Email{% else %}Unavailable{% endif %}</button>
                 </div>
                 <div id="emailStatus" class="email-status"></div>
             </div>

@@ -13,9 +13,21 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.config["UPLOAD_FOLDER"] = os.path.join(
-    os.path.dirname(__file__), "static", "uploads"
-)
+
+
+def _runtime_directory(*parts):
+    """Return a writable directory for local and serverless deployments."""
+    root = os.getenv("RESUME_RUNTIME_DIR")
+    if not root:
+        root = "/tmp/resume-processing" if os.getenv("VERCEL") else os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "runtime"
+        )
+    path = os.path.join(root, *parts)
+    os.makedirs(path, exist_ok=True)
+    return path
+
+
+app.config["UPLOAD_FOLDER"] = _runtime_directory("uploads")
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 ALLOWED_EXTENSIONS = {"pdf"}
 
@@ -29,32 +41,15 @@ app.config["MAIL_DEFAULT_SENDER"] = os.getenv("MAIL_USERNAME")
 
 mail = Mail(app)
 
-os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
-
-
-def is_render_environment():
-    return os.getenv("RENDER", "").strip().lower() in {"1", "true", "yes"}
-
-
-def is_railway_environment():
-    return os.getenv("RAILWAY", "").strip().lower() in {"1", "true", "yes"}
-
-
 def is_email_enabled():
-    explicit = (os.getenv("RENDER_EMAIL_DISABLED") or "").strip().lower()
+    explicit = (os.getenv("EMAIL_ENABLED") or "").strip().lower()
     if explicit in {"1", "true", "yes"}:
-        return False
+        return True
     if explicit in {"0", "false", "no"}:
-        return True
-
-    railway_explicit = (os.getenv("RAILWAY_EMAIL_DISABLED") or "").strip().lower()
-    if railway_explicit in {"1", "true", "yes"}:
         return False
-    if railway_explicit in {"0", "false", "no"}:
-        return True
 
-    # Render and Railway free services block SMTP ports (25/465/587).
-    if is_render_environment() or is_railway_environment():
+    # Serverless functions should use an HTTP email provider unless explicitly enabled.
+    if os.getenv("VERCEL"):
         return False
     return bool(app.config.get("MAIL_USERNAME") and app.config.get("MAIL_PASSWORD"))
 
@@ -200,10 +195,10 @@ def upload_resume():
             f"DEBUG: FIREWORKS_API_KEY length: {len(env.get('FIREWORKS_API_KEY', ''))}"
         )
 
-        cache_dir = os.path.join(project_root, "data", ".embedding_cache")
-        os.makedirs(cache_dir, exist_ok=True)
-        env["HF_HOME"] = os.path.abspath(cache_dir)
-        env["HF_HUB_CACHE"] = os.path.abspath(os.path.join(cache_dir, "hub"))
+        cache_dir = _runtime_directory("embedding_cache")
+        env["RESUME_RUNTIME_DIR"] = os.path.dirname(cache_dir)
+        env["HF_HOME"] = cache_dir
+        env["HF_HUB_CACHE"] = os.path.join(cache_dir, "hub")
         env.pop("TRANSFORMERS_CACHE", None)
 
         print("[Upload] Running RAG-enhanced scraper...")
@@ -484,17 +479,7 @@ def send_email():
         error_trace = traceback.format_exc()
         print(f"[Email][Error] {error_trace}")
 
-        # Check if this is Railway environment
-        if is_railway_environment():
-            error_msg = "Email delivery is not supported on Railway platform. Railway blocks SMTP ports for security. Please use local deployment or a different email provider."
-            return jsonify({"error": error_msg, "platform": "railway"}), 503
-
-        # Check if this is Render environment
-        if is_render_environment():
-            error_msg = "Email delivery is not supported on Render free tier. Render blocks SMTP ports for security. Please upgrade to Render paid tier or use a different email provider."
-            return jsonify({"error": error_msg, "platform": "render"}), 503
-
-        # Specific email errors for other environments
+        # Specific email errors
         if "Authentication" in str(e) or "Username and Password not accepted" in str(e):
             error_msg = (
                 "Email authentication failed. Please check your email configuration."
@@ -679,7 +664,7 @@ def healthz():
 
 @app.route("/results")
 def results():
-    return render_template("results.html")
+    return render_template("results.html", email_enabled=is_email_enabled())
 
 
 if __name__ == "__main__":

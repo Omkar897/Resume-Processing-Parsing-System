@@ -59,14 +59,14 @@ class EnhancedJobScraper:
 
         # RAG engine (local embeddings + ChromaDB)
         try:
-            persist_dir = os.path.abspath(
-                os.path.join(self.project_root, "data", "chromadb")
+            runtime_root = os.path.abspath(
+                os.getenv("RESUME_RUNTIME_DIR")
+                or os.path.join(self.project_root, "data", "runtime")
             )
+            persist_dir = os.path.join(runtime_root, "chromadb")
             os.makedirs(persist_dir, exist_ok=True)
-            # Keep HuggingFace/transformers cache inside project so subprocess has a valid path
-            cache_dir = os.path.abspath(
-                os.path.join(self.project_root, "data", ".embedding_cache")
-            )
+            # Keep HuggingFace/transformers cache in the writable runtime directory.
+            cache_dir = os.path.join(runtime_root, "embedding_cache")
             os.makedirs(cache_dir, exist_ok=True)
             os.environ["HF_HOME"] = cache_dir
             os.environ["HF_HUB_CACHE"] = os.path.join(cache_dir, "hub")
