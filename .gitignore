@@ -7,6 +7,7 @@
 !LICENSE
 !requirements.txt
 !.env.example
+!.vercelignore
 !vercel.json
 !api/
 !api/**

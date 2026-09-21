@@ -1,0 +1,13 @@
+.git/
+.vscode/
+venv/
+env/
+.env
+data/
+tests/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.log
+web/static/uploads/
+src/jobs/*.json
