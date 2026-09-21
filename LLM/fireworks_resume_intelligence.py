@@ -18,9 +18,7 @@ load_dotenv()
 
 class FireworksResumeIntelligence:
     """
-    Structured resume intelligence with a cost-first model strategy:
-    - Primary model: MiniMax M2.7
-    - Fallback model: DeepSeek v3.2 on low-quality/invalid output
+    Structured resume intelligence using a chat model available to this project.
     """
 
     def __init__(
@@ -35,12 +33,12 @@ class FireworksResumeIntelligence:
             primary_model
             or os.getenv("FIREWORKS_PRIMARY_CHAT_MODEL")
             or os.getenv("FIREWORKS_CHAT_MODEL")
-            or "accounts/fireworks/models/minimax-m2p7"
+            or "accounts/fireworks/models/glm-5p2"
         )
         self.fallback_model = (
             fallback_model
             or os.getenv("FIREWORKS_FALLBACK_CHAT_MODEL")
-            or "accounts/fireworks/models/deepseek-v3p2"
+            or "accounts/fireworks/models/glm-5p2"
         )
         self.embedding_model = (
             embedding_model

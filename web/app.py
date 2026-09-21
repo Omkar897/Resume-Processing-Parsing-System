@@ -208,10 +208,10 @@ def upload_resume():
         # Explicitly pass Fireworks environment variables
         env["FIREWORKS_API_KEY"] = os.getenv("FIREWORKS_API_KEY", "")
         env["FIREWORKS_PRIMARY_CHAT_MODEL"] = os.getenv(
-            "FIREWORKS_PRIMARY_CHAT_MODEL", "accounts/fireworks/models/minimax-m2p7"
+            "FIREWORKS_PRIMARY_CHAT_MODEL", "accounts/fireworks/models/glm-5p2"
         )
         env["FIREWORKS_FALLBACK_CHAT_MODEL"] = os.getenv(
-            "FIREWORKS_FALLBACK_CHAT_MODEL", "accounts/fireworks/models/deepseek-v3p2"
+            "FIREWORKS_FALLBACK_CHAT_MODEL", "accounts/fireworks/models/glm-5p2"
         )
         env["FIREWORKS_EMBED_MODEL"] = os.getenv(
             "FIREWORKS_EMBED_MODEL", "accounts/fireworks/models/qwen3-embedding-8b"

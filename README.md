@@ -40,8 +40,8 @@ Required:
 Optional Fireworks settings:
 
 ```bash
-FIREWORKS_PRIMARY_CHAT_MODEL=accounts/fireworks/models/minimax-m2p7
-FIREWORKS_FALLBACK_CHAT_MODEL=accounts/fireworks/models/deepseek-v3p2
+FIREWORKS_PRIMARY_CHAT_MODEL=accounts/fireworks/models/glm-5p2
+FIREWORKS_FALLBACK_CHAT_MODEL=accounts/fireworks/models/glm-5p2
 FIREWORKS_EMBED_MODEL=accounts/fireworks/models/qwen3-embedding-8b
 FIREWORKS_RERANK_MODEL=accounts/fireworks/models/qwen3-reranker-8b
 USE_FIREWORKS_LLM=1
