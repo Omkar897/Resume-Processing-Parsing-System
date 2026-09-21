@@ -56,3 +56,4 @@ src/jobs/*.json
 test_output.txt
 
 
+.vercel
