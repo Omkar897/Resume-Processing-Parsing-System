@@ -9,8 +9,6 @@
 !.env.example
 !.vercelignore
 !vercel.json
-!api/
-!api/**
 
 # Required source trees
 !web/

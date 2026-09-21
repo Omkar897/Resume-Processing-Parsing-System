@@ -21,7 +21,7 @@ An AI-powered resume processing and job matching platform. Upload a PDF resume t
 
 ## Project structure
 
-- `api/index.py` - Vercel Function entry point
+- `app.py` - Vercel Function entry point
 - `web/app.py` - Flask application and API routes
 - `src/jobs/enhanced_job_scraper.py` - Resume-processing and job-matching pipeline
 - `src/rag/resume_analyzer.py` - Resume analysis and ATS scoring
@@ -66,7 +66,7 @@ Open `http://localhost:5000`.
 
 ## Deploy on Vercel
 
-The repository is configured for Vercel. The Flask app is served through `api/index.py`; all application routes are rewritten to that function.
+The repository is configured for Vercel. The root `app.py` exposes the Flask application to Vercel Functions.
 
 1. Import [Omkar897/Resume-Processing-Parsing-System](https://github.com/Omkar897/Resume-Processing-Parsing-System) into Vercel, or run the CLI from the project root:
 
