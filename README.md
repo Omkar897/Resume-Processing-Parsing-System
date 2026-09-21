@@ -89,7 +89,7 @@ The repository is configured for Vercel. The root `app.py` exposes the Flask app
 ### Vercel runtime notes
 
 - Resume uploads, the ChromaDB store, and embedding cache use `/tmp` on Vercel. They are temporary and are not shared between function instances.
-- The function is configured for a 60-second maximum duration. Very large resumes or slow upstream APIs can still exceed this limit.
+- The function is configured for a five-minute maximum duration. Very large resumes or slow upstream APIs can still exceed this limit, depending on the Vercel plan's limits.
 - The application uses Fireworks embeddings by default. The local Sentence Transformers fallback is deliberately not packaged for Vercel to keep the Python function within bundle limits.
 
 ## Tests
